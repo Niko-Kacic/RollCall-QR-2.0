@@ -1,0 +1,7 @@
+{
+  "name": "Rollcall-QR",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
