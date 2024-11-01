@@ -20,12 +20,13 @@
 
 .main-img{
   object-fit:cover;
-  height: 150px;
-  width: 150px;
+  height: 170px;
+  width: 200px;
   object-fit:cover;
   border: 1px solid #000;
   margin: 1rem auto;
   border-radius: 20px;
+  box-shadow: 0.5px 0.5px 4px 1px #000;
 }
 
 
@@ -38,16 +39,18 @@
   display: block;
   text-align: center;
   margin: 1rem;
+
 }
 
 input{
   background-color:#fff;
   border: 1px solid #000;
   height: 30px;
+  box-shadow: 0.5px 0.5px 1px  #000;
 }
 
 .btn-box{
-  margin-top: 4rem;
+  margin-top: 3rem;
 }
 
 .main-btn {
@@ -71,8 +74,6 @@ input{
 ion-button{
   width: 80%;
   font-size: 11px;
-  margin-top: 0.6rem;
-
 }
 
 ion-button:active {
