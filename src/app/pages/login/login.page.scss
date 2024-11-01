@@ -3,8 +3,6 @@
 
 .title-box{
   text-align: center;
-
-
 }
 
 .title-box p{
@@ -17,6 +15,7 @@
 .main-img-box{
   display: flex;
   justify-content: center;
+  margin-top: 1rem;
 }
 
 .main-img{
@@ -32,6 +31,7 @@
 
 .form-box{
   text-align: center;
+  margin-top: 2.5rem;
 }
 
 .form-box label{
@@ -43,8 +43,29 @@
 input{
   background-color:#fff;
   border: 1px solid #000;
-  border-radius: 10px;
   height: 30px;
+}
+
+.btn-box{
+  margin-top: 4rem;
+}
+
+.main-btn {
+  width: 56%;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.main-btn:active {
+  background-color: #000;
+  color: #fff;
+  transform: scale(0.95);
 }
 
 .footer-title{
