@@ -1,0 +1,74 @@
+
+
+
+.title-box{
+  text-align: center;
+}
+
+.title-box p{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: 70%;
+}
+
+.main-img-box{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.main-img{
+  object-fit:cover;
+  height: 150px;
+  width: 150px;
+  object-fit:cover;
+  border: 1px solid #000;
+  margin: 1rem auto;
+  border-radius: 20px;
+}
+
+
+.form-box{
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.form-box label{
+  display: block;
+  text-align: center;
+  margin: 1rem;
+}
+
+input{
+  background-color:#fff;
+  border: 1px solid #000;
+  height: 30px;
+}
+
+.btn-box{
+  margin-top: 4rem;
+}
+
+.main-btn {
+  width: 56%;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.main-btn:active {
+  background-color: #000;
+  color: #fff;
+  transform: scale(0.95);
+}
+
+.footer-title{
+  text-align: center;
+  font-size: 18px;
+}
