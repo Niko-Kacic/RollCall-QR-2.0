@@ -1,4 +1,3 @@
-
 <ion-content>
   <div class="title-box">
     <h2>Ingresa con tus credenciales</h2>
@@ -12,27 +11,25 @@
   </div>
 
   <div class="form-box">
-    <form action="">
+    <form (submit)="validateLogin()">
         <div class="input-email-box">
           <label for="input-email">Correo</label>
-          <input type="email" name="" id="input-email">
+          <input type="email" [(ngModel)]="email" name="email" id="input-email" required>
         </div>
         <div class="input-password-box">
           <label for="input-password">Contraseña</label>
-          <input type="password" name="" id="input-password">
+          <input type="password" [(ngModel)]="password" name="password" id="input-password" required>
         </div>
         <div class="btn-box">
-          <button class="main-btn">login</button>
+          <button type="submit" class="main-btn">Login</button>
         </div>
         <ion-button fill="clear" color="medium" (click)="redirect()">¿Olvidaste tu contraseña?</ion-button>
     </form>
   </div>
 </ion-content>
 
-
 <ion-footer>
   <ion-toolbar>
     <ion-title class="footer-title">{{footerTitle}}</ion-title>
   </ion-toolbar>
 </ion-footer>
-
