@@ -1,13 +1,122 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>main-menu</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">main-menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-menu side="end" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu Content</ion-title>
+        <ion-buttons slot="end">
+          <ion-menu-toggle auto-hide="false">
+            <ion-button>
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
+          </ion-menu-toggle>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content >
+      <ion-list lines="none" >
+        <ion-item button>
+          <ion-avatar class="profile-avatar">
+            <ion-icon size="large" name="id-card-outline"></ion-icon>
+          </ion-avatar>
+          <ion-label>Perfil</ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-avatar class="profile-avatar">
+            <ion-icon size="large" name="book-outline"></ion-icon>
+          </ion-avatar>
+          <ion-label>Asignaturas</ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-avatar class="profile-avatar">
+            <ion-icon size="large" name="calendar-outline"></ion-icon>
+          </ion-avatar>
+          <ion-label>Calendario</ion-label>
+        </ion-item>
+        <ion-item button>
+          <ion-avatar class="profile-avatar">
+            <ion-icon size="large" name="people-outline"></ion-icon>
+          </ion-avatar>
+          <ion-label>Grupos de estudio</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Rollcall-QR <ion-icon class="menu-icon" name="qr-code-outline"></ion-icon></ion-title>
+
+        <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+        <div class="profile-pictire-box">
+          <img class="main-picture" src="https://freesvg.org/img/abstract-user-flat-4.png" alt="profile-img">
+        </div>
+        <div class="title-user-box">
+          <h3>Bienvenido: <strong>Usuario</strong></h3>
+        </div>
+
+        <div class="news-box" style="width: 100%;">
+          <h3 class="news-title">Noticias</h3>
+          <ion-list>
+              <ion-card>
+                <img class="img-news" alt="Silhouette of mountains" src="{{news[0].coverimg}}"/>
+                <ion-card-header>
+                  <ion-card-subtitle>Publicado el {{news[0].date}}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  {{news[0].extract}}
+                </ion-card-content>
+              </ion-card>
+
+              <ion-card>
+                <img class="img-news" alt="Silhouette of mountains" src="{{news[1].coverimg}}"/>
+                <ion-card-header>
+                  <ion-card-subtitle>Publicado el {{news[1].date}}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  {{news[1].extract}}
+                </ion-card-content>
+              </ion-card>
+          </ion-list>
+        </div>
+
+        <div class="events-box">
+          <h3 class="events-title">Otros Eventos</h3>
+          <ion-list>
+            <ion-card>
+              <img class="img-events" alt="Silhouette of mountains" src="{{events[0].image_1}}"/>
+              <ion-card-header>
+                <ion-card-subtitle>Publicado el {{events[0].date}}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                {{events[0].title}}
+              </ion-card-content>
+
+              <ion-label class="location-label"><ion-icon size="large" name="navigate-circle-outline"></ion-icon> {{events[0].location}}</ion-label>
+            </ion-card>
+          </ion-list>
+
+          <ion-list>
+            <ion-card>
+              <img class="img-events" alt="Silhouette of mountains" src="{{events[1].image_1}}"/>
+              <ion-card-header>
+                <ion-card-subtitle>Publicado el {{events[1].date}}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                {{events[1].title}}
+              </ion-card-content>
+
+              <ion-label class="location-label"><ion-icon size="large" name="navigate-circle-outline"></ion-icon> {{events[1].location}}</ion-label>
+            </ion-card>
+          </ion-list>
+        </div>
+    </ion-content>
+  </div>
+
 </ion-content>
