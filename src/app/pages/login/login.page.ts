@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
           }
         };
         this.toastMessage('Usuario autenticado correctamente', 'success');
-        this.router.navigate(['/home-user'], extras);
+        this.router.navigate(['/main-menu'], extras);
 
         this.email = "";
         this.password = "";

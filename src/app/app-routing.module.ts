@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -10,31 +9,25 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'reset-password',
-    redirectTo: 'reset-password',
-    pathMatch: 'full'
+    loadChildren: () => import('./pages/reset-password/reset-password.module').then(m => m.ResetPasswordPageModule)
+  },
+  {
+    path: 'main-menu',
+    loadChildren: () => import('./pages/main-menu/main-menu.module').then(m => m.MainMenuPageModule)
   },
   {
     path: 'main-page',
-    loadChildren: () => import('./pages/main-page/main-page.module').then( m => m.MainPagePageModule)
+    loadChildren: () => import('./pages/main-page/main-page.module').then(m => m.MainPagePageModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'reset-password',
-    loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
-  },  {
-    path: 'main-menu',
-    loadChildren: () => import('./pages/main-menu/main-menu.module').then( m => m.MainMenuPageModule)
-  },
-
-
+    path: '**',
+    redirectTo: 'main-page',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
@@ -44,3 +37,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
