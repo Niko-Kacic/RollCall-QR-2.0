@@ -1,17 +1,37 @@
 
 .main-picture{
-  border: 1px solid #000;
   border-radius: 50%;
   object-fit: contain;
   box-shadow: 1px 1px 5px 1px #000;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .title-user-box{
   text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px #959494;
 }
 
 .footer-title{
   text-align: center;
   font-size: 18px;
+}
+.main-card{
+  display: flex;
+  padding: 1rem;
+  margin-top: 2rem;
+  box-shadow: none;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card-logo{
+  width: 80px;
+  height: 80px;
+  box-shadow: 1px 1px 8px #000;
+  border-radius: 10px;
+  object-fit: fill;
+  align-items: center;
+  margin-top: 0.8rem;
 }
