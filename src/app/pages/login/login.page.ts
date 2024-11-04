@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private toastController: ToastController,
-    private auth: Auth
+    private auth: Auth,
+    private authService: AuthService
   ) { }
 
 
@@ -24,10 +26,9 @@ export class LoginPage implements OnInit {
 
   async validateLogin() {
     try {
-      const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
+      const user = await this.authService.login(this.email, this.password);
 
-      if (userCredential.user) {
-
+      if (user) {
         let extras: NavigationExtras = {
           state: {
             user: this.email
@@ -38,17 +39,14 @@ export class LoginPage implements OnInit {
 
         this.email = "";
         this.password = "";
-
       }
     } catch (error: any) {
-
       this.toastMessage('Error al autenticar: ' + error.message, 'danger');
 
       this.email = "";
       this.password = "";
     }
   }
-
 
   async toastMessage(message: string, color: string) {
     const toast = await this.toastController.create({

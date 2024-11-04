@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -9,11 +10,21 @@ import { MenuController } from '@ionic/angular';
 
 export class MainMenuPage implements OnInit {
 
-  constructor(private menu: MenuController) { }
-
   public footerTitle: string = '{ Code By CodeCrafters }';
 
+
+  constructor(
+    private menu: MenuController,
+    private router: Router,
+  ) { }
+
+  redirect(){
+    this.router.navigate(['/profile']);
+  };
+
+
   ngOnInit() {
+
 
   }
 
