@@ -10,6 +10,7 @@ export class FireDataBaseService {
   constructor(private firestore: AngularFirestore) { }
 
   getUserData(userId: string) {
-    return this.firestore.collection('usuarios').doc(userId).valueChanges();
+    return this.firestore.collection('estudiantes').doc(userId).valueChanges();
   }
+
 }
