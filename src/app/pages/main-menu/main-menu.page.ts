@@ -25,9 +25,11 @@ export class MainMenuPage implements OnInit {
   };
 
   redirect_subjects(){
+    this.menu.close();
     this.router.navigate(['/subjects']);
   };
   redirect_404(){
+    this.menu.close();
     this.router.navigate(['/error-404']);
   };
 
