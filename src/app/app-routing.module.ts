@@ -24,10 +24,35 @@ const routes: Routes = [
     loadChildren: () => import('./pages/main-page/main-page.module').then(m => m.MainPagePageModule)
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
     path: '**',
     redirectTo: 'main-page',
     pathMatch: 'full'
-  }
+  },  {
+    path: 'subjects',
+    loadChildren: () => import('./pages/subjects/subjects.module').then( m => m.SubjectsPageModule)
+  },
+  {
+    path: 'schedule',
+    loadChildren: () => import('./pages/schedule/schedule.module').then( m => m.SchedulePageModule)
+  },
+  {
+    path: 'study-groups',
+    loadChildren: () => import('./pages/study-groups/study-groups.module').then( m => m.StudyGroupsPageModule)
+  },
+  {
+    path: 'news',
+    loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule)
+  },
+  {
+    path: 'events',
+    loadChildren: () => import('./pages/events/events.module').then( m => m.EventsPageModule)
+  },
+
+
 ];
 
 @NgModule({
