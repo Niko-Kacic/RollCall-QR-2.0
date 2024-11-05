@@ -16,7 +16,7 @@
   <hr>
 
   <ion-list >
-    <ion-item  *ngFor="let subject of subjects" [routerLink]="">
+    <ion-item  *ngFor="let subject of subjects" [routerLink]="['/subjects', subject.id]">
       <ion-avatar slot="start">
         <ion-img [src]=subject.imageURL></ion-img>
       </ion-avatar>
