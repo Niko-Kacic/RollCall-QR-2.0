@@ -8,10 +8,16 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+
   public footerTitle: string = '{ Code By CodeCrafters }';
-  lastname: string = "";
   firstName: string = "";
+  lastname: string = "";
   email: string = "";
+  careerSemester: string = "";
+  headquarters: string = "";
+  school: string = "";
+  career: string = "";
+  yearAtending: string = "";
 
   constructor(
     private fireDataBaseService: FireDataBaseService,
@@ -32,6 +38,11 @@ export class ProfilePage implements OnInit {
           this.lastname = data['lastname'];
           this.firstName = data['name'];
           this.email = data['email'];
+          this.careerSemester = data['careerSemester'];
+          this.headquarters = data['headquarters'];
+          this.school = data['school'];
+          this.career = data['career'];
+          this.yearAtending = data['yearAtending'];
         } else {
           console.log('No se encontró el usuario con el correo proporcionado');
         }
