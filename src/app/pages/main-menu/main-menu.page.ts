@@ -27,6 +27,9 @@ export class MainMenuPage implements OnInit {
   redirect_subjects(){
     this.router.navigate(['/subjects']);
   };
+  redirect_404(){
+    this.router.navigate(['/error-404']);
+  };
 
   async logout() {
     try {

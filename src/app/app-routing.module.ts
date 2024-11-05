@@ -66,7 +66,8 @@ const routes: Routes = [
   {
     path: 'error-404',
     loadChildren: () => import('./pages/error-404/error-404.module').then( m => m.Error404PageModule)
-  }, {
+  },
+  {
     path: '**',
     redirectTo: 'main-page',
     pathMatch: 'full'

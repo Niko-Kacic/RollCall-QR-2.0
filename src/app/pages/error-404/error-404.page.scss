@@ -1,0 +1,46 @@
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+}
+
+.error-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+
+.error-image {
+  width: 100%;
+  height: auto;
+  max-width: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.error-description {
+  font-size: 1rem;
+  color: #444;
+  font-weight: bold;
+}
+
+
+.footer-title{
+  text-align: center;
+  font-size: 18px;
+}
