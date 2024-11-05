@@ -18,6 +18,7 @@ export class MainMenuPage implements OnInit {
     private router: Router,
   ) { }
 
+
   redirect_profile(){
     this.router.navigate(['/profile']);
   };
