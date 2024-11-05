@@ -1,5 +1,47 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{subjectDetail}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button icon="caret-back-outline" defaultHref="/subjects"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">{{subjectDetail?.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngIf="subjectDetail">
+    <img id="subjectDetail-img" alt="subjectDetail-image" [src]="subjectDetail.imageURL" />
+    <ion-card-header>
+      <ion-avatar>
+        <img alt="Profile image" [src]="subjectDetail.profileImg" />
+      </ion-avatar>
+      <ion-card-title>Profesor del Curso</ion-card-title>
+      <b><ion-card-subtitle>{{ subjectDetail.teacher }}</ion-card-subtitle></b>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-text>
+        <p><b>Estado:</b> {{ subjectDetail.state }}</p>
+      </ion-text>
+      <ion-text>
+        <p><b>Porcentaje de asistencia:</b> {{ subjectDetail.asistance }}</p>
+      </ion-text>
+      <ion-text>
+        <p><b>Total de clases asistidas:</b> {{ subjectDetail.classes }}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="qr-box">
+    <button>
+      <ion-icon  name="qr-code-sharp"></ion-icon>
+    </button>
+  </div>
+</ion-content>
+
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="footer-title">{{footerTitle}}</ion-title>
+  </ion-toolbar>
+</ion-footer>
