@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-main-menu',
@@ -16,6 +17,7 @@ export class MainMenuPage implements OnInit {
   constructor(
     private menu: MenuController,
     private router: Router,
+    private authService: AuthService
   ) { }
 
   redirect_profile(){
@@ -26,6 +28,14 @@ export class MainMenuPage implements OnInit {
     this.router.navigate(['/subjects']);
   };
 
+  async logout() {
+    try {
+      await this.authService.logout();
+      this.router.navigate(['/login']);  // Redirige al usuario a la página de login después de cerrar sesión
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
+  }
 
   ngOnInit() {
 

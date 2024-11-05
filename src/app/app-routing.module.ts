@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,28 +18,34 @@ const routes: Routes = [
   },
   {
     path: 'main-menu',
-    loadChildren: () => import('./pages/main-menu/main-menu.module').then(m => m.MainMenuPageModule)
+    loadChildren: () => import('./pages/main-menu/main-menu.module').then(m => m.MainMenuPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'main-page',
-    loadChildren: () => import('./pages/main-page/main-page.module').then(m => m.MainPagePageModule)
+    loadChildren: () => import('./pages/main-page/main-page.module').then(m => m.MainPagePageModule),
+
   },
   {
     path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'subjects',
     children:[
       {
         path: '',
-        loadChildren: () => import('./pages/subjects/subjects.module').then( m => m.SubjectsPageModule)
+        loadChildren: () => import('./pages/subjects/subjects.module').then( m => m.SubjectsPageModule),
+        canActivate: [AuthGuard]
       },
       {
         path: ':placeId',
-        loadChildren: () => import('./pages/subjects/subject-detail/subject-detail-routing.module').then( m => m.SubjectDetailPageRoutingModule)
+        loadChildren: () => import('./pages/subjects/subject-detail/subject-detail-routing.module').then( m => m.SubjectDetailPageRoutingModule),
+        canActivate: [AuthGuard]
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
   {
     path: 'schedule',
@@ -64,7 +71,6 @@ const routes: Routes = [
     redirectTo: 'main-page',
     pathMatch: 'full'
   },
-
 
 ];
 

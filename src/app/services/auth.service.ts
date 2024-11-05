@@ -17,5 +17,9 @@ export class AuthService {
   async getCurrentUser(): Promise<User | null> {
     return await this.afAuth.currentUser;
   }
+
+  logout() {
+    return this.afAuth.signOut();
+  }
 }
 
