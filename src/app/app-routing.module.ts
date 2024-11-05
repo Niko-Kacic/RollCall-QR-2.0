@@ -36,7 +36,7 @@ const routes: Routes = [
     path: 'subjects',
 
     loadChildren: () => import('./pages/subjects/subjects.module').then( m => m.SubjectsPageModule),
-    canActivate: [authGuard]
+    canActivate: [authGuard],
     children:[
       {
         path: '',
