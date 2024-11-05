@@ -18,8 +18,11 @@
         </div>
         <div class="input-password-box">
           <label for="input-password">Contraseña</label>
-          <input type="password" [(ngModel)]="password" name="password" id="input-password" required>
-        </div>
+          <div class="password-wrapper">
+            <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" id="input-password" required>
+            <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" (click)="togglePassword()" class="password-icon"></ion-icon>
+          </div>
+        </div>        
         <div class="btn-box">
           <button type="submit" class="main-btn">Login</button>
         </div>

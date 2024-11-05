@@ -22,6 +22,7 @@ export class LoginPage implements OnInit {
   email!: string;
   password!: string;
   public footerTitle: string = '{ Code By CodeCrafters }';
+  showPassword: boolean = false;
 
 
   async validateLogin() {
@@ -61,6 +62,10 @@ export class LoginPage implements OnInit {
   redirect(){
     this.router.navigate(['/reset-password']);
   };
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   ngOnInit() {
   }
