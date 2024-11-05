@@ -28,25 +28,21 @@ export class LoginPage implements OnInit {
   async validateLogin() {
     try {
       const user = await this.authService.login(this.email, this.password);
-
       if (user) {
-        let extras: NavigationExtras = {
-          state: {
-            user: this.email
-          }
-        };
         this.toastMessage('Usuario autenticado correctamente', 'success');
-        this.router.navigate(['/main-menu'], extras);
-
+        this.router.navigate(['/main-menu']); // Redirige a una ruta protegida después del login
         this.email = "";
         this.password = "";
       }
     } catch (error: any) {
       this.toastMessage('Error al autenticar: ' + error.message, 'danger');
-
       this.email = "";
       this.password = "";
     }
+  }
+
+  isAuthenticated(): boolean {
+    return this.auth.currentUser !== null;
   }
 
   async toastMessage(message: string, color: string) {

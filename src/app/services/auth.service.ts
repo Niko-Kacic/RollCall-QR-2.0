@@ -9,31 +9,17 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth) { }
 
-  async login(email: string, password: string) {
-    const userCredential = await this.afAuth.signInWithEmailAndPassword(email, password);
-    console.log('Usuario autenticado:', userCredential.user); 
-    return userCredential.user; 
+  login(email: string, password: string) {
+    return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
+  // Ajusta el método para devolver un Promise<User | null>
   async getCurrentUser(): Promise<User | null> {
-    const user = await this.afAuth.currentUser;
-    console.log('Usuario actual:', user); 
-    return user;
+    return await this.afAuth.currentUser;
   }
 
-  async isLoggedIn(): Promise<boolean> {
-    const user = await this.getCurrentUser();
-    return !!user; 
-  }
-  
-
-   async logout(): Promise<void> {
-    try {
-      await this.afAuth.signOut();
-      console.log('Sesión cerrada correctamente');
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
-    }
+  logout() {
+    return this.afAuth.signOut();
   }
 }
 

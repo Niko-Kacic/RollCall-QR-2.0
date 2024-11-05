@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Error404Page implements OnInit {
 
+  public footerTitle: string = '{ Code By CodeCrafters }';
+
   constructor() { }
 
   ngOnInit() {
