@@ -1,24 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
-
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
-
 export class ProfilePage implements OnInit {
   public footerTitle: string = '{ Code By CodeCrafters }';
   lastname: string = "";
+  firstName: string = "";
+  email: string = "";
 
-  constructor(private fireDataBaseService: FireDataBaseService) {}
+  constructor(
+    private fireDataBaseService: FireDataBaseService,
+    private authService: AuthService
+  ) {}
 
-  ngOnInit() {
-    this.fireDataBaseService.getUserData('Kg8tfvtJuwsEuZxdGacA').subscribe(data => {
-      this.lastname = data['lastname'];
-      console.log(this.lastname);
-    });
+  async ngOnInit() {
+    // Espera a que se resuelva el usuario autenticado
+    const user = await this.authService.getCurrentUser();
+    if (user && user.email) {
+      this.email = user.email;
+      console.log('Correo del usuario autenticado:', this.email); // Verifica el correo obtenido
+
+      // Buscar los datos del usuario por el correo
+      this.fireDataBaseService.getUserDataByEmail(this.email).subscribe(data => {
+        if (data) {
+          console.log('Datos del usuario obtenidos desde Firestore:', data); // Verifica los datos obtenidos
+          this.lastname = data['lastname'];
+          this.firstName = data['name'];
+          this.email = data['email'];
+        } else {
+          console.log('No se encontró el usuario con el correo proporcionado');
+        }
+      });
+    } else {
+      console.log('No se pudo obtener el correo del usuario autenticado');
+    }
   }
+
 }
+
 
