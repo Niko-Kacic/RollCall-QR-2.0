@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
+
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.page.html',
@@ -16,17 +17,22 @@ export class MainMenuPage implements OnInit {
 
   constructor(
     private menu: MenuController,
+    private authService: AuthService,
     private router: Router,
     private authService: AuthService
+
   ) { }
 
   redirect_profile(){
+    this.menu.close();
     this.router.navigate(['/profile']);
   };
 
   redirect_subjects(){
+    this.menu.close();
     this.router.navigate(['/subjects']);
   };
+
 
   async logout() {
     try {
@@ -35,6 +41,7 @@ export class MainMenuPage implements OnInit {
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
+
   }
 
   ngOnInit() {

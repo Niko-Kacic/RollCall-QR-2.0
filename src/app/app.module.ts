@@ -15,7 +15,6 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,7 +24,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     FormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    
+    AngularFirestoreModule,
   ],
   providers: [
     { provide: RouteReuseStrategy,

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -10,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
+    canActivate: [noAuthGuard]
   },
   {
     path: 'reset-password',
@@ -20,6 +22,7 @@ const routes: Routes = [
     path: 'main-menu',
     loadChildren: () => import('./pages/main-menu/main-menu.module').then(m => m.MainMenuPageModule),
     canActivate: [AuthGuard]
+
   },
   {
     path: 'main-page',
@@ -33,6 +36,9 @@ const routes: Routes = [
   },
   {
     path: 'subjects',
+
+    loadChildren: () => import('./pages/subjects/subjects.module').then( m => m.SubjectsPageModule),
+    canActivate: [authGuard],
     children:[
       {
         path: '',
@@ -49,19 +55,23 @@ const routes: Routes = [
   },
   {
     path: 'schedule',
-    loadChildren: () => import('./pages/schedule/schedule.module').then( m => m.SchedulePageModule)
+    loadChildren: () => import('./pages/schedule/schedule.module').then( m => m.SchedulePageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'study-groups',
-    loadChildren: () => import('./pages/study-groups/study-groups.module').then( m => m.StudyGroupsPageModule)
+    loadChildren: () => import('./pages/study-groups/study-groups.module').then( m => m.StudyGroupsPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'news',
-    loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule)
+    loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'events',
-    loadChildren: () => import('./pages/events/events.module').then( m => m.EventsPageModule)
+    loadChildren: () => import('./pages/events/events.module').then( m => m.EventsPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'error-404',
