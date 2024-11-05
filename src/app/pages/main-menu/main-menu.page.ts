@@ -18,14 +18,16 @@ export class MainMenuPage implements OnInit {
     private router: Router,
   ) { }
 
-  redirect(){
-    this.menu.close();
+  redirect_profile(){
     this.router.navigate(['/profile']);
+  };
+
+  redirect_subjects(){
+    this.router.navigate(['/subjects']);
   };
 
 
   ngOnInit() {
-
 
   }
 

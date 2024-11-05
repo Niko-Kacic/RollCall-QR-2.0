@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    path: '**',
-    redirectTo: 'main-page',
-    pathMatch: 'full'
-  },  {
     path: 'subjects',
     loadChildren: () => import('./pages/subjects/subjects.module').then( m => m.SubjectsPageModule)
   },
@@ -51,7 +47,11 @@ const routes: Routes = [
     path: 'events',
     loadChildren: () => import('./pages/events/events.module').then( m => m.EventsPageModule)
   },
-
+  {
+    path: '**',
+    redirectTo: 'main-page',
+    pathMatch: 'full'
+  }
 
 ];
 
