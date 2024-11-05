@@ -1,13 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title class="title">Perfil de Usuario <ion-icon class="menu-icon" name="qr-code-outline"></ion-icon></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <p>Hola {{firstName}}</p>
-  <p>Hola {{lastname}}</p>
-  <p>Hola {{email}}</p>
+  <ion-card class="modern-profile-card">
+    <ion-card-header class="profile-header">
+
+        <img src="https://freesvg.org/img/abstract-user-flat-4.png" alt="Foto de perfil" />
+
+      <div>
+        <h2 class="student-name">Hola: {{firstName}} {{lastname}}!</h2>
+        <p class="student-major">{{school}}</p>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="profile-info-row">
+          <ion-col><strong>Carrera: </strong>{{career}}</ion-col>
+        </ion-row>
+        <ion-row class="profile-info-row">
+          <ion-col><strong>Año: </strong>{{yearAtending}}</ion-col>
+        </ion-row>
+        <ion-row class="profile-info-row">
+          <ion-col><strong>Semestre:</strong> {{careerSemester}}</ion-col>
+        </ion-row>
+        <ion-row class="profile-info-row">
+          <ion-col><strong>Sede:</strong> {{headquarters}}</ion-col>
+        </ion-row>
+        <ion-row class="profile-info-row">
+          <ion-col><strong>Correo: </strong> {{email}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
 
 <ion-footer>
