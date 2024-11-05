@@ -9,9 +9,9 @@ import { SubjectsApiService } from 'src/app/services/subjects-api.service';
 })
 export class SubjectDetailPage implements OnInit {
 
-  subjectDetail: any[] = [];
+  subjectDetail: any ;
   subjects: any[] = [];
-
+  public footerTitle: string = '{ Code By CodeCrafters }';
 
   constructor(
     private activatedrouter: ActivatedRoute,
@@ -30,7 +30,7 @@ export class SubjectDetailPage implements OnInit {
           // Encuentra la asignatura que coincide con el id
           this.subjectDetail = this.subjects.find(signature => signature.id === subjectId);
 
-          console.log(this.subjects); // Verifica que hayas obtenido la asignatura correcta
+          console.log(this.subjectDetail); // Verifica que hayas obtenido la asignatura correcta
         });
       });
   }
