@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subjects',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubjectsPage implements OnInit {
 
-  constructor() { }
+  public footerTitle: string = '{ Code By CodeCrafters }';
+
+  constructor(private router: Router) { }
+
+
+
 
   ngOnInit() {
+
   }
 
 }

@@ -1,13 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>subjects</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button icon="caret-back-outline" defaultHref="/main-menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">Asignaturas <ion-icon class="menu-icon" name="qr-code-outline"></ion-icon></ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">subjects</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding ion-text-center login-content">
+
+  <ion-title class="title-logo">
+    <img class="card-logo" src="../../../assets/img/main-icon.png" alt="logo">
+  </ion-title>
+
+  <hr>
+
+  <ion-list class="courses-list">
+    <ion-item  [routerLink]="">
+      <ion-avatar slot="start">
+        <ion-img [src]=""></ion-img>
+      </ion-avatar>
+        <ion-label>
+          <!-- {{signature.title}} -->
+        </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="footer-title">{{footerTitle}}</ion-title>
+  </ion-toolbar>
+</ion-footer>
+
+
