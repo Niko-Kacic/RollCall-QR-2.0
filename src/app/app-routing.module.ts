@@ -34,8 +34,19 @@ const routes: Routes = [
   },
   {
     path: 'subjects',
+
     loadChildren: () => import('./pages/subjects/subjects.module').then( m => m.SubjectsPageModule),
     canActivate: [authGuard]
+    children:[
+      {
+        path: '',
+        loadChildren: () => import('./pages/subjects/subjects.module').then( m => m.SubjectsPageModule)
+      },
+      {
+        path: ':placeId',
+        loadChildren: () => import('./pages/subjects/subject-detail/subject-detail-routing.module').then( m => m.SubjectDetailPageRoutingModule)
+      }
+    ]
   },
   {
     path: 'schedule',

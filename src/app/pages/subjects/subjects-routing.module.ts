@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: SubjectsPage
+  },  {
+    path: 'subject-detail',
+    loadChildren: () => import('./subject-detail/subject-detail.module').then( m => m.SubjectDetailPageModule)
   }
+
 ];
 
 @NgModule({
