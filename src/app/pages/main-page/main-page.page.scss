@@ -10,22 +10,24 @@ ion-content {
 }
 
 .main-img-box{
-  width: 100%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
   margin-top: 4rem;
   border-radius: 10%;
+
 }
 
 .main-img {
-  height: 300px;
+  height: 350px;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 20%;
-
 }
 
 .main-box{
-  margin-top: 5rem;
+  margin-top: 2.5rem;
   text-align: center;
 }
 
