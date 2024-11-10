@@ -1,58 +1,72 @@
+
+
+
 .title-with-icon {
   display: flex;
   align-items: center;
   text-align: center;
   padding: 2px;
 }
-.qr-icon{
-  border: 1px solid #fff;
-  border-radius: 20%;
-  font-size: 28px;
-  margin-left: 4px;
-  position: relative;
-  top: 4px;
-  padding: 1px;
+
+// .qr-icon{
+//   border: 1px solid #fff;
+//   border-radius: 20%;
+//   font-size: 28px;
+//   margin-left: 4px;
+//   position: relative;
+//   top: 4px;
+//   padding: 1px;
+// }
+
+.main-img-box{
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 3rem;
+  box-shadow: 1px 1px 8px 1px #240026;
+  border-radius: 10%;
 }
 
 .main-img{
-  object-fit:cover;
+  margin-top: 1rem;
+  padding-top: 1rem;
   height: 300px;
   width: 100%;
+  object-fit: cover;
+  border-radius: 10%;
 }
 
 .main-box{
-  margin-top: 1rem;
+  margin-top: 5rem;
   text-align: center;
 }
 
 .contain-box{
   width: 80%;
   margin: 0 auto;
+  font-size: 16px;
 }
 
 .contain-box p{
-  margin-bottom: 20px;
-}
-
-.contain-box p small {
-  display: block;
-  width: 70%;
-  margin: 0 auto;
+  color:#150016;
+  text-shadow: 1px 1px 1px #a6a6a6;
 }
 
 .btn-box{
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .main-btn {
-  width: 70%;
+  width: 80%;
+  height: 50px;
+  font-size: 16px;
+  font-weight: bold;
   background-color: #fff;
-  color: #000;
-  padding: 10px;
+  color: #150016;
+  text-shadow: 1px 1px #c8c8c8;
   text-transform: uppercase;
-  border-radius: 5px;
-  border: 2px solid #000;
-  cursor: pointer;
+  border-radius: 20px;
+  border: 2px solid #150016;
+  box-shadow: 1px 5px #150016;
   transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -65,6 +79,7 @@
 .footer-title{
   text-align: center;
   font-size: 18px;
+  color: #150016;
 }
 
 .log-out{
