@@ -1,5 +1,6 @@
-
-
+ion-content {
+  --background: linear-gradient(to bottom, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+}
 
 .title-with-icon {
   display: flex;
@@ -8,35 +9,25 @@
   padding: 2px;
 }
 
-// .qr-icon{
-//   border: 1px solid #fff;
-//   border-radius: 20%;
-//   font-size: 28px;
-//   margin-left: 4px;
-//   position: relative;
-//   top: 4px;
-//   padding: 1px;
-// }
-
 .main-img-box{
   width: 90%;
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
-  margin-top: 3rem;
-  box-shadow: 1px 1px 8px 1px #240026;
+  margin-top: 4rem;
   border-radius: 10%;
+
 }
 
-.main-img{
-  margin-top: 1rem;
-  padding-top: 1rem;
-  height: 300px;
+.main-img {
+  height: 350px;
   width: 100%;
-  object-fit: cover;
-  border-radius: 10%;
+  object-fit: contain;
+  border-radius: 20%;
 }
 
 .main-box{
-  margin-top: 5rem;
+  margin-top: 2.5rem;
   text-align: center;
 }
 
@@ -47,8 +38,8 @@
 }
 
 .contain-box p{
-  color:#150016;
-  text-shadow: 1px 1px 1px #a6a6a6;
+  color:#FFFDFF;
+  text-shadow: 1px 2px #000000;
 }
 
 .btn-box{
@@ -60,9 +51,9 @@
   height: 50px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #fff;
-  color: #150016;
-  text-shadow: 1px 1px #c8c8c8;
+  background-color: #9765DE;
+  color:#FFFDFF;
+  text-shadow: 1px 1px #000000;
   text-transform: uppercase;
   border-radius: 20px;
   border: 2px solid #150016;
@@ -76,12 +67,14 @@
   transform: scale(0.95);
 }
 
+.footer-box{
+  --background: rgba(151, 101, 222,0.9);
+}
+
 .footer-title{
   text-align: center;
   font-size: 18px;
-  color: #150016;
+  color: #FFFDFF;
+  text-shadow: 2px 2px #000000;
 }
 
-.log-out{
-  margin-top: 500px;
-}
