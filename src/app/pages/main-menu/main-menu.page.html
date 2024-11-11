@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
-  <ion-menu side="end" contentId="main-content">
-    <ion-header>
-      <ion-toolbar>
+  <ion-menu side="end" contentId="main-content" class="main-menu">
+    <ion-header class="menu-content">
+      <ion-toolbar class="menu-content" style="--background: linear-gradient(to bottom, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));">
         <ion-title>Menu</ion-title>
         <ion-buttons slot="end">
           <ion-menu-toggle auto-hide="false">
@@ -13,44 +13,44 @@
       </ion-toolbar>
     </ion-header>
     <ion-content >
-      <ion-list lines="none" >
-        <ion-item button>
+      <ion-list style="background-color:#000; " lines="none" >
+        <ion-item  style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button>
           <ion-avatar class="profile-avatar">
             <ion-icon size="large" name="id-card-outline"></ion-icon>
           </ion-avatar>
           <ion-label (click)="redirect_profile()">Perfil</ion-label>
         </ion-item>
-        <ion-item button>
+        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button>
           <ion-avatar class="signature-avatar">
             <ion-icon size="large" name="book-outline"></ion-icon>
           </ion-avatar>
           <ion-label (click)="redirect_subjects()">Asignaturas</ion-label>
         </ion-item>
-        <ion-item button>
+        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button>
           <ion-avatar class="calendar-avatar">
             <ion-icon size="large" name="calendar-outline"></ion-icon>
           </ion-avatar>
           <ion-label (click)="redirect_404()">Calendario</ion-label>
         </ion-item>
-        <ion-item button>
+        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button>
           <ion-avatar class="group-avatar">
             <ion-icon size="large" name="people-outline"></ion-icon>
           </ion-avatar>
           <ion-label>Grupos de estudio</ion-label>
         </ion-item>
-        <ion-item button (click)="redirect_404()">
+        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button (click)="redirect_404()">
           <ion-avatar class="news-avatar">
             <ion-icon size="large" name="newspaper-outline"></ion-icon>
           </ion-avatar>
           <ion-label>Noticias</ion-label>
         </ion-item>
-        <ion-item button (click)="redirect_404()">
+        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button (click)="redirect_404()">
           <ion-avatar class="events-avatar">
             <ion-icon size="large" name="ticket-outline"></ion-icon>
           </ion-avatar>
           <ion-label>Eventos</ion-label>
         </ion-item>
-        <ion-item class="log-out" button (click)="logout()">
+        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" class="log-out" button (click)="logout()">
           <ion-avatar class="logout-avatar">
             <ion-icon size="large" name="log-out-outline"></ion-icon>
           </ion-avatar>
@@ -61,10 +61,9 @@
   </ion-menu>
 
   <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Rollcall-QR <ion-icon class="menu-icon" name="qr-code-outline"></ion-icon></ion-title>
-
+    <ion-header >
+      <ion-toolbar style="--background: transparent;">
+        <ion-title >Rollcall-QR <ion-icon class="menu-icon" name="qr-code-outline"></ion-icon></ion-title>
         <ion-buttons slot="end">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>

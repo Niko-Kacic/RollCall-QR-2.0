@@ -7,12 +7,12 @@
     <form (submit)="validateLogin()">
         <div class="input-email-box">
           <label for="input-email">Correo</label>
-          <input type="email" [(ngModel)]="email" name="email" id="input-email" required>
+          <input type="email" [(ngModel)]="email" name="email" id="input-email" placeholder="@duocuc.cl" required>
         </div>
         <div class="input-password-box">
           <label for="input-password">Contraseña</label>
           <div class="password-wrapper">
-            <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" id="input-password" required>
+            <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" id="input-password" placeholder="************" required>
             <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" (click)="togglePassword()" class="password-icon"></ion-icon>
           </div>
         </div>
