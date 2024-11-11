@@ -42,6 +42,7 @@ ion-content {
   text-shadow: var(--text-shadow);
   text-align:start;
   margin: 0.5rem;
+  letter-spacing: 1.7px;
 }
 
 input {
@@ -90,6 +91,7 @@ input {
   border: 2px solid var(--shadow-color);
   box-shadow: 1px 5px var(--shadow-color);
   transition: background-color 0.3s, transform 0.2s;
+  letter-spacing: 2px;
 }
 
 .main-btn:active {
@@ -119,6 +121,7 @@ ion-button:active {
 
 .recovery-btn{
   --color: var(--text-color);
+  letter-spacing: 2px;
 }
 
 .footer-box{
@@ -130,4 +133,5 @@ ion-button:active {
   font-size: 18px;
   color: var(--text-color);
   text-shadow: var(--text-shadow);
+  letter-spacing: 2px;
 }
