@@ -1,3 +1,5 @@
+@import '../../../theme/variables.scss';
+
 .title-box{
   text-align: center;
 }
@@ -79,7 +81,7 @@ ion-button:active {
 input {
   background-color: #fff;
   border: 1px solid #000;
-  height: 40px; 
+  height: 40px;
   box-shadow: 0.5px 0.5px 1px #000;
   border-radius: 5px;
   width: 65%;
@@ -87,20 +89,20 @@ input {
 }
 
 .password-wrapper input {
-  padding-right: 5.5rem; 
+  padding-right: 5.5rem;
 }
 
 .password-icon {
   position: absolute;
-  margin-left: 5px; 
+  margin-left: 5px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.3rem;
   color: white;
   cursor: pointer;
-  background-color: #000; 
+  background-color: #000;
   padding: 5px;
-  border-radius: 3px; 
+  border-radius: 3px;
   box-shadow: 0.5px 0.5px 1px #000;
 }
 
