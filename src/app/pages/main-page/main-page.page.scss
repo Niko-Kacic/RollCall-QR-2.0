@@ -4,6 +4,10 @@
   letter-spacing: 2px;
 }
 
+ion-content {
+  --background: linear-gradient(to bottom, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+}
+
 .title-with-icon {
   display: flex;
   align-items: center;

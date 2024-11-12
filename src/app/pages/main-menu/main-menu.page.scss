@@ -16,20 +16,19 @@ ion-content {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  text-shadow: 1px 1px #959494;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
 }
 
-.footer-title{
-  text-align: center;
-  font-size: 18px;
-}
 .main-card{
-  display: flex;
   padding: 1rem;
   margin-top: 2rem;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
   box-shadow: none;
   width: 100%;
   margin: 0 auto;
+  background-color:transparent;
 }
 
 .card-logo{
@@ -40,4 +39,36 @@ ion-content {
   object-fit: fill;
   align-items: center;
   margin-top: 0.8rem;
+}
+
+.card-content p {
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+ion-icon, ion-title, ion-label, ion-menu-button{
+  color: #FFFDFF;
+  text-shadow: var(--text-shadow);
+  letter-spacing: 2px ;
+}
+
+ion-item{
+  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+}
+
+.menu-label{
+  color: #FFFDFF;
+  text-shadow: var(--text-shadow);
+}
+
+.footer-box{
+  --background: var(--footer-color);
+}
+
+.footer-title{
+  text-align: center;
+  font-size: 18px;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+  letter-spacing: 2px;
 }
