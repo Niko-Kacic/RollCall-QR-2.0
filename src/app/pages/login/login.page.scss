@@ -1,9 +1,5 @@
 @import '../../../theme/variables.scss';
 
-ion-content {
-  --background: linear-gradient(to bottom, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
-}
-
 .title-box{
   text-align: center;
   color: var(--text-color);
@@ -59,7 +55,6 @@ input {
 .input-email-box, .input-password-box{
   margin: 2rem auto;
   width: 80%;
-
 }
 
 .password-icon {
