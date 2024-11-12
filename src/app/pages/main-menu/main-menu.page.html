@@ -2,7 +2,7 @@
   <ion-menu side="end" contentId="main-content" class="main-menu">
     <ion-header class="menu-content">
       <ion-toolbar class="menu-content" style="--background: linear-gradient(to bottom, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));">
-        <ion-title>Menu</ion-title>
+        <ion-title >Menu</ion-title>
         <ion-buttons slot="end">
           <ion-menu-toggle auto-hide="false">
             <ion-button>
@@ -13,48 +13,48 @@
       </ion-toolbar>
     </ion-header>
     <ion-content >
-      <ion-list style="background-color:#000; " lines="none" >
-        <ion-item  style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button>
+      <ion-list style="background-color:rgba(100, 68, 179, 0.9);" >
+        <ion-item button>
           <ion-avatar class="profile-avatar">
             <ion-icon size="large" name="id-card-outline"></ion-icon>
           </ion-avatar>
-          <ion-label (click)="redirect_profile()">Perfil</ion-label>
+          <ion-label class="menu-label" (click)="redirect_profile()">Perfil</ion-label>
         </ion-item>
-        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button>
+        <ion-item button>
           <ion-avatar class="signature-avatar">
             <ion-icon size="large" name="book-outline"></ion-icon>
           </ion-avatar>
-          <ion-label (click)="redirect_subjects()">Asignaturas</ion-label>
+          <ion-label class="menu-label" (click)="redirect_subjects()">Asignaturas</ion-label>
         </ion-item>
-        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button>
+        <ion-item button>
           <ion-avatar class="calendar-avatar">
             <ion-icon size="large" name="calendar-outline"></ion-icon>
           </ion-avatar>
-          <ion-label (click)="redirect_404()">Calendario</ion-label>
+          <ion-label class="menu-label" (click)="redirect_404()">Calendario</ion-label>
         </ion-item>
-        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button>
+        <ion-item button>
           <ion-avatar class="group-avatar">
             <ion-icon size="large" name="people-outline"></ion-icon>
           </ion-avatar>
-          <ion-label>Grupos de estudio</ion-label>
+          <ion-label class="menu-label">Grupos de estudio</ion-label>
         </ion-item>
-        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button (click)="redirect_404()">
+        <ion-item button (click)="redirect_404()">
           <ion-avatar class="news-avatar">
             <ion-icon size="large" name="newspaper-outline"></ion-icon>
           </ion-avatar>
-          <ion-label>Noticias</ion-label>
+          <ion-label class="menu-label">Noticias</ion-label>
         </ion-item>
-        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" button (click)="redirect_404()">
+        <ion-item button (click)="redirect_404()">
           <ion-avatar class="events-avatar">
             <ion-icon size="large" name="ticket-outline"></ion-icon>
           </ion-avatar>
-          <ion-label>Eventos</ion-label>
+          <ion-label class="menu-label">Eventos</ion-label>
         </ion-item>
-        <ion-item style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));" class="log-out" button (click)="logout()">
+        <ion-item button (click)="logout()">
           <ion-avatar class="logout-avatar">
             <ion-icon size="large" name="log-out-outline"></ion-icon>
           </ion-avatar>
-          <ion-label>Salir</ion-label>
+          <ion-label class="menu-label">Salir</ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -77,7 +77,6 @@
           <h3>Bienvenido: <strong>Usuario</strong></h3>
         </div>
         <ion-card class="main-card">
-          <img class="card-logo" src="../../../assets/img/main-icon.png" alt="logo">
           <ion-card-content class="card-content">
             <p>¡Bienvenido a nuestra aplicación! Aquí podrás acceder a tu perfil, consultar tus ramos, noticias y eventos. ¡Explora y disfruta!</p>
           </ion-card-content>
@@ -87,7 +86,7 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar class="footer-box">
     <ion-title class="footer-title">{{footerTitle}}</ion-title>
   </ion-toolbar>
 </ion-footer>
