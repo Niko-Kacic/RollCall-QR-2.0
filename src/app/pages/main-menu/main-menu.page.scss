@@ -1,3 +1,26 @@
+/* Cambios para el header */
+.custom-header {
+  background: #6A4C9C; /* Morado */
+  color: #FFFFFF; /* Blanco */
+}
+
+/* Estilo de la barra lateral */
+.custom-menu {
+  background: #A0E6A1; /* Verde menta */
+  color: #333333; /* Gris oscuro */
+}
+
+/* Cambios para el footer */
+.custom-footer {
+  background: #FFD700; /* Amarillo */
+  color: #333333; /* Gris oscuro */
+}
+
+/* Estilo de la barra principal */
+.custom-main-toolbar {
+  background: #8AC9FF; /* Azul claro */
+  --color: #FFFFFF; /* Blanco */
+}
 
 .main-picture{
   border-radius: 50%;
