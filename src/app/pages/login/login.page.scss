@@ -1,5 +1,9 @@
 @import '../../../theme/variables.scss';
 
+ion-content {
+  --background:#FDFDFD;
+}
+
 .title-box{
   text-align: center;
   color: var(--text-color);
@@ -15,17 +19,23 @@
 
 .main-img-box{
   width: 100%;
+  height: 250px;
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  margin-top:2.5rem;
+  border: 2px solid var(--shadow-color);
+  box-shadow: 1px 1px 8px var(--shadow-color);
+  background:linear-gradient(135deg, #a657fa,#7d21b6 ,#6A1B9A);
+  border-bottom-left-radius:10px ;
+  border-bottom-right-radius: 10px;
 }
 
 .main-img{
   object-fit:contain;
-  height: 200px;
+  height: 250px;
   width: 600px;
   border-radius: 20px;
+
 }
 
 .form-box{
@@ -34,18 +44,19 @@
 
 .form-box label{
   display: block;
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
+  color: var(--shadow-color);
+  font-weight: bold;
   text-align:start;
   margin: 0.5rem;
-  letter-spacing: 1.7px;
+  letter-spacing: 1px;
 }
 
 input {
   background-color: #fff;
   border: 1px solid #000;
   height: 45px;
-  box-shadow: 0.5px 0.5px 1px #000;
+  box-shadow: inset 1px 1px 5px #000000;
+
   border-radius: 20px;
   width: 100%;
   box-sizing: border-box;
@@ -115,7 +126,7 @@ ion-button:active {
 }
 
 .recovery-btn{
-  --color: var(--text-color);
+  color: var(--shadow-color);
   letter-spacing: 2px;
 }
 
