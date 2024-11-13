@@ -6,16 +6,29 @@ ion-content {
   text-shadow: var(--text-shadow);
 }
 
+
 .profile-picture-box{
   margin-top: 1.5rem;
   display: flex;
   justify-content: center;
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #000;
+  width: 105px;
+}
+
+.main-content{
+  border: 1px  solid red;
+  display: inline-block;
 }
 
 .main-picture{
   border-radius: 100%;
   width: 300px;
   height: 300px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   box-shadow: 1px 1px 5px 1px #000;
   margin: 0 auto;
@@ -28,6 +41,7 @@ ion-content {
   margin-bottom: 1rem;
   color: var(--text-color);
   text-shadow: var(--text-shadow);
+  border: 1px solid #000;
 }
 
 .main-card{
@@ -39,6 +53,7 @@ ion-content {
   width: 100%;
   margin: 0 auto;
   background-color:transparent;
+  border: 1px solid #000;
 }
 
 .card-logo{
@@ -54,6 +69,8 @@ ion-content {
 .card-content p {
   text-align: center;
   letter-spacing: 1px;
+  border: 1px solid #000;
+
 }
 
 ion-icon, ion-title, ion-label, ion-menu-button{
@@ -82,3 +99,4 @@ ion-item{
   text-shadow: var(--text-shadow);
   letter-spacing: 2px;
 }
+
