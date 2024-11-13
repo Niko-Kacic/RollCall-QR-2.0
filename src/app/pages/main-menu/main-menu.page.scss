@@ -1,37 +1,12 @@
 @import '../../../theme/variables.scss';
 
-ion-avatar.profile-avatar, 
-ion-avatar.signature-avatar,
-ion-avatar.calendar-avatar,
-ion-avatar.group-avatar,
-ion-avatar.news-avatar,
-ion-avatar.events-avatar,
-ion-avatar.logout-avatar {
-  background-color: var(--primary-color); 
-  color: white;
-  padding: 0.5rem; 
-  border-radius: 50%; 
-  margin-right: 5px;
-}
-
-.header-toolbar {
-  --background: var(--primary-color);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); 
-}
-
-.header-title {
-  font-size: 18px;
+ion-content {
+  --background: var(--background-color);
   color: var(--text-color);
   text-shadow: var(--text-shadow);
-  letter-spacing: 2px;
 }
 
-ion-content {
-  background-color: var(--primary-background);
-  color: var(--primary-text-color);
-}
-
-.profile-pictire-box{
+.profile-picture-box{
   margin-top: 1.5rem;
   display: flex;
   justify-content: center;
@@ -47,12 +22,8 @@ ion-content {
   background-color: #fff;
 }
 
-.main-card {
-  background-color: var(--primary-card-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.5rem;
+.title-user-box{
+  text-align: center;
   margin-top: 2rem;
   margin-bottom: 1rem;
   color: var(--text-color);

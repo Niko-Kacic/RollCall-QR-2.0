@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: #000000;
+  --background: var(--background-color);
   color: white;
 }
 
@@ -50,7 +50,14 @@
 }
 
 
+.footer-box{
+  --background: var(--footer-color);
+}
+
 .footer-title{
   text-align: center;
   font-size: 18px;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+  letter-spacing: 2px;
 }

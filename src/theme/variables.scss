@@ -1,25 +1,20 @@
 :root {
+  /* Variables para el modo claro */
   --primary-color: rgba(151, 101, 222, 1);
   --secondary-color: rgba(100, 68, 179, 0.9);
-  --text-color: #000; 
-  --text-shadow-light: 0px 1px 2px rgba(0, 0, 0, 0.3), 1px 3px 3px rgba(0, 0, 0, 0.2); 
-  --text-shadow-dark: 0px 1px 2px rgba(21, 0, 22, 0.6), 1px 3px 5px rgba(21, 0, 22, 0.4); 
+  --text-color: #FFFDFF;
+  --text-shadow: 1px 2px #150016;
   --shadow-color: #150016;
-  --dark-theme: rgb(80, 46, 107);
-  --button-color: rgba(151, 101, 222, 1.0);
-  --button-color-active: rgba(151, 101, 222, 0.3);
-  --footer-color: rgba(151, 101, 222, 1);
-  --main-pink: rgba(245, 102, 250, 1);
-  --primary-background: #FFF;
-  --primary-text-color: #000;
-  --primary-card-color: #f9f9f9;
-  --text-shadow: var(--text-shadow-light); 
+  --footer-color: rgba(151, 101, 222, 0.9);
+  --background-color: linear-gradient(to bottom, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
 }
 
-.dark-theme {
-  --primary-background: #121212;
-  --primary-text-color: #FFF;
-  --primary-card-color: #1E1E1E;
-  --text-color: #FFFDFF; 
-  --text-shadow: var(--text-shadow-dark); 
+body.dark {
+  /* Variables para el modo oscuro */
+  --primary-color: #2D2A45;
+  --secondary-color: #1A1830;
+  --text-color: #FFFFFF;
+  --text-shadow: 1px 2px rgba(151, 101, 222, 0.7); 
+  --footer-color: #3C3B5A;
+  --background-color: linear-gradient(to bottom, #2D2A45, #1A1830);
 }
