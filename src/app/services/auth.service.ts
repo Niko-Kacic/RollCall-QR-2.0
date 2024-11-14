@@ -15,7 +15,11 @@ export class AuthService {
 
   // Ajusta el método para devolver un Promise<User | null>
   async getCurrentUser(): Promise<User | null> {
-    return await this.afAuth.currentUser;
+    return new Promise((resolve, reject) => {
+      this.afAuth.onAuthStateChanged((user) => {
+        resolve(user);
+      }, reject);
+    });
   }
 
   logout() {

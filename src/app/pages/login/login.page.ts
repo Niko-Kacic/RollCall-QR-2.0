@@ -3,6 +3,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
+import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +16,16 @@ export class LoginPage implements OnInit {
     private router: Router,
     private toastController: ToastController,
     private auth: Auth,
-    private authService: AuthService
+    private authService: AuthService,
+    fireDataBaseService: FireDataBaseService
   ) { }
 
 
   email!: string;
   password!: string;
-  public footerTitle: string = '{ Code By CodeCrafters }';
   showPassword: boolean = false;
+  name:string = "";
+  public footerTitle: string = '{ Code By CodeCrafters }';
 
 
   async validateLogin() {
