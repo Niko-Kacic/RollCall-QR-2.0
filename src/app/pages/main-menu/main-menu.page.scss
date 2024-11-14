@@ -1,89 +1,102 @@
 @import '../../../theme/variables.scss';
 
 ion-content {
-  --background: linear-gradient(to bottom, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+  --background:#FDFDFD;
 }
 
-.profile-pictire-box{
+.header-toolbar{
+  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  --color:var(--text-color);
+  text-shadow: var(--text-shadow);
+}
+
+.profile-container {
+  text-align: center;
   margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-  border: 1px solid #000;
-  width: 105px;
+  margin-bottom: 1rem;
 }
 
-.main-content{
-  border: 1px  solid red;
-  display: inline-block;
-}
-
-.main-picture{
+.main-picture {
   border-radius: 100%;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   box-shadow: 1px 1px 5px 1px #000;
-  margin: 0 auto;
   background-color: #fff;
 }
 
-.title-user-box{
+.title-user-box {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 0;
   margin-bottom: 1rem;
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
-  border: 1px solid #000;
+  color: var(--shadow-color);
+
 }
 
-.main-card{
-  padding: 1rem;
-  margin-top: 2rem;
+ h3 {
+  font-size: 18px;
+}
+
+.main-card {
+  --background: linear-gradient(200deg, rgb(173, 115, 255),rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
   color: var(--text-color);
   text-shadow: var(--text-shadow);
   box-shadow: none;
   width: 100%;
   margin: 0 auto;
-  background-color:transparent;
-  border: 1px solid #000;
-}
-
-.card-logo{
-  width: 80px;
-  height: 80px;
-  box-shadow: 1px 1px 8px #000;
-  border-radius: 10px;
-  object-fit: fill;
-  align-items: center;
-  margin-top: 0.8rem;
+  position: absolute;
+  bottom: 8.4%;
+  border-radius: 0%;
+  border-top-right-radius:20px;
+  border-top-left-radius:20px;
+  border: 1px solid var(--shadow-color);
+  box-shadow: 1px 1px 8px 2px var(--shadow-color);
 }
 
 .card-content p {
   text-align: center;
   letter-spacing: 1px;
-  border: 1px solid #000;
+  margin-top:20px;
 }
 
-ion-icon, ion-title, ion-label, ion-menu-button{
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-box {
+  width: 300px;
+  height: 80px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+ion-icon, ion-title, ion-label, ion-menu-button {
   color: #FFFDFF;
   text-shadow: var(--text-shadow);
-  letter-spacing: 2px ;
+  letter-spacing: 2px;
 }
 
-ion-item{
+ion-item {
   --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
 }
 
-.menu-label{
+.menu-label {
   color: #FFFDFF;
   text-shadow: var(--text-shadow);
 }
 
-.footer-box{
-  --background: var(--footer-color);
+.main-list{
+  background-color:rgba(151, 101, 222, 1);
+  height: 100%;
 }
 
-.footer-title{
+.footer-box {
+  --background: linear-gradient(200deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+}
+
+.footer-title {
   text-align: center;
   font-size: 18px;
   color: var(--text-color);
