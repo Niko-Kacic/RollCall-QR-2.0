@@ -1,60 +1,104 @@
-/* Cambios para el header */
-.custom-header {
-  background: #6A4C9C; /* Morado */
-  color: #FFFFFF; /* Blanco */
+@import '../../../theme/variables.scss';
+
+ion-content {
+  --background: var(--background-color);
 }
 
-/* Estilo de la barra lateral */
-.custom-menu {
-  background: #A0E6A1; /* Verde menta */
-  color: #333333; /* Gris oscuro */
+.header-toolbar{
+  --background: var(--header-color);
+  --color:var(--text-color);
+  text-shadow: var(--text-shadow);
 }
 
-/* Cambios para el footer */
-.custom-footer {
-  background: #FFD700; /* Amarillo */
-  color: #333333; /* Gris oscuro */
-}
-
-/* Estilo de la barra principal */
-.custom-main-toolbar {
-  background: #8AC9FF; /* Azul claro */
-  --color: #FFFFFF; /* Blanco */
-}
-
-.main-picture{
-  border-radius: 50%;
-  object-fit: contain;
-  box-shadow: 1px 1px 5px 1px #000;
-  margin-top: 1rem;
-}
-
-.title-user-box{
+.profile-container {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
-  text-shadow: 1px 1px #959494;
 }
 
-.footer-title{
+.main-picture {
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  box-shadow: 1px 1px 5px 1px #000;
+  background-color: #fff;
+}
+
+.title-user-box {
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--shadow-color);
+
+}
+
+ h3 {
   font-size: 18px;
 }
-.main-card{
-  display: flex;
-  padding: 1rem;
-  margin-top: 2rem;
+
+.main-card {
+  --background: #6A1B9A;
+  color: var(--text-color);
   box-shadow: none;
   width: 100%;
   margin: 0 auto;
+  position: absolute;
+  bottom: 8.4%;
+  border-radius: 0%;
+  border-top-right-radius:20px;
+  border-top-left-radius:20px;
+  border: 1px solid var(--shadow-color);
+  box-shadow: 1px 1px 8px 2px var(--shadow-color);
 }
 
-.card-logo{
-  width: 80px;
-  height: 80px;
-  box-shadow: 1px 1px 8px #000;
-  border-radius: 10px;
-  object-fit: fill;
+.card-content p {
+  text-align: center;
+  letter-spacing: 1px;
+  margin-top:20px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-top: 0.8rem;
+}
+
+.logo-box {
+  width: 300px;
+  height: 80px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+ion-icon, ion-title, ion-label, ion-menu-button {
+  color: #FFFDFF;
+  text-shadow: var(--text-shadow);
+  letter-spacing: 2px;
+}
+
+ion-item {
+  --background: #7d21b6;
+}
+
+.menu-label {
+  color: #FFFDFF;
+  text-shadow: var(--text-shadow);
+}
+
+.main-list{
+  background-color:#7d21b6;
+  height: 100%;
+}
+
+.footer-box {
+  --background: var(--footer-color);
+}
+
+.footer-title {
+  text-align: center;
+  font-size: 18px;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+  letter-spacing: 2px;
 }

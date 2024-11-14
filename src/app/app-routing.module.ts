@@ -19,7 +19,7 @@ const routes: Routes = [
   {
     path: 'main-menu',
     loadChildren: () => import('./pages/main-menu/main-menu.module').then(m => m.MainMenuPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'main-page',
@@ -29,7 +29,7 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'subjects',
@@ -37,15 +37,15 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./pages/subjects/subjects.module').then( m => m.SubjectsPageModule),
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
       },
       {
         path: ':placeId',
         loadChildren: () => import('./pages/subjects/subject-detail/subject-detail-routing.module').then( m => m.SubjectDetailPageRoutingModule),
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
       }
     ],
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'schedule',
