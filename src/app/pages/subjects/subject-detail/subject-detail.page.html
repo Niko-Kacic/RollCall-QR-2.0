@@ -33,11 +33,14 @@
       <ion-text class="sub-state">
         <p><b>Estado:</b> {{ subjectDetail.state }}</p>
       </ion-text>
-      <ion-text>
-        <p><b>Porcentaje de asistencia:</b> {{ subjectDetail.asistance }}</p>
+      <ion-text class="sub-amount">
+        <p><b>Total de clases:</b> {{ subjectDetail.classes }}</p>
       </ion-text>
-      <ion-text>
+      <ion-text class="sub-amount">
         <p><b>Total de clases asistidas:</b> {{ subjectDetail.classes }}</p>
+      </ion-text>
+      <ion-text class="sub-porcent">
+        <p><b>Porcentaje de asistencia:</b> {{ subjectDetail.asistance }}</p>
       </ion-text>
     </ion-card-content>
   </ion-card>
