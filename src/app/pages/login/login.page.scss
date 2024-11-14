@@ -56,7 +56,6 @@ input {
   border: 1px solid #000;
   height: 45px;
   box-shadow: inset 1px 1px 5px #000000;
-
   border-radius: 20px;
   width: 100%;
   box-sizing: border-box;
@@ -88,14 +87,14 @@ input {
 .main-btn {
   width: 80%;
   height: 45px;
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
+  background-color:  rgba(151, 101, 222, 1);
+  color: #FFFDFF;
+  text-shadow: 1px 2px #150016;
   padding: 10px;
   text-transform: uppercase;
   border-radius: 20px;
-  border: 2px solid var(--shadow-color);
-  box-shadow: 1px 5px var(--shadow-color);
+  border: 2px solid #150016;
+  box-shadow: 1px 5px #150016;
   transition: background-color 0.3s, transform 0.2s;
   letter-spacing: 2px;
 }
@@ -131,13 +130,13 @@ ion-button:active {
 }
 
 .footer-box{
-  --background: var(--footer-color);
+  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
 }
 
 .footer-title{
   text-align: center;
   font-size: 18px;
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
+  color: #FFFDFF;
+  text-shadow: 1px 2px #150016;
   letter-spacing: 2px;
 }

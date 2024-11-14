@@ -1,3 +1,15 @@
+@import '../../../theme/variables.scss';
+
+ion-content {
+  --background: var(--background-color);
+}
+
+.header-toolbar{
+  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  --color:var(--text-color);
+  text-shadow: var(--text-shadow);
+}
+
 .modern-profile-card {
   margin-top: 2rem;
   background-color: #ffffff;
@@ -14,10 +26,9 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  --background: var(--background-color);
+  --background:linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
   color: white;
 }
-
 
  img {
   width: 150px;
@@ -26,7 +37,6 @@
   border: 3px solid #ffffff;
   border-radius: 50%;
   object-fit: fill;
-  margin-top: 1rem;
   margin-bottom: 1rem;
   background-color: #fff;
 }
@@ -35,12 +45,17 @@
   font-size: 1.4rem;
   font-weight: bold;
   margin: 0;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
 }
 
 .student-major {
   font-size: 1rem;
+  font-weight: bold;
   margin: 5px 0;
   opacity: 0.8;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
 }
 
 .profile-info-row {
@@ -51,7 +66,7 @@
 
 
 .footer-box{
-  --background: var(--footer-color);
+  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
 }
 
 .footer-title{

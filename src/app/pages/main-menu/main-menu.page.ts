@@ -39,7 +39,6 @@ export class MainMenuPage implements OnInit {
     document.body.classList.toggle('dark', this.darkModeEnabled);
   }
 
-
   redirect_profile(){
     this.menu.close();
     this.router.navigate(['/profile']);
@@ -57,7 +56,7 @@ export class MainMenuPage implements OnInit {
   async logout() {
     try {
       await this.authService.logout();
-      this.router.navigate(['/login']);  // Redirige al usuario a la página de login después de cerrar sesión
+      this.router.navigate(['/login']);  
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }

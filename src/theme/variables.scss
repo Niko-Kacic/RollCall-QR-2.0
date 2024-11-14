@@ -4,17 +4,19 @@
   --secondary-color: rgba(100, 68, 179, 0.9);
   --text-color: #FFFDFF;
   --text-shadow: 1px 2px #150016;
+  --sub-text-color: #150016;
   --shadow-color: #150016;
   --footer-color: rgba(151, 101, 222, 0.9);
-  --background-color: linear-gradient(to bottom, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+  --background-color: #FDFDFD;
 }
 
 body.dark {
   /* Variables para el modo oscuro */
   --primary-color: #2D2A45;
   --secondary-color: #1A1830;
-  --text-color: #FFFFFF;
-  --text-shadow: 1px 2px rgba(151, 101, 222, 0.7); 
+  --text-color: #150016;
+  --sub-text-color: #FFFFFF;
+  --text-shadow: 1px 2px rgba(255, 255, 255, 0.3);
   --footer-color: #3C3B5A;
   --background-color: linear-gradient(to bottom, #2D2A45, #1A1830);
 }

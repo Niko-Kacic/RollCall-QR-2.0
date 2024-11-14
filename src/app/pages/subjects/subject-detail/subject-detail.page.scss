@@ -1,27 +1,105 @@
-.title{
-  text-align: center;
-  margin-right: 40px;
-}
+@import '../../../../theme/variables.scss';
 
 ion-content {
-  --background: #fff;
+  --background:#FDFDFD;
 }
 
-ion-card{
-  box-shadow: 1px 1px 8px #000;
+.header-toolbar{
+  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  --color:var(--text-color);
+  text-shadow: var(--text-shadow);
 }
 
-#subjectDetail-img{
-  height: 200px;
-  width: 200px;
-  margin-left: 40px;
-  padding-top: 1rem;
-  border-radius: 10px;
-  object-fit:cover;
-  position: relative;
-  left: 2rem;
+.main-card{
+  background:#fff;
+  margin-top: 1rem;
+  border: 1px solid #000;
+  box-shadow: 1px 1px 8px var(--shadow-color);
+
 }
 
+.header-card {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  padding: 10px;
+  height: 150px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 2px 6px var(--shadow-color);
+}
+
+.prof-container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.prof-avatar {
+
+  width: 150px;
+  height: 110px;
+  margin-right: 20px;
+}
+
+.prof-img{
+  border: 1px solid #000;
+  border-radius: 150px;
+  width: 150px;
+  height: 110px;
+  object-fit:cover ;
+}
+
+.prof-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+}
+
+.prof-title {
+  margin: 0;
+  color: white;
+}
+
+.prof-subtitle {
+  margin-top: 5px;
+  color: white;
+  font-size: 12px;
+  text-transform:uppercase;
+}
+
+.subject-content{
+  margin-top: 2rem;
+}
+
+.sub-title {
+  color: #000;
+  text-align: center;
+}
+.sub-title  p{
+  color: #000;
+  text-align: center;
+  font-size: 12px;
+}
+
+.sub-state, .sub-amount, .sub-porcent{
+  display: block;
+  margin-top: 2rem;
+  font-size: 18px;
+}
+
+ion-text p b{
+  color: var(--shadow-color);
+  margin-right: 2px;
+}
+
+ion-text p {
+  color: rgba(0, 0, 0, 0.756);
+  margin-right: 2px;
+}
 
 .qr-box {
   margin: 1rem;
@@ -61,9 +139,6 @@ ion-card{
   color: #000;
   border-radius: 2px solid #000;
 }
-
-
-
 
 
 .footer-title{
