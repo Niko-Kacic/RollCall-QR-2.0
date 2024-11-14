@@ -19,7 +19,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),//Permite establecer configuración predeterminada para la APP pasando un json como parametro con atributos de distintas configuraciones para la app
+    IonicModule.forRoot(), //Permite establecer configuración predeterminada para la APP pasando un json como parametro con atributos de distintas configuraciones para la app
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

@@ -36,8 +36,6 @@ export class LoginPage implements OnInit {
       }
     } catch (error: any) {
       this.toastMessage('Error al autenticar: ' + error.message, 'danger');
-      this.email = "";
-      this.password = "";
     }
   }
 
