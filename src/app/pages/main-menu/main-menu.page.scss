@@ -38,7 +38,7 @@ ion-content {
 }
 
 .main-card {
-  --background: linear-gradient(200deg, rgb(173, 115, 255),rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+  --background: linear-gradient(90deg, rgb(173, 115, 255),rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
   color: var(--text-color);
   text-shadow: var(--text-shadow);
   box-shadow: none;
@@ -93,7 +93,7 @@ ion-item {
 }
 
 .footer-box {
-  --background: linear-gradient(200deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
 }
 
 .footer-title {

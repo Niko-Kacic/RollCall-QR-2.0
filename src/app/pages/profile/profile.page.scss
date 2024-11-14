@@ -1,3 +1,11 @@
+@import '../../../theme/variables.scss';
+
+.header-toolbar{
+  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  --color:var(--text-color);
+  text-shadow: var(--text-shadow);
+}
+
 .modern-profile-card {
   margin-top: 2rem;
   background-color: #ffffff;
@@ -14,10 +22,9 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: #000000;
+  --background:linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
   color: white;
 }
-
 
  img {
   width: 150px;
@@ -26,7 +33,6 @@
   border: 3px solid #ffffff;
   border-radius: 50%;
   object-fit: fill;
-  margin-top: 1rem;
   margin-bottom: 1rem;
   background-color: #fff;
 }
@@ -43,6 +49,7 @@
   opacity: 0.8;
 }
 
+
 .profile-info-row {
   padding: 10px 0;
   font-size: 0.95rem;
@@ -50,7 +57,14 @@
 }
 
 
-.footer-title{
+.footer-box {
+  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+}
+
+.footer-title {
   text-align: center;
   font-size: 18px;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+  letter-spacing: 2px;
 }
