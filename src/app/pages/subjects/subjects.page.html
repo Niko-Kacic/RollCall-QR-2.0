@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="header-toolbar">
     <ion-buttons slot="start">
       <ion-back-button icon="caret-back-outline" defaultHref="/main-menu"></ion-back-button>
     </ion-buttons>
@@ -10,25 +10,27 @@
 <ion-content class="ion-padding ion-text-center login-content">
 
   <ion-title class="title-logo">
-    <img class="card-logo" src="../../../assets/img/main-icon.png" alt="logo">
+    <img class="card-logo" src="https://i.imgur.com/5J4tq8t.png" alt="logo">
   </ion-title>
 
   <hr>
 
-  <ion-list >
-    <ion-item  *ngFor="let subject of subjects" [routerLink]="['/subjects', subject.id]">
+  <ion-list class="subjects-list">
+    <ion-item class="list-item" *ngFor="let subject of subjects" [routerLink]="['/subjects', subject.id]" button>
       <ion-avatar slot="start">
-        <ion-img [src]=subject.imageURL></ion-img>
+        <ion-img [src]="subject.imageURL"></ion-img>
       </ion-avatar>
-        <ion-label>
-          {{subject.title}}
-        </ion-label>
+      <ion-label class="subject-label">
+        <div class="subject-title">{{subject.title}}</div>
+        <div class="subject-section"><small>| {{subject.section}}</small></div>
+      </ion-label>
     </ion-item>
   </ion-list>
+
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar class="footer-box">
     <ion-title class="footer-title">{{footerTitle}}</ion-title>
   </ion-toolbar>
 </ion-footer>
