@@ -17,6 +17,13 @@
 }
 
 
+.custom-loader {
+  background: var(--background-color);
+  --spinner-color: var(--secondary-color);
+}
+
+
+
 
 @import "@ionic/angular/css/core.css";
 
