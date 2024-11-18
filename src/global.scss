@@ -16,9 +16,8 @@
 
 }
 
-
 .custom-loader {
-  background: var(--background-color);
+  --background: var(--background-color);
   --spinner-color: var(--secondary-color);
 }
 
