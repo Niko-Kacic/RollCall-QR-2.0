@@ -12,7 +12,7 @@ import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
 export class MainMenuPage implements OnInit {
 
   public footerTitle: string = '{ Code By CodeCrafters }';
-  public userName: string = ''; // Variable para almacenar el nombre del usuario
+  public userName: string = '';
 
   constructor(
     private menu: MenuController,
@@ -22,17 +22,16 @@ export class MainMenuPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    // Obtener el usuario autenticado
     const user = await this.authService.getCurrentUser();
     if (user && user.email) {
       const email = user.email;
-      console.log('Correo del usuario autenticado:', email); // Verifica el correo
+      console.log('Correo del usuario autenticado:', email);
 
-      // Obtener los datos del usuario a partir de su correo
+
       this.fireDataBaseService.getUserDataByEmail(email).subscribe(data => {
         if (data && data.name) {
-          this.userName = data.name; // Asignar el nombre del usuario a la variable
-          console.log('Nombre del usuario obtenido:', this.userName); // Verificar el nombre
+          this.userName = data.name;
+          console.log('Nombre del usuario obtenido:', this.userName);
         } else {
           console.log('No se encontró el usuario con el correo proporcionado');
         }
@@ -59,7 +58,7 @@ export class MainMenuPage implements OnInit {
   async logout() {
     try {
       await this.authService.logout();
-      this.router.navigate(['/login']);  // Redirige al usuario a la página de login después de cerrar sesión
+      this.router.navigate(['/login']);
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
