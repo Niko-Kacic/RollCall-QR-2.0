@@ -3,6 +3,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
+import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
@@ -17,19 +18,20 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private auth: Auth,
     private authService: AuthService,
+    fireDataBaseService: FireDataBaseService,
     private loadingCtrl: LoadingController
   ) { }
 
 
   email!: string;
   password!: string;
-  public footerTitle: string = '{ Code By CodeCrafters }';
   showPassword: boolean = false;
+  name:string = "";
+  public footerTitle: string = '{ Code By CodeCrafters }';
 
 
   async validateLogin() {
     this.showLoading();
-
     try {
       const user = await this.authService.login(this.email, this.password);
       if (user) {
@@ -40,6 +42,7 @@ export class LoginPage implements OnInit {
         this.password = "";
       }
     } catch (error: any) {
+      this.loadingCtrl.dismiss();
       this.toastMessage('Error al autenticar: ' + error.message, 'danger');
       this.email = "";
       this.password = "";

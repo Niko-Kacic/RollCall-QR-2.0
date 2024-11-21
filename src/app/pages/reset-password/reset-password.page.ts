@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Auth, getAuth, sendPasswordResetEmail } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reset-password',
@@ -15,7 +16,8 @@ export class ResetPasswordPage {
   constructor(
     private toastController: ToastController,
     private router: Router,
-    private auth: Auth  // Asegúrate de que Auth es importado de @angular/fire/compat/auth
+    private auth: Auth,  // Asegúrate de que Auth es importado de @angular/fire/compat/auth
+    private loadingCtrl: LoadingController
   ) {}
 
   resetPassword() {
@@ -24,13 +26,16 @@ export class ResetPasswordPage {
       return;
     }
 
+    this.showLoading();
     const auth = getAuth();
     sendPasswordResetEmail(auth, this.email)
       .then(() => {
+        this.loadingCtrl.dismiss();
         this.toastMessage("Correo de recuperación enviado", 'success');
         this.router.navigate(['/login']);
       })
       .catch((error) => {
+        this.loadingCtrl.dismiss();
         this.toastMessage("Error al enviar el correo: " + error.message, 'danger');
       });
   }
@@ -43,6 +48,16 @@ export class ResetPasswordPage {
       color: color,
     });
     toast.present();
+  }
+
+  async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      spinner: 'lines',
+      message: 'Gestionando solicitud...',
+      cssClass: 'custom-loader'
+    });
+
+    loading.present();
   }
 }
 

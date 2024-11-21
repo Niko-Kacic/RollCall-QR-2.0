@@ -30,7 +30,7 @@
           <ion-avatar class="calendar-avatar">
             <ion-icon size="large" name="calendar-outline"></ion-icon>
           </ion-avatar>
-          <ion-label class="menu-label" (click)="redirect_404()">Calendario</ion-label>
+          <ion-label class="menu-label" (click)="redirect_schedule()">Calendario</ion-label>
         </ion-item>
         <ion-item button>
           <ion-avatar class="group-avatar">
@@ -75,7 +75,7 @@
         <img class="main-picture" src="https://freesvg.org/img/abstract-user-flat-4.png" alt="profile-img">
       </div>
       <div class="title-user-box">
-        <h3>Bienvenido: <strong>Usuario</strong></h3>
+        <h3>Bienvenido: <strong>{{userName}}</strong></h3>
         <q><i>Frase del día</i></q>
       </div>
       <ion-card class="main-card">

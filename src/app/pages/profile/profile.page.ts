@@ -27,9 +27,11 @@ export class ProfilePage implements OnInit {
   ) {}
 
   async ngOnInit() {
+
     // Espera a que se resuelva el usuario autenticado
     const user = await this.authService.getCurrentUser();
     if (user && user.email) {
+      
       this.email = user.email;
       console.log('Correo del usuario autenticado:', this.email); // Verifica el correo obtenido
 
@@ -52,6 +54,7 @@ export class ProfilePage implements OnInit {
       });
     } else {
       console.log('No se pudo obtener el correo del usuario autenticado');
+
     }
   }
 

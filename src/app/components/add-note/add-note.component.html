@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agregar Nota</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="saveNote()">
+    <ion-item>
+      <ion-label position="floating">Nota</ion-label>
+      <ion-input [(ngModel)]="noteContent" name="noteContent"></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="submit">Guardar</ion-button>
+    <ion-button expand="block" color="light" (click)="dismissModal()">Cancelar</ion-button>
+  </form>
+</ion-content>

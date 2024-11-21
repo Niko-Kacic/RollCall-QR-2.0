@@ -14,9 +14,11 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { ConfirmLogoutComponent } from './components/confirm-logout/confirm-logout.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),//Permite establecer configuración predeterminada para la APP pasando un json como parametro con atributos de distintas configuraciones para la app
@@ -24,8 +26,9 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     FormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-
+    IonicModule,
     AngularFirestoreModule,
+    SharedModule
   ],
   providers: [
     { provide: RouteReuseStrategy,
