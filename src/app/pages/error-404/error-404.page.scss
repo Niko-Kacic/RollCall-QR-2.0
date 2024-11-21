@@ -1,4 +1,12 @@
+ion-content {
+  --background: var(--background);
+}
 
+.header-toolbar{
+  --background: var(--header-color);
+  --color:var(--text-color);
+  text-shadow: var(--text-shadow);
+}
 
 .container {
   display: flex;
@@ -40,7 +48,14 @@ h2 {
 }
 
 
-.footer-title{
+.footer-box {
+  --background: var(--footer-color);
+}
+
+.footer-title {
   text-align: center;
   font-size: 18px;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+  letter-spacing: 2px;
 }
