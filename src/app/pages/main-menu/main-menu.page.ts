@@ -52,6 +52,11 @@ export class MainMenuPage implements OnInit {
     this.router.navigate(['/subjects']);
   }
 
+  redirect_schedule() {
+    this.menu.close();
+    this.router.navigate(['/schedule'])
+  }
+
   redirect_404() {
     this.menu.close();
     this.router.navigate(['/error-404']);
