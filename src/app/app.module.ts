@@ -29,7 +29,6 @@ import { SharedModule } from './shared/shared.module';
     IonicModule,
     AngularFirestoreModule,
     SharedModule
-
   ],
   providers: [
     { provide: RouteReuseStrategy,
