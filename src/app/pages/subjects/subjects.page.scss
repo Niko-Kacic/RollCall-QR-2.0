@@ -1,22 +1,30 @@
 @import '../../../theme/variables.scss';
 
-
 ion-content {
-  --background:#FDFDFD;
+  --background: var(--background-color);
 }
 
 .header-toolbar{
-  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  --background: var(--header-color);
   --color:var(--text-color);
   text-shadow: var(--text-shadow);
 }
 
-.title{
-  margin-left: 40px;
+.modern-profile-card {
+  margin-top: 2rem;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
+.title{
+  margin-left: 25px;
+}
+
+<<<<<<< HEAD
 .title-logo{
-  background: linear-gradient(90deg, #a657fa,#7d21b6 ,#6A1B9A);
+  background: #7d21b6;
   border: 1px solid #000;
   box-shadow: 2px 2px 8px var(--shadow-color);
   width: 100%;
@@ -32,9 +40,6 @@ ion-content {
   object-fit: cover;
 }
 
-.subjects-list {
-
-}
 
 ion-img{
   background-color: #fff;
@@ -44,42 +49,49 @@ ion-img{
 .list-item {
   --background: rgba(151, 101, 222, 1.0);
   margin-bottom: 6px;
+=======
+.profile-header {
+>>>>>>> c70942191df098f418c0bec31745e0d1eaa47252
   display: flex;
   align-items: center;
-  border-radius: 20px;
-  border: 2px solid var(--shadow-color);
-  box-shadow: 1px 1px var(--shadow-color);
+  padding: 20px;
+  --background:linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  color: white;
 }
 
-.list-item:active {
-  background-color: var(--button-color-active);
-  color: var(--text-color);
-  text-shadow: var(--shadow-color);
-  transform: scale(0.95);
+ img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  object-fit: fill;
+  margin-bottom: 1rem;
+  background-color: #fff;
 }
 
-.subject-label {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
+.student-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
 }
 
-.subject-title {
-  color: var(--text-color);
-  text-shadow: 1px 2px #150016;
-  margin-bottom: 5px;
+.student-major {
+  font-size: 1rem;
+  margin: 5px 0;
+  opacity: 0.8;
 }
 
-.subject-section {
-  color: var(--text-color);
-  text-shadow: 1px 2px #150016;
-  font-size: 12px;
+
+.profile-info-row {
+  padding: 10px 0;
+  font-size: 0.95rem;
+  border-top: 1px solid #eeeeee;
 }
+
 
 .footer-box {
-  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+  --background: var(--footer-color);
 }
 
 .footer-title {
@@ -89,4 +101,3 @@ ion-img{
   text-shadow: var(--text-shadow);
   letter-spacing: 2px;
 }
-

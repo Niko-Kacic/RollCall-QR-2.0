@@ -1,4 +1,16 @@
+ion-content {
+<<<<<<< HEAD
+  --background: #e9e0f0;
+=======
+  --background: var(--background);
+>>>>>>> c70942191df098f418c0bec31745e0d1eaa47252
+}
 
+.header-toolbar{
+  --background: var(--header-color);
+  --color:var(--text-color);
+  text-shadow: var(--text-shadow);
+}
 
 .container {
   display: flex;
@@ -40,7 +52,14 @@ h2 {
 }
 
 
-.footer-title{
+.footer-box {
+  --background: var(--footer-color);
+}
+
+.footer-title {
   text-align: center;
   font-size: 18px;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+  letter-spacing: 2px;
 }

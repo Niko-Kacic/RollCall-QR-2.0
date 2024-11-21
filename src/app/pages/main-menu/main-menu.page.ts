@@ -4,6 +4,7 @@ import { MenuController, ModalController } from '@ionic/angular';
 import { ConfirmLogoutComponent } from 'src/app/components/confirm-logout/confirm-logout.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-main-menu',
@@ -21,6 +22,7 @@ export class MainMenuPage implements OnInit {
     private authService: AuthService,
     private fireDataBaseService: FireDataBaseService,
     private modalController: ModalController,
+    private loadingCtrl: LoadingController
   ) { }
 
   async ngOnInit() {
@@ -41,9 +43,21 @@ export class MainMenuPage implements OnInit {
     } else {
       console.log('No se pudo obtener el correo del usuario autenticado');
     }
+    this.loadingCtrl.dismiss();
+  }
+
+  async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      spinner: 'lines',
+      message: 'Cargando...',
+      cssClass: 'custom-loader'
+    });
+
+    loading.present();
   }
 
   redirect_profile() {
+    this.showLoading();
     this.router.navigate(['/profile']);
   }
 
@@ -68,4 +82,5 @@ export class MainMenuPage implements OnInit {
     });
     return await modal.present();
   }
+
 }

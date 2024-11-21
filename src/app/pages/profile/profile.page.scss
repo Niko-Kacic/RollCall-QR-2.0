@@ -1,7 +1,11 @@
 @import '../../../theme/variables.scss';
 
+ion-content {
+  --background: var(--background-color);
+}
+
 .header-toolbar{
-  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  --background: var(--header-color);
   --color:var(--text-color);
   text-shadow: var(--text-shadow);
 }
@@ -58,7 +62,7 @@
 
 
 .footer-box {
-  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+  --background: var(--footer-color);
 }
 
 .footer-title {

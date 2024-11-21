@@ -2,14 +2,16 @@
 // http://ionicframework.com/docs/theming/
 
 :root {
-  --primary-color: rgba(151, 101, 222, 1);
-  --secondary-color: rgba(100, 68, 179, 0.9);
+  --primary-color: #6A1B9A;
+  --secondary-color: #7d21b6;
   --text-color: #FFFDFF;
   --text-shadow: 1px 2px #150016;
   --shadow-color: #150016;
   --dark-theme: rgb(80, 46, 107);
-  --button-color: rgba(151, 101, 222, 1.0);
-  --button-color-active: rgba(151, 101, 222, 0.3);
-  --footer-color: rgba(151, 101, 222, 0.9);
+  --button-color: rgba(125, 33, 182, 0.9);
+  --button-color-active: rgba(110, 10, 172, 0.9);
+  --background-color: #EDF2FA;
+  --header-color: #471168;
+  --footer-color:rgb(18, 30, 75);
   --main-pink: rgba(245, 102, 250, 1);
 }
