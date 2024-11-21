@@ -8,17 +8,21 @@ import { AddNoteComponent } from '../../components/add-note/add-note.component';
   styleUrls: ['./schedule.page.scss'],
 })
 export class SchedulePage implements OnInit {
+  private touchTimeout: any;
+  private pressDuration = 500;
+
   constructor(private modalController: ModalController) {}
 
   ngOnInit() {}
 
-  async onDateChange(event: any) {
-    const selectedDate = event.detail.value;
-    const modal = await this.modalController.create({
-      component: AddNoteComponent,
-      componentProps: { selectedDate: selectedDate },
-    });
-    return await modal.present();
+  onMouseDown(event: any) {
+    this.touchTimeout = setTimeout(() => {
+      const selectedDate = event.target.value;
+      this.openModal(selectedDate);
+    }, this.pressDuration);
+  }
+  onMouseUp(event: any) {
+    clearTimeout(this.touchTimeout);
   }
 
   async openModal(selectedDate: string = '') {
