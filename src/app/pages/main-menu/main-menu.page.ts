@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
+import { ConfirmLogoutComponent } from 'src/app/components/confirm-logout/confirm-logout.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
 
@@ -18,7 +19,8 @@ export class MainMenuPage implements OnInit {
     private menu: MenuController,
     private router: Router,
     private authService: AuthService,
-    private fireDataBaseService: FireDataBaseService
+    private fireDataBaseService: FireDataBaseService,
+    private modalController: ModalController,
   ) { }
 
   async ngOnInit() {
@@ -56,11 +58,9 @@ export class MainMenuPage implements OnInit {
   }
 
   async logout() {
-    try {
-      await this.authService.logout();
-      this.router.navigate(['/login']);
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
-    }
+    const modal = await this.modalController.create({
+      component: ConfirmLogoutComponent
+    });
+    return await modal.present();
   }
 }
