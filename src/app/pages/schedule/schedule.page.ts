@@ -9,7 +9,7 @@ import { AddNoteComponent } from '../../components/add-note/add-note.component';
 })
 export class SchedulePage implements OnInit {
   private touchTimeout: any;
-  private pressDuration = 500;
+  private pressDuration = 800;
 
   constructor(private modalController: ModalController) {}
 
