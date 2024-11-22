@@ -6,6 +6,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
 import { LoadingController } from '@ionic/angular';
 
+
+
+
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.page.html',
@@ -14,7 +17,9 @@ import { LoadingController } from '@ionic/angular';
 export class MainMenuPage implements OnInit {
 
   public footerTitle: string = '{ Code By CodeCrafters }';
+
   public userName: string = '';
+
 
   constructor(
     private menu: MenuController,
@@ -58,6 +63,7 @@ export class MainMenuPage implements OnInit {
 
   redirect_profile() {
     this.showLoading();
+
     this.router.navigate(['/profile']);
   }
 
@@ -82,5 +88,6 @@ export class MainMenuPage implements OnInit {
     });
     return await modal.present();
   }
+
 
 }

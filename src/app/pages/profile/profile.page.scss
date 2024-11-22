@@ -45,14 +45,18 @@ ion-content {
   font-size: 1.4rem;
   font-weight: bold;
   margin: 0;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
 }
 
 .student-major {
   font-size: 1rem;
+  font-weight: bold;
   margin: 5px 0;
   opacity: 0.8;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
 }
-
 
 .profile-info-row {
   padding: 10px 0;
@@ -61,11 +65,12 @@ ion-content {
 }
 
 
+
 .footer-box {
   --background: var(--footer-color);
 }
 
-.footer-title {
+.footer-title{
   text-align: center;
   font-size: 18px;
   color: var(--text-color);

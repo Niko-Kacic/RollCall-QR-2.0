@@ -1,3 +1,5 @@
+@import '../../../theme/variables.scss';
+
 ion-content {
   --background: var(--background);
 }
@@ -18,10 +20,14 @@ ion-content {
 }
 
 .error-title {
-  font-size: 2.5rem;
-  color: #333;
+  font-size: 3rem;               
+  font-weight: 900;              
+  text-transform: uppercase;     
+  letter-spacing: 3px;           
+  color: var(--sub-text-color);
   margin-bottom: 10px;
-  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace; 
+  text-shadow: 2px 3px rgba(0, 0, 0, 0.3); 
 }
 
 h1 {
@@ -30,6 +36,11 @@ h1 {
 
 h2 {
   margin-top: 0;
+  font-size: 1.5rem;
+  font-weight: 700;              
+  letter-spacing: 1.5px;         
+  color: var(--sub-text-color);
+  text-shadow: 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 
@@ -42,11 +53,19 @@ h2 {
 }
 
 .error-description {
-  font-size: 1rem;
-  color: #444;
-  font-weight: bold;
+  font-size: 1.1rem;
+  font-style: italic;            
+  font-weight: 500;              
+  letter-spacing: 1px;           
+  color: var(--sub-text-color);
+  text-shadow: 0.5px 1px rgba(0, 0, 0, 0.1); 
+  max-width: 80%;                
+  margin: 10px auto;             
 }
 
+.footer-box{
+  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
+}
 
 .footer-box {
   --background: var(--footer-color);
@@ -59,3 +78,5 @@ h2 {
   text-shadow: var(--text-shadow);
   letter-spacing: 2px;
 }
+
+/**/

@@ -16,7 +16,13 @@ ion-content {
   margin-bottom: 1rem;
 }
 
-.main-picture {
+.profile-picture-box{
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.main-picture{
   border-radius: 100%;
   width: 200px;
   height: 200px;
@@ -25,15 +31,19 @@ ion-content {
   background-color: #fff;
 }
 
-.title-user-box {
+.title-user-box{
   text-align: center;
   margin-top: 0;
   margin-bottom: 1rem;
-  color: var(--shadow-color);
-
+  color: var(--sub-text-color);
 }
 
- h3 {
+#card-content-welcome {
+  color: #fff;
+  text-shadow: 1px 2px #150016;
+}
+
+h3 {
   font-size: 18px;
 }
 
@@ -71,18 +81,19 @@ ion-content {
   object-fit: cover;
 }
 
-ion-icon, ion-title, ion-label, ion-menu-button {
-  color: #FFFDFF;
+ion-icon, ion-title, ion-label, ion-menu-button{
+  color: var(--text-color);
   text-shadow: var(--text-shadow);
-  letter-spacing: 2px;
+  letter-spacing: 2px ;
 }
+
 
 ion-item {
   --background: #7d21b6;
 }
 
-.menu-label {
-  color: #FFFDFF;
+.menu-label{
+  color: var(--text-color);
   text-shadow: var(--text-shadow);
 }
 
@@ -95,7 +106,7 @@ ion-item {
   --background: var(--footer-color);
 }
 
-.footer-title {
+.footer-title{
   text-align: center;
   font-size: 18px;
   color: var(--text-color);
