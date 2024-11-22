@@ -13,7 +13,7 @@ ion-content {
 .profile-container {
   text-align: center;
   margin-top: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
 }
 
 .profile-picture-box{
@@ -34,7 +34,7 @@ ion-content {
 .title-user-box{
   text-align: center;
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   color: var(--sub-text-color);
 }
 
@@ -54,7 +54,7 @@ h3 {
   width: 100%;
   margin: 0 auto;
   position: absolute;
-  bottom: 8.4%;
+  bottom: 0%;
   border-radius: 0%;
   border-top-right-radius:20px;
   border-top-left-radius:20px;
@@ -65,7 +65,7 @@ h3 {
 .card-content p {
   text-align: center;
   letter-spacing: 1px;
-  margin-top:20px;
+  margin-top:0px;
 }
 
 .logo-container {
@@ -86,7 +86,6 @@ ion-icon, ion-title, ion-label, ion-menu-button{
   text-shadow: var(--text-shadow);
   letter-spacing: 2px ;
 }
-
 
 ion-item {
   --background: #7d21b6;
