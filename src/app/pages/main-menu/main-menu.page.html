@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <ion-menu side="end" contentId="main-content" class="main-menu">
     <ion-header class="menu-content">
-      <ion-toolbar class="menu-content" style="--background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));">
+      <ion-toolbar class="menu-content" style="--background: #7d21b6;">
         <ion-title>Menu</ion-title>
         <ion-buttons slot="end">
           <ion-menu-toggle auto-hide="false">
@@ -30,7 +30,7 @@
           <ion-avatar class="calendar-avatar">
             <ion-icon size="large" name="calendar-outline"></ion-icon>
           </ion-avatar>
-          <ion-label class="menu-label" (click)="redirect_404()">Calendario</ion-label>
+          <ion-label class="menu-label" (click)="redirect_schedule()">Calendario</ion-label>
         </ion-item>
         <ion-item button>
           <ion-avatar class="group-avatar">
@@ -78,11 +78,19 @@
 
     <ion-content class="main-content">
       <div class="profile-container">
-          <img class="main-picture" src="https://freesvg.org/img/abstract-user-flat-4.png" alt="profile-img">
-        </div>
-        <div class="title-user-box">
-          <h3>Bienvenido: <strong>{{userName}}</strong></h3>
-          <q><i>Frase del día</i></q>
+
+        <img class="main-picture" src="https://freesvg.org/img/abstract-user-flat-4.png" alt="profile-img">
+      </div>
+      <div class="title-user-box">
+        <h3>Bienvenido: <strong>{{userName}}</strong></h3>
+        <q><i>Frase del día</i></q>
+      </div>
+      <ion-card class="main-card">
+        <ion-card-content class="card-content">
+          <p>¡Bienvenido a nuestra aplicación! Aquí podrás acceder a tu perfil, consultar tus ramos, noticias y eventos. ¡Explora y disfruta!</p>
+        </ion-card-content>
+        <div class="logo-container">
+          <img class="logo-box" src="https://i.imgur.com/5J4tq8t.png" alt="logo">
         </div>
         <ion-card class="main-card">
           <ion-card-content class="card-content">

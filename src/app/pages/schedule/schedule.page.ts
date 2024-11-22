@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { AddNoteComponent } from '../../components/add-note/add-note.component';
 
 @Component({
   selector: 'app-schedule',
@@ -6,10 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./schedule.page.scss'],
 })
 export class SchedulePage implements OnInit {
+  private touchTimeout: any;
+  private pressDuration = 800;
 
-  constructor() { }
+  constructor(private modalController: ModalController) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onMouseDown(event: any) {
+    this.touchTimeout = setTimeout(() => {
+      const selectedDate = event.target.value;
+      this.openModal(selectedDate);
+    }, this.pressDuration);
+  }
+  onMouseUp(event: any) {
+    clearTimeout(this.touchTimeout);
   }
 
+  async openModal(selectedDate: string = '') {
+    const modal = await this.modalController.create({
+      component: AddNoteComponent,
+      componentProps: { selectedDate: selectedDate },
+    });
+    return await modal.present();
+  }
 }

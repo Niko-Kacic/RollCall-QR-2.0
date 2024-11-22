@@ -15,6 +15,16 @@
   font-family: "Figtree", serif;
 
 }
+.custom-loader{
+  --spinner-color: var(--secondary-color),
+  --background: var(--background)
+}
+
+.custom-loader {
+  --background: var(--background-color);
+  --spinner-color: var(--secondary-color);
+}
+
 
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -21,19 +22,23 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private fireDataBaseService: FireDataBaseService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loadingCtrl: LoadingController
   ) {}
 
   async ngOnInit() {
+
     // Espera a que se resuelva el usuario autenticado
     const user = await this.authService.getCurrentUser();
     if (user && user.email) {
+      
       this.email = user.email;
       console.log('Correo del usuario autenticado:', this.email); // Verifica el correo obtenido
 
       // Buscar los datos del usuario por el correo
       this.fireDataBaseService.getUserDataByEmail(this.email).subscribe(data => {
         if (data) {
+          this.loadingCtrl.dismiss();
           console.log('Datos del usuario obtenidos desde Firestore:', data); // Verifica los datos obtenidos
           this.lastname = data['lastname'];
           this.firstName = data['name'];
@@ -49,6 +54,7 @@ export class ProfilePage implements OnInit {
       });
     } else {
       console.log('No se pudo obtener el correo del usuario autenticado');
+
     }
   }
 

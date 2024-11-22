@@ -4,6 +4,8 @@ import { ToastController } from '@ionic/angular';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
+import { LoadingController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,10 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private auth: Auth,
     private authService: AuthService,
-    fireDataBaseService: FireDataBaseService
+
+    fireDataBaseService: FireDataBaseService,
+    private loadingCtrl: LoadingController
+
   ) { }
 
 
@@ -28,15 +33,18 @@ export class LoginPage implements OnInit {
   public footerTitle: string = '{ Code By CodeCrafters }';
 
   async validateLogin() {
+    this.showLoading();
     try {
       const user = await this.authService.login(this.email, this.password);
       if (user) {
+        this.loadingCtrl.dismiss();
         this.toastMessage('Usuario autenticado correctamente', 'success');
         this.router.navigate(['/main-menu']); // Redirige a una ruta protegida después del login
         this.email = "";
         this.password = "";
       }
     } catch (error: any) {
+      this.loadingCtrl.dismiss();
       this.toastMessage('Error al autenticar: ' + error.message, 'danger');
     }
   }
@@ -53,6 +61,16 @@ export class LoginPage implements OnInit {
       color: color,
     });
     toast.present();
+  }
+
+  async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      spinner: 'lines',
+      message: 'Iniciando sesión...',
+      cssClass: 'custom-loader'
+    });
+
+    loading.present();
   }
 
   redirect(){

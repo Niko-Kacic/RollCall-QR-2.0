@@ -5,7 +5,7 @@
 }
 
 ion-content {
-  --background: linear-gradient(135deg, #a657fa,#7d21b6 ,#6A1B9A);
+  --background: linear-gradient(135deg, #cea4fa, #a657fa,#7d21b6 ,#471168,#220831);
 }
 
 .title-with-icon {
@@ -57,24 +57,25 @@ ion-content {
   height: 50px;
   font-size: 16px;
   font-weight: bold;
-  background-color: var(--primary-color);
-  color:var(--text-color);
-  text-shadow: var(--text-shadow);
+  background-color: rgba(209, 179, 255, 1.0);
+  color:rgba(47, 46, 46);
+  text-shadow: rgb(26, 25, 25);
+  font-weight: bold;
   text-transform: uppercase;
   border-radius: 20px;
   border: 2px solid var(--shadow-color);
   box-shadow: 1px 5px var(--shadow-color);
-  transition: background-color 0.3s, transform 0.2s;
+  transition: rgba(209, 179, 255) or 0.3s, transform 0.2s;
 }
 
 .main-btn:active {
-  background-color: var(--button-color-active);
+  background-color: rgb(160, 138, 192);
   color: #fff;
   transform: scale(0.95);
 }
 
 .footer-box{
-  --background: var(--primary-color);
+  --background: linear-gradient(135deg,#471168,#220831);;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
@@ -85,4 +86,3 @@ ion-content {
   color: var(--text-color);
   text-shadow: var(--text-shadow);
 }
-
