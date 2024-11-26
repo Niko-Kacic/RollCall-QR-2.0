@@ -68,9 +68,10 @@ export class SubjectDetailPage implements OnInit {
 
   calculatePercentage() {
     if (this.subjectDetail.totalClasses > 0) {
-      this.subjectPorcentage = (this.subjectAsist / this.subjectDetail.totalClasses) * 100;
+      this.subjectPorcentage = parseFloat(((this.subjectAsist / this.subjectDetail.totalClasses) * 100).toFixed(2));
     } else {
       this.subjectPorcentage = 0;
     }
   }
+
 }
