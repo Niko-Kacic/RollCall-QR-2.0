@@ -1,7 +1,7 @@
 @import '../../../theme/variables.scss';
 
 ion-content {
-  --background: var(--background-color);
+  --background:#FDFDFD;
 }
 
 .title-box{
@@ -87,9 +87,9 @@ input {
 .main-btn {
   width: 80%;
   height: 45px;
-  background-color: var(--button-color);
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
+  background-color:  rgba(151, 101, 222, 1);
+  color: #FFFDFF;
+  text-shadow: 1px 2px #150016;
   padding: 10px;
   text-transform: uppercase;
   border-radius: 20px;

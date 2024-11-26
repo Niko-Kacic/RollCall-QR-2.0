@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubjectsApiService } from 'src/app/services/subjects-api.service';
 import { SubjectsService } from 'src/app/services/subjects.service';
-import { LoadingController } from '@ionic/angular';
-
 
 @Component({
   selector: 'app-subjects',
@@ -20,19 +18,16 @@ export class SubjectsPage implements OnInit {
     private router: Router,
     private subjectservice: SubjectsService,
     private subjetApi: SubjectsApiService,
-    private loadingCtrl: LoadingController
   ) { }
 
 
   ngOnInit() {
-    //consumo de service
+    // Consumo de service
     this.courses = this.subjectservice.getCourses();
 
-
-    //consumo de API
+    // Consumo de API
     this.subjetApi.getSubjects().subscribe((data) => {
       this.subjects = data;
-      //this.loadingCtrl.dismiss();
     });
     
   }
