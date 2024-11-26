@@ -13,8 +13,10 @@ export class SubjectDetailPage implements OnInit {
 
   subjectDetail: any;
   subjects: any[] = [];
-  public footerTitle: string = '{ Code By CodeCrafters }';
   result: string = '';
+  subjectAsist: number = 0;
+  subjectPorcentage: number = 0;
+  public footerTitle: string = '{ Code By CodeCrafters }';
 
   constructor(
     private activatedrouter: ActivatedRoute,
