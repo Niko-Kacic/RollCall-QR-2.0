@@ -5,7 +5,7 @@ ion-content {
 }
 
 .header-toolbar{
-  --background: var(--header-color);
+  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
   --color:var(--text-color);
   text-shadow: var(--text-shadow);
 }
@@ -64,10 +64,8 @@ ion-content {
   border-top: 1px solid #eeeeee;
 }
 
-
-
-.footer-box {
-  --background: var(--footer-color);
+.footer-box{
+  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
 }
 
 .footer-title{
