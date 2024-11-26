@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SubjectsApiService } from 'src/app/services/subjects-api.service';
 import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
 import { ToastController } from '@ionic/angular';
+import { AssistanceService } from '../../../services/assistance.service'; // Importa el nuevo servicio
 
 @Component({
   selector: 'app-subject-detail',
@@ -13,28 +14,25 @@ export class SubjectDetailPage implements OnInit {
 
   subjectDetail: any;
   subjects: any[] = [];
-  public footerTitle: string = '{ Code By CodeCrafters }';
   result: string = '';
+  subjectAsist: number = 0;
+  subjectPorcentage: number = 0;
+  public footerTitle: string = '{ Code By CodeCrafters }';
 
   constructor(
     private activatedrouter: ActivatedRoute,
     private subjetApi: SubjectsApiService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private firestoreService: AssistanceService // Agrega el servicio al constructor
   ) { }
 
   ngOnInit() {
-    // Captura el id de la URL
     this.activatedrouter.paramMap.subscribe(paramMap => {
-      const subjectId = paramMap.get('placeId'); // Obtén el id de la asignatura
-
-      // Llama al servicio para obtener todas las asignaturas
+      const subjectId = paramMap.get('placeId');
       this.subjetApi.getSubjects().subscribe((data) => {
         this.subjects = data;
-
-        // Encuentra la asignatura que coincide con el id
         this.subjectDetail = this.subjects.find(signature => signature.id === subjectId);
-
-        console.log(this.subjectDetail); // Verifica que hayas obtenido la asignatura correcta
+        console.log(this.subjectDetail);
       });
     });
   }
@@ -56,9 +54,31 @@ export class SubjectDetailPage implements OnInit {
     this.result = result.ScanResult;
 
     if (this.result) {
+      this.incrementAttendance();
+      this.calculatePercentage();
       this.toastMessage('Se ha escaneado con exito el código QR!', 'success');
     } else {
       this.toastMessage('Escaneo fallido. Intente nuevamente.', 'danger');
+    }
+  }
+
+  incrementAttendance() {
+    this.subjectAsist += 1;
+    this.subjectDetail.attendance = this.subjectAsist;
+
+    // Actualiza la asistencia en Firestore
+    this.firestoreService.updateAssistance(this.subjectDetail.id, this.subjectAsist).then(() => {
+      console.log('Asistencia actualizada en Firestore');
+    }).catch(error => {
+      console.error('Error al actualizar la asistencia en Firestore:', error);
+    });
+  }
+
+  calculatePercentage() {
+    if (this.subjectDetail.totalClasses > 0) {
+      this.subjectPorcentage = parseFloat(((this.subjectAsist / this.subjectDetail.totalClasses) * 100).toFixed(2));
+    } else {
+      this.subjectPorcentage = 0;
     }
   }
 }
