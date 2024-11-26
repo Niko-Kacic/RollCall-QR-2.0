@@ -25,18 +25,12 @@ export class SubjectDetailPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Captura el id de la URL
     this.activatedrouter.paramMap.subscribe(paramMap => {
-      const subjectId = paramMap.get('placeId'); // Obtén el id de la asignatura
-
-      // Llama al servicio para obtener todas las asignaturas
+      const subjectId = paramMap.get('placeId');
       this.subjetApi.getSubjects().subscribe((data) => {
         this.subjects = data;
-
-        // Encuentra la asignatura que coincide con el id
         this.subjectDetail = this.subjects.find(signature => signature.id === subjectId);
-
-        console.log(this.subjectDetail); // Verifica que hayas obtenido la asignatura correcta
+        console.log(this.subjectDetail);
       });
     });
   }
@@ -58,9 +52,25 @@ export class SubjectDetailPage implements OnInit {
     this.result = result.ScanResult;
 
     if (this.result) {
+      this.incrementAttendance();
+      this.calculatePercentage();
       this.toastMessage('Se ha escaneado con exito el código QR!', 'success');
     } else {
       this.toastMessage('Escaneo fallido. Intente nuevamente.', 'danger');
+    }
+  }
+
+  incrementAttendance() {
+    this.subjectAsist += 1;
+    // Suponiendo que subjectDetail es el objeto que contiene la info de la asignatura actual
+    this.subjectDetail.attendance = this.subjectAsist;
+  }
+
+  calculatePercentage() {
+    if (this.subjectDetail.totalClasses > 0) {
+      this.subjectPorcentage = (this.subjectAsist / this.subjectDetail.totalClasses) * 100;
+    } else {
+      this.subjectPorcentage = 0;
     }
   }
 }
