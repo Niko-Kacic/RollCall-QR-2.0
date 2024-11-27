@@ -18,7 +18,7 @@ export class SubjectDetailPage implements OnInit {
   subjectAsist: number = 0;
   subjectPorcentage: number = 0;
   public footerTitle: string = '{ Code By CodeCrafters }';
-  apiUrl: string = 'http://localhost:3000/courses';  
+  apiUrl: string = 'http://localhost:3000/courses';  // Ajusta la URL según sea necesario
 
   constructor(
     private activatedrouter: ActivatedRoute,
@@ -57,26 +57,26 @@ export class SubjectDetailPage implements OnInit {
     this.result = result.ScanResult;
 
     if (this.result) {
-      // this.incrementAttendance();
+      this.incrementAttendance();
       this.calculatePercentage();
       this.toastMessage('Se ha escaneado con exito el código QR!', 'success');
     } else {
       this.toastMessage('Escaneo fallido. Intente nuevamente.', 'danger');
     }
   }
-  
+
   incrementAttendance() {
     this.subjectAsist += 1;
     this.subjectDetail.asistencias = this.subjectAsist;
 
-     // Actualiza la asistencia en la API
-     this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/asistencias`, { asistencias: this.subjectAsist })
-     .subscribe(response => {
-       console.log('Asistencias actualizadas:', response);
-     }, error => {
-       console.error('Error al actualizar asistencias:', error);
-     });
- }
+    // Actualiza la asistencia en la API
+    this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/asistencias`, { asistencias: this.subjectAsist })
+      .subscribe(response => {
+        console.log('Asistencias actualizadas:', response);
+      }, error => {
+        console.error('Error al actualizar asistencias:', error);
+      });
+  }
 
   calculatePercentage() {
     if (this.subjectDetail.totalClasses > 0) {
@@ -94,5 +94,4 @@ export class SubjectDetailPage implements OnInit {
       this.subjectPorcentage = 0;
     }
   }
-
 }
