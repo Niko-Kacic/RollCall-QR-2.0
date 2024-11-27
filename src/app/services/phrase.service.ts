@@ -17,7 +17,7 @@ export class PhraseService {
 
   constructor(private http: HttpClient) { }
 
-  getPhraseOfTheDay(): Observable<Phrase[]> {  
+  getPhrase(): Observable<Phrase[]> {  
     return this.http.get<Phrase[]>(this.apiUrl);
   }
 }

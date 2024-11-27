@@ -19,8 +19,8 @@ export class MainMenuPage implements OnInit {
   public footerTitle: string = '{ Code By CodeCrafters }';
   public userName: string = '';
   darkModeEnabled: boolean = false;
-  phraseOfTheDay: string = '';
-  authorOfTheDay: string = '';  
+  phrase: string = '';
+  author: string = '';  
 
   constructor(
     private menu: MenuController,
@@ -53,14 +53,14 @@ export class MainMenuPage implements OnInit {
     }
 
     // Llamada al servicio para obtener la frase del día
-    this.phraseService.getPhraseOfTheDay().subscribe((phrases: Phrase[]) => {
+    this.phraseService.getPhrase().subscribe((phrases: Phrase[]) => {
       if (phrases && phrases.length > 0) {
         
         const randomIndex = Math.floor(Math.random() * phrases.length);
         const randomPhrase = phrases[randomIndex];
         
-        this.phraseOfTheDay = randomPhrase.phrase;
-        this.authorOfTheDay = randomPhrase.author;
+        this.phrase = randomPhrase.phrase;
+        this.author = randomPhrase.author;
       }
     });
 
