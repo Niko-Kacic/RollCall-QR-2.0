@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { SubjectsApiService } from 'src/app/services/subjects-api.service';
 import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
 import { ToastController } from '@ionic/angular';
-// import { AssistanceService } from '../../../services/assistance.service'; // Importa el nuevo servicio
 
 @Component({
   selector: 'app-subject-detail',
@@ -18,12 +18,13 @@ export class SubjectDetailPage implements OnInit {
   subjectAsist: number = 0;
   subjectPorcentage: number = 0;
   public footerTitle: string = '{ Code By CodeCrafters }';
+  apiUrl: string = 'http://localhost:3000/courses';  // Ajusta la URL según sea necesario
 
   constructor(
     private activatedrouter: ActivatedRoute,
+    private http: HttpClient,
     private subjetApi: SubjectsApiService,
-    private toastController: ToastController,
-    // private firestoreService: AssistanceService // Agrega el servicio al constructor
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -32,6 +33,8 @@ export class SubjectDetailPage implements OnInit {
       this.subjetApi.getSubjects().subscribe((data) => {
         this.subjects = data;
         this.subjectDetail = this.subjects.find(signature => signature.id === subjectId);
+        this.subjectAsist = this.subjectDetail.asistencias;
+        this.subjectPorcentage = this.subjectDetail.attendanceRate;
         console.log(this.subjectDetail);
       });
     });
@@ -65,22 +68,33 @@ export class SubjectDetailPage implements OnInit {
   /*
   incrementAttendance() {
     this.subjectAsist += 1;
-    this.subjectDetail.attendance = this.subjectAsist;
+    this.subjectDetail.asistencias = this.subjectAsist;
 
-    // Actualiza la asistencia en Firestore
-    this.firestoreService.updateAssistance(this.subjectDetail.id, this.subjectAsist).then(() => {
-      console.log('Asistencia actualizada en Firestore');
-    }).catch(error => {
-      console.error('Error al actualizar la asistencia en Firestore:', error);
-    });
+    // Actualiza la asistencia en la API
+    this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/asistencias`, { asistencias: this.subjectAsist })
+      .subscribe(response => {
+        console.log('Asistencias actualizadas:', response);
+      }, error => {
+        console.error('Error al actualizar asistencias:', error);
+      });
   }
   */
 
   calculatePercentage() {
     if (this.subjectDetail.totalClasses > 0) {
       this.subjectPorcentage = parseFloat(((this.subjectAsist / this.subjectDetail.totalClasses) * 100).toFixed(2));
+      this.subjectDetail.attendanceRate = this.subjectPorcentage;
+
+      // Actualiza el porcentaje de asistencia en la API
+      this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/attendanceRate`, { attendanceRate: this.subjectPorcentage })
+        .subscribe(response => {
+          console.log('Porcentaje de asistencia actualizado:', response);
+        }, error => {
+          console.error('Error al actualizar el porcentaje de asistencia:', error);
+        });
     } else {
       this.subjectPorcentage = 0;
     }
   }
+
 }
