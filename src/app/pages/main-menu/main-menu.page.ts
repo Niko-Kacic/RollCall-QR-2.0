@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
 import { LoadingController } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
+import { PhraseService } from 'src/app/services/phrase.service'; 
+import { Phrase } from 'src/app/services/phrase.service';  
 
 @Component({
   selector: 'app-main-menu',
@@ -17,6 +19,8 @@ export class MainMenuPage implements OnInit {
   public footerTitle: string = '{ Code By CodeCrafters }';
   public userName: string = '';
   darkModeEnabled: boolean = false;
+  phrase: string = '';
+  author: string = '';  
 
   constructor(
     private menu: MenuController,
@@ -24,7 +28,8 @@ export class MainMenuPage implements OnInit {
     private authService: AuthService,
     private fireDataBaseService: FireDataBaseService,
     private modalController: ModalController,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private phraseService: PhraseService
   ) { 
     this.loadDarkModePreference();
     }
@@ -46,6 +51,19 @@ export class MainMenuPage implements OnInit {
     } else {
       console.log('No se pudo obtener el correo del usuario autenticado');
     }
+
+    // Llamada al servicio para obtener la frase del día
+    this.phraseService.getPhrase().subscribe((phrases: Phrase[]) => {
+      if (phrases && phrases.length > 0) {
+        
+        const randomIndex = Math.floor(Math.random() * phrases.length);
+        const randomPhrase = phrases[randomIndex];
+        
+        this.phrase = randomPhrase.phrase;
+        this.author = randomPhrase.author;
+      }
+    });
+
     this.loadingCtrl.dismiss();
   }
 
