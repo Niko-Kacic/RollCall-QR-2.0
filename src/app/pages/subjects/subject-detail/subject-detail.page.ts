@@ -17,9 +17,9 @@ export class SubjectDetailPage implements OnInit {
   result: string = '';
   subjectAsist: number = 0;
   subjectPorcentage: number = 0;
+  apiUrl: string = 'https://signature-api-production.up.railway.app/courses'; 
   public footerTitle: string = '{ Code By CodeCrafters }';
-  apiUrl: string = 'https://signature-api-production.up.railway.app/course';
-
+  
   constructor(
     private activatedrouter: ActivatedRoute,
     private http: HttpClient,
@@ -59,7 +59,7 @@ export class SubjectDetailPage implements OnInit {
     if (this.result) {
       this.incrementAttendance();
       this.calculatePercentage();
-      this.toastMessage('Se ha escaneado con exito el código QR!', 'success');
+      this.toastMessage('Se ha escaneado con éxito el código QR!', 'success');
     } else {
       this.toastMessage('Escaneo fallido. Intente nuevamente.', 'danger');
     }
@@ -73,8 +73,17 @@ export class SubjectDetailPage implements OnInit {
     this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/asistencias`, { asistencias: this.subjectAsist })
       .subscribe(response => {
         console.log('Asistencias actualizadas:', response);
+
+        // Después de actualizar la asistencia, realiza una nueva solicitud GET para obtener los datos actualizados
+        this.subjetApi.getSubjects().subscribe((data) => {
+          this.subjects = data;
+          this.subjectDetail = this.subjects.find(signature => signature.id === this.subjectDetail.id);
+          this.subjectAsist = this.subjectDetail.asistencias;
+          this.subjectPorcentage = this.subjectDetail.attendanceRate;
+        });
       }, error => {
         console.error('Error al actualizar asistencias:', error);
+        this.toastMessage('Error al actualizar asistencias. Verifica la conexión y URL.', 'danger');
       });
   }
 
@@ -93,5 +102,25 @@ export class SubjectDetailPage implements OnInit {
     } else {
       this.subjectPorcentage = 0;
     }
+  }
+
+  // Nueva función para restablecer los cursos
+  resetCourses() {
+    this.http.post('https://signature-api-production.up.railway.app/reset-courses', {})
+      .subscribe(response => {
+        console.log('Cursos restablecidos:', response);
+        this.toastMessage('Cursos restablecidos a sus valores por defecto', 'success');
+
+        // Actualiza la vista con los datos restablecidos
+        this.subjetApi.getSubjects().subscribe((data) => {
+          this.subjects = data;
+          this.subjectDetail = this.subjects.find(signature => signature.id === this.subjectDetail.id);
+          this.subjectAsist = this.subjectDetail.asistencias;
+          this.subjectPorcentage = this.subjectDetail.attendanceRate;
+        });
+      }, error => {
+        console.error('Error al restablecer los cursos:', error);
+        this.toastMessage('Error al restablecer los cursos. Verifica la conexión y URL.', 'danger');
+      });
   }
 }
