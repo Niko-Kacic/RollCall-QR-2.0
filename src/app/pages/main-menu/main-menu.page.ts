@@ -8,6 +8,8 @@ import { LoadingController } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 import { PhraseService } from 'src/app/services/phrase.service'; 
 import { Phrase } from 'src/app/services/phrase.service';  
+import { Filesystem, Directory } from '@capacitor/filesystem'; // Importación requerida
+
 
 @Component({
   selector: 'app-main-menu',
@@ -21,6 +23,7 @@ export class MainMenuPage implements OnInit {
   darkModeEnabled: boolean = false;
   phrase: string = '';
   author: string = '';  
+  profileImage: string | null = null;
 
   constructor(
     private menu: MenuController,
@@ -52,6 +55,8 @@ export class MainMenuPage implements OnInit {
       console.log('No se pudo obtener el correo del usuario autenticado');
     }
 
+    this.loadProfileImage(); // Cargar la imagen de perfil
+    
     // Llamada al servicio para obtener la frase del día
     this.phraseService.getPhrase().subscribe((phrases: Phrase[]) => {
       if (phrases && phrases.length > 0) {
@@ -77,6 +82,20 @@ export class MainMenuPage implements OnInit {
     loading.present();
   }
 
+  async loadProfileImage() {
+    try {
+      const fileName = `profile_image.jpeg`;
+      const file = await Filesystem.readFile({
+        path: fileName,
+        directory: Directory.Data,
+      });
+      this.profileImage = `data:image/jpeg;base64,${file.data}`;
+    } catch (error) {
+      console.log('No se encontró una imagen guardada.');
+      this.profileImage = 'https://freesvg.org/img/abstract-user-flat-4.png'; // Imagen predeterminada
+    }
+  }
+
   // Modo oscuro
   async loadDarkModePreference() {
     const { value } = await Preferences.get({ key: 'dark-mode' });
@@ -95,7 +114,6 @@ export class MainMenuPage implements OnInit {
   }
 
   redirect_profile() {
-    this.showLoading();
     this.menu.close();
     this.router.navigate(['/profile']);
   }

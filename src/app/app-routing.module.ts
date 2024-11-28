@@ -72,7 +72,6 @@ const routes: Routes = [
     redirectTo: 'main-page',
     pathMatch: 'full'
   },
-
 ];
 
 @NgModule({

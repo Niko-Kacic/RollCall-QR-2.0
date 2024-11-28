@@ -79,8 +79,7 @@
 
     <ion-content class="main-content">
       <div class="profile-container">
-        <img class="main-picture" src="https://freesvg.org/img/abstract-user-flat-4.png" alt="profile-img">
-      </div>
+        <img class="main-picture" [src]="profileImage" alt="profile-img" />      </div>
       <div class="title-user-box">
         <h3>Bienvenido: <strong>{{userName}}</strong></h3>
         <q><i>{{phrase}}</i></q>  

@@ -5,7 +5,7 @@ ion-content {
 }
 
 .header-toolbar{
-  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  --background: var(--header-color);
   --color:var(--text-color);
   text-shadow: var(--text-shadow);
 }
@@ -26,19 +26,45 @@ ion-content {
   display: flex;
   align-items: center;
   padding: 20px;
-  --background:linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
-  color: white;
+  --background:linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);  color: white;
 }
 
- img {
+.image-container {
+  position: relative;
+  display: inline-block;
   width: 150px;
   height: 150px;
-  border-radius: 50%;
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  object-fit: fill;
   margin-bottom: 1rem;
-  background-color: #fff;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    object-fit: cover;
+    background-color: #fff;
+  }
+
+  .image-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(18, 30, 75);
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 0;
+
+    ion-icon {
+      font-size: 18px;
+    }
+  }
 }
 
 .student-name {
@@ -65,8 +91,7 @@ ion-content {
 }
 
 .footer-box{
-  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
-}
+  --background: var(--footer-color);}
 
 .footer-title{
   text-align: center;

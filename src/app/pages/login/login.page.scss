@@ -1,7 +1,7 @@
 @import '../../../theme/variables.scss';
 
 ion-content {
-  --background:#FDFDFD;
+  --background: var(--background-color);
 }
 
 .title-box{
@@ -25,8 +25,7 @@ ion-content {
   margin: 0 auto;
   border: 2px solid var(--shadow-color);
   box-shadow: 1px 1px 8px var(--shadow-color);
-  background:linear-gradient(135deg, #a657fa,#7d21b6 ,#6A1B9A);
-  border-bottom-left-radius:10px ;
+  background:linear-gradient(135deg, #a657fa,#7d21b6 ,#6A1B9A);  border-bottom-left-radius:10px ;
   border-bottom-right-radius: 10px;
 }
 
@@ -87,14 +86,14 @@ input {
 .main-btn {
   width: 80%;
   height: 45px;
-  background-color:  rgba(151, 101, 222, 1);
-  color: #FFFDFF;
-  text-shadow: 1px 2px #150016;
+  background-color: var(--button-color);
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
   padding: 10px;
   text-transform: uppercase;
   border-radius: 20px;
-  border: 2px solid #150016;
-  box-shadow: 1px 5px #150016;
+  border: 2px solid var(--shadow-color);
+  box-shadow: 1px 5px var(--shadow-color);
   transition: background-color 0.3s, transform 0.2s;
   letter-spacing: 2px;
 }
@@ -130,13 +129,12 @@ ion-button:active {
 }
 
 .footer-box{
-  --background: linear-gradient(90deg, rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
-}
+  --background: var(--footer-color);}
 
 .footer-title{
   text-align: center;
   font-size: 18px;
-  color: #FFFDFF;
-  text-shadow: 1px 2px #150016;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
   letter-spacing: 2px;
 }
