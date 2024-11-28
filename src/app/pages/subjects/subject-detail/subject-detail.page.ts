@@ -18,7 +18,7 @@ export class SubjectDetailPage implements OnInit {
   subjectAsist: number = 0;
   subjectPorcentage: number = 0;
   public footerTitle: string = '{ Code By CodeCrafters }';
-  apiUrl: string = 'http://localhost:3000/courses';  // Ajusta la URL según sea necesario
+  apiUrl: string = 'https://signature-api-production.up.railway.app/course';
 
   constructor(
     private activatedrouter: ActivatedRoute,
