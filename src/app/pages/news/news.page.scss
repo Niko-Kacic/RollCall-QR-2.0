@@ -1,0 +1,45 @@
+@import '../../../theme/variables.scss';
+
+ion-content {
+  --background: var(--background-color);
+}
+
+.header-toolbar {
+  --background: linear-gradient(45deg, #a657fa, #7d21b6, #6A1B9A);
+  --color: var(--text-color);
+  text-shadow: var(--text-shadow);
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.news-list {
+  padding: 10px;
+}
+
+ion-card {
+  margin-bottom: 15px;
+}
+
+ion-card img {
+  width: 100%;
+  height: auto;
+}
+
+ion-card-header {
+  background-color: #f3f3f3;
+}
+
+ion-card-content {
+  padding: 10px;
+}
+
+.no-news {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+}

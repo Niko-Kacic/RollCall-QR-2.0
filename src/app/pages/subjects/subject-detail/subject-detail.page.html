@@ -4,6 +4,11 @@
       <ion-back-button icon="caret-back-outline" defaultHref="/subjects"></ion-back-button>
     </ion-buttons>
     <ion-title class="title">{{subjectDetail?.title}}</ion-title>
+    <ion-buttons slot="end">
+      <button class="reset-button" (click)="resetCourses()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -47,7 +52,7 @@
 
   <div class="qr-box">
     <button (click)="openCamera()">
-      <ion-icon  name="qr-code-sharp"></ion-icon>
+      <ion-icon name="qr-code-sharp"></ion-icon>
     </button>
   </div>
 </ion-content>

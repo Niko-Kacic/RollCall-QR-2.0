@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SubjectsApiService {
 
-  private apiUrl = 'http://localhost:3000/courses';
+  private apiUrl = 'https://signature-api-production.up.railway.app/courses';
 
   constructor(private http: HttpClient) { }
 
