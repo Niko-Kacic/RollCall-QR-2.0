@@ -38,6 +38,8 @@ export class MainMenuPage implements OnInit {
 
   // Obtener el nombre del usuario autenticado
   async ngOnInit() {
+    this.showLoading(); 
+  
     const user = await this.authService.getCurrentUser();
     if (user && user.email) {
       const email = user.email;
@@ -53,20 +55,22 @@ export class MainMenuPage implements OnInit {
     } else {
       console.log('No se pudo obtener el correo del usuario autenticado');
     }
-
-    // Llamada al servicio para obtener la frase del día
+  
+    // Llamada al servicio para obtener frase motivacional
     this.phraseService.getPhrase().subscribe((phrases: Phrase[]) => {
       if (phrases && phrases.length > 0) {
-        
         const randomIndex = Math.floor(Math.random() * phrases.length);
         const randomPhrase = phrases[randomIndex];
         
         this.phrase = randomPhrase.phrase;
         this.author = randomPhrase.author;
       }
+  
+      this.loadingCtrl.dismiss(); 
+    }, (error) => {
+      console.log('Error al obtener la frase:', error);
+      this.loadingCtrl.dismiss(); 
     });
-
-    this.loadingCtrl.dismiss();
   }
 
   // Mostrar loader
@@ -125,6 +129,7 @@ export class MainMenuPage implements OnInit {
 
   // Cerrar sesión
   async logout() {
+    this.menu.close();
     const modal = await this.modalController.create({
       component: ConfirmLogoutComponent
     });
