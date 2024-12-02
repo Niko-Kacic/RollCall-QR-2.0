@@ -118,6 +118,11 @@ export class MainMenuPage implements OnInit {
     this.router.navigate(['/error-404']);
   }
 
+  redirect_news() {
+    this.menu.close();
+    this.router.navigate(['/news']);
+  }
+
   // Cerrar sesión
   async logout() {
     const modal = await this.modalController.create({
