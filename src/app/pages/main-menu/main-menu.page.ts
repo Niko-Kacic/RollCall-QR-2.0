@@ -7,7 +7,8 @@ import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
 import { LoadingController } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 import { PhraseService } from 'src/app/services/phrase.service'; 
-import { Phrase } from 'src/app/services/phrase.service';  
+import { Phrase } from 'src/app/services/phrase.service'; 
+import { Filesystem, Directory } from '@capacitor/filesystem';  
 
 @Component({
   selector: 'app-main-menu',
@@ -21,6 +22,7 @@ export class MainMenuPage implements OnInit {
   darkModeEnabled: boolean = false;
   phrase: string = '';
   author: string = '';  
+  profileImage: string | null = null;
 
   constructor(
     private menu: MenuController,
@@ -67,6 +69,7 @@ export class MainMenuPage implements OnInit {
     this.loadingCtrl.dismiss();
   }
 
+  // Mostrar loader
   async showLoading() {
     const loading = await this.loadingCtrl.create({
       spinner: 'lines',

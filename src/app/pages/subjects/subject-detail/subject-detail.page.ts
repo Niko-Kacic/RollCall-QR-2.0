@@ -69,12 +69,11 @@ export class SubjectDetailPage implements OnInit {
     this.subjectAsist += 1;
     this.subjectDetail.asistencias = this.subjectAsist;
 
-    // Actualiza la asistencia en la API
+    
     this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/asistencias`, { asistencias: this.subjectAsist })
       .subscribe(response => {
         console.log('Asistencias actualizadas:', response);
 
-        // Después de actualizar la asistencia, realiza una nueva solicitud GET para obtener los datos actualizados
         this.subjetApi.getSubjects().subscribe((data) => {
           this.subjects = data;
           this.subjectDetail = this.subjects.find(signature => signature.id === this.subjectDetail.id);
@@ -92,7 +91,7 @@ export class SubjectDetailPage implements OnInit {
       this.subjectPorcentage = parseFloat(((this.subjectAsist / this.subjectDetail.totalClasses) * 100).toFixed(2));
       this.subjectDetail.attendanceRate = this.subjectPorcentage;
 
-      // Actualiza el porcentaje de asistencia en la API
+    
       this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/attendanceRate`, { attendanceRate: this.subjectPorcentage })
         .subscribe(response => {
           console.log('Porcentaje de asistencia actualizado:', response);
@@ -104,14 +103,13 @@ export class SubjectDetailPage implements OnInit {
     }
   }
 
-  // Nueva función para restablecer los cursos
   resetCourses() {
     this.http.post('https://signature-api-production.up.railway.app/reset-courses', {})
       .subscribe(response => {
         console.log('Cursos restablecidos:', response);
         this.toastMessage('Cursos restablecidos a sus valores por defecto', 'success');
 
-        // Actualiza la vista con los datos restablecidos
+        
         this.subjetApi.getSubjects().subscribe((data) => {
           this.subjects = data;
           this.subjectDetail = this.subjects.find(signature => signature.id === this.subjectDetail.id);
