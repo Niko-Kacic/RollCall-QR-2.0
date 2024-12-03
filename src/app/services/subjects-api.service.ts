@@ -14,4 +14,16 @@ export class SubjectsApiService {
   getSubjects(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
+
+  updateAssistance(subjectId: string, newAssistance: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${subjectId}/asistencias`, { asistencias: newAssistance });
+  }
+
+  updateAttendanceRate(subjectId: string, newAttendanceRate: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${subjectId}/attendanceRate`, { attendanceRate: newAttendanceRate });
+  }
+
+  updateBoth(subjectId: string, newAssistance: number, newAttendanceRate: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${subjectId}`, { asistencias: newAssistance, attendanceRate: newAttendanceRate });
+  }
 }

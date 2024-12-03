@@ -5,10 +5,12 @@ import { IonicModule } from '@ionic/angular';
 import { ConfirmLogoutComponent } from '../components/confirm-logout/confirm-logout.component';
 import { AddNoteComponent } from '../components/add-note/add-note.component';
 
+
 @NgModule({
   declarations: [
     ConfirmLogoutComponent,
-    AddNoteComponent
+    AddNoteComponent,
+
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { AddNoteComponent } from '../components/add-note/add-note.component';
   ],
   exports: [
     ConfirmLogoutComponent,
-    AddNoteComponent
+    AddNoteComponent,
+
   ],
 
 })

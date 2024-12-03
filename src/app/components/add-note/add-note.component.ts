@@ -14,12 +14,14 @@ export class AddNoteComponent {
   constructor(private modalController: ModalController) { }
 
   saveNote() {
-    console.log('Nota guardada:', this.noteContent, 'para la fecha:', this.selectedDate);
-    this.dismissModal();
+    const note = {
+      date: this.selectedDate,
+      content: this.noteContent
+    };
+    this.modalController.dismiss({ note: note });
   }
 
   dismissModal() {
     this.modalController.dismiss();
   }
 }
-
