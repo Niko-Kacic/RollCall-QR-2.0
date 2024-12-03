@@ -1,5 +1,5 @@
 :root {
-  
+
   /* Variables para el modo claro */
 
   // Main colors
@@ -16,6 +16,8 @@
   --profile-background: #FDFDFD;
   --profile-row-border: #ddd; 
   --profile-row-text-color: #333; 
+
+  --list-item-background-color: #F3F3F3;
 
   // News card colors
   --news-card-background: #ffffff;
@@ -42,6 +44,8 @@ body.dark {
   --profile-background: #2F3347;
   --profile-row-border: #444; 
   --profile-row-text-color: #f0f0f0; 
+
+  --list-item-background-color: #1E1E1E;
 
   // News card dark colors
   --news-card-background: #333333;
