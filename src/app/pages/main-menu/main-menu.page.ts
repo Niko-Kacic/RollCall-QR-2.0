@@ -34,6 +34,7 @@ export class MainMenuPage implements OnInit {
     private phraseService: PhraseService
   ) { 
     this.loadDarkModePreference();
+    this.loadProfileImage();
     }
 
   // Obtener el nombre del usuario autenticado
@@ -101,8 +102,23 @@ export class MainMenuPage implements OnInit {
     document.body.classList.toggle('dark', this.darkModeEnabled);
   }
 
+  // Cargar imagen de perfil
+  async loadProfileImage() {
+    try {
+      const fileName = `profile_image.jpeg`;
+      const file = await Filesystem.readFile({
+        path: fileName,
+        directory: Directory.Data,
+      });
+      this.profileImage = `data:image/jpeg;base64,${file.data}`;
+    } catch (error) {
+      console.log('No se encontró una imagen guardada.');
+      this.profileImage = 'https://freesvg.org/img/abstract-user-flat-4.png'; 
+    }
+  }
+
+  // Redirecciones
   redirect_profile() {
-    this.showLoading();
     this.menu.close();
     this.router.navigate(['/profile']);
   }
@@ -135,5 +151,4 @@ export class MainMenuPage implements OnInit {
     });
     return await modal.present();
   }
-
 }

@@ -35,10 +35,30 @@ ion-content {
   height: 150px;
   border-radius: 50%;
   border: 3px solid #ffffff;
-  border-radius: 50%;
-  object-fit: fill;
+  object-fit: cover;
   margin-bottom: 1rem;
   background-color: #fff;
+}
+
+.image-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(18, 30, 75);
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 0;
+}
+
+ion-icon {
+  font-size: 18px;
 }
 
 .student-name {
