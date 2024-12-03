@@ -106,23 +106,22 @@ ion-content {
 }
 
 .menu-title, .menu-icon, ion-label, ion-menu-button{
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
+  color: #FFFDFF;
+  text-shadow: 1px 2px #150016;
   letter-spacing: 2px ;
 }
 
-
 ion-item {
-  --background: #7d21b6;
+  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
 }
 
 .menu-label{
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
+  color: #FFFDFF;
+  text-shadow: 1px 2px #150016;
 }
 
 .main-list{
-  background-color:rgba(151, 101, 222, 1);
+  background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
   height: 100%;
 }
 

@@ -99,7 +99,6 @@ export class ProfilePage implements OnInit {
       console.log('No se encontró una imagen guardada.');
     }
   }
-
 }
 
 
