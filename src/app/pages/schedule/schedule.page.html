@@ -1,9 +1,9 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="header-toolbar">
     <ion-buttons slot="start">
       <ion-back-button icon="caret-back-outline" defaultHref="/main-menu"></ion-back-button>
     </ion-buttons>
-    <ion-title>Calendario</ion-title>
+    <ion-title class="title">Calendario</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
   <ion-datetime button (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp($event)"
    presentation="date" [firstDayOfWeek]="1"></ion-datetime>
 
-  <ion-card>
+  <!-- <ion-card>
     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam possimus iste, rem sequi inventore architecto minus alias ab odio fugit laborum soluta aspernatur quos expedita magni atque nostrum aperiam quo?</p>
     <ion-button>
       <ion-icon name="close"></ion-icon>
@@ -22,5 +22,6 @@
     <ion-button>
       <ion-icon name="close"></ion-icon>
     </ion-button>
-  </ion-card>
+  </ion-card> -->
+  
 </ion-content>
