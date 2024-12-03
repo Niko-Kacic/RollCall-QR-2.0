@@ -56,6 +56,16 @@ export class SchedulePage implements OnInit {
     return this.notes.filter(note => note.date === this.selectedDate);
   }
 
+  deleteNote(noteIndex: number) {
+    console.log('Deleting note at index:', noteIndex);
+    const filteredNotes = this.getNotesForSelectedDate();
+    const noteToDelete = filteredNotes[noteIndex];
+
+    this.notes = this.notes.filter(note => note !== noteToDelete);
+    this.saveNotes();
+    console.log('Notas después de eliminar:', this.notes);
+  }
+
   saveNotes() {
     localStorage.setItem('notes', JSON.stringify(this.notes));
     console.log('Notas guardadas en localStorage:', this.notes);
@@ -75,5 +85,4 @@ export class SchedulePage implements OnInit {
     this.selectedDate = event.detail.value;
     console.log('Fecha seleccionada actualizada:', this.selectedDate);
   }
-
 }
