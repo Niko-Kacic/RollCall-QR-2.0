@@ -19,6 +19,10 @@ export class SubjectDetailPage implements OnInit {
   subjectPorcentage: number = 0;
   apiUrl: string = 'https://signature-api-production.up.railway.app/courses'; 
   public footerTitle: string = '{ Code By CodeCrafters }';
+  isModalOpen: boolean = false; // Estado del modal
+  currentDate: string = '';     // Fecha actual
+  currentTime: string = '';     // Hora actual
+  interval: any;                // Intervalo de tiempo
   
   constructor(
     private activatedrouter: ActivatedRoute,
@@ -40,6 +44,18 @@ export class SubjectDetailPage implements OnInit {
     });
   }
 
+  openModal() {
+    const now = new Date();
+    this.currentDate = now.toLocaleDateString(); // Obtiene la fecha
+    this.currentTime = now.toLocaleTimeString(); // Obtiene la hora
+    this.isModalOpen = true; // Abre el modal
+  }
+  
+  closeModal() {
+    this.isModalOpen = false; // Cierra el modal
+  }
+  
+
   async toastMessage(message: string, color: string) {
     const toast = await this.toastController.create({
       message: message,
@@ -59,7 +75,8 @@ export class SubjectDetailPage implements OnInit {
     if (this.result) {
       this.incrementAttendance();
       this.calculatePercentage();
-      this.toastMessage('Se ha escaneado con éxito el código QR!', 'success');
+
+      this.openModal();
     } else {
       this.toastMessage('Escaneo fallido. Intente nuevamente.', 'danger');
     }
