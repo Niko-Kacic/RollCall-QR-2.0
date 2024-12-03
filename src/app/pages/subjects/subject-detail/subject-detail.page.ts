@@ -73,10 +73,14 @@ export class SubjectDetailPage implements OnInit {
     this.result = result.ScanResult;
 
     if (this.result) {
-      this.incrementAttendance();
-      this.calculatePercentage();
-
-      this.openModal();
+      if (this.result.includes(this.subjectDetail.section)) {
+        this.incrementAttendance();
+        this.calculatePercentage();
+        this.toastMessage('Asistencia registrada con éxito.', 'success');
+        this.openModal();
+      } else {
+        this.toastMessage('El QR no corresponde a la sección esperada.', 'danger');
+      }
     } else {
       this.toastMessage('Escaneo fallido. Intente nuevamente.', 'danger');
     }
