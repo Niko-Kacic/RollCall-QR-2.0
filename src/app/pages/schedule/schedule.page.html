@@ -8,14 +8,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-datetime button (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp($event)"
-   presentation="date" [firstDayOfWeek]="1" (ionChange)="updateSelectedDate($event)"></ion-datetime>
+  <ion-datetime
+    button
+    (mousedown)="onMouseDown($event)"
+    (mouseup)="onMouseUp($event)"
+    presentation="date"
+    [firstDayOfWeek]="1"
+    (ionChange)="updateSelectedDate($event)">
+  </ion-datetime>
 
   <div *ngIf="selectedDate && getNotesForSelectedDate().length > 0">
     <ion-card *ngFor="let note of getNotesForSelectedDate(); let i = index">
       <ion-card-header>
         <ion-card-title>{{ note.date }}</ion-card-title>
-        <ion-button fill="clear" size="small" color="danger" (click)="deleteNote(i)">
+        <ion-button fill="clear" size="small" color="danger" (click)="deleteNoteConfirmation(i)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
       </ion-card-header>

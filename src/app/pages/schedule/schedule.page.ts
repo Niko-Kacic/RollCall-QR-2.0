@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { AddNoteComponent } from '../../components/add-note/add-note.component';
 
 interface Note {
@@ -17,8 +17,9 @@ export class SchedulePage implements OnInit {
   private pressDuration = 800;
   notes: Note[] = [];
   selectedDate: string;
+  currentMonth: Date = new Date();
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController, private alertController: AlertController) {}
 
   ngOnInit() {
     this.loadNotes();
@@ -56,6 +57,30 @@ export class SchedulePage implements OnInit {
     return this.notes.filter(note => note.date === this.selectedDate);
   }
 
+  async deleteNoteConfirmation(noteIndex: number) {
+    const alert = await this.alertController.create({
+      header: 'Confirmar Eliminación',
+      message: '¿Estás seguro de que deseas eliminar esta nota?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Eliminar cancelado');
+          }
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.deleteNote(noteIndex);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   deleteNote(noteIndex: number) {
     console.log('Deleting note at index:', noteIndex);
     const filteredNotes = this.getNotesForSelectedDate();
@@ -64,6 +89,23 @@ export class SchedulePage implements OnInit {
     this.notes = this.notes.filter(note => note !== noteToDelete);
     this.saveNotes();
     console.log('Notas después de eliminar:', this.notes);
+  }
+
+  hasNotes(date: Date): boolean {
+    const dateString = date.toISOString().split('T')[0];
+    return this.notes.some(note => note.date === dateString);
+  }
+
+  getDaysInMonth(): Date[] {
+    const year = this.currentMonth.getFullYear();
+    const month = this.currentMonth.getMonth();
+    const date = new Date(year, month, 1);
+    const days = [];
+    while (date.getMonth() === month) {
+      days.push(new Date(date));
+      date.setDate(date.getDate() + 1);
+    }
+    return days;
   }
 
   saveNotes() {
