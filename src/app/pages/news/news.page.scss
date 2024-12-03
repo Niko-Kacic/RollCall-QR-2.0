@@ -4,10 +4,12 @@ ion-content {
   --background: var(--background-color);
 }
 
-.header-toolbar {
-  --background: linear-gradient(45deg, #a657fa, #7d21b6, #6A1B9A);
-  --color: var(--text-color);
-  text-shadow: var(--text-shadow);
+.header-toolbar{
+  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  color: #FFFDFF;
+  font-weight: bold;
+  text-shadow: 1px 2px #150016;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 .loading-container {
