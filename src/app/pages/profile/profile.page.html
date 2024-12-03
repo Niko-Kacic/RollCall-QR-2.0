@@ -3,16 +3,21 @@
     <ion-buttons slot="start">
       <ion-back-button icon="caret-back-outline" defaultHref="/main-menu"></ion-back-button>
     </ion-buttons>
-    <ion-title class="title">Perfil de Usuario <ion-icon class="menu-icon" name="qr-code-outline"></ion-icon></ion-title>
+    <ion-title class="title">Perfil de Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card class="modern-profile-card">
     <ion-card-header class="profile-header">
-        <img src="https://freesvg.org/img/abstract-user-flat-4.png" alt="Foto de perfil" />
+      <div class="image-container">
+        <img [src]="profileImage || 'https://freesvg.org/img/abstract-user-flat-4.png'" alt="Foto de perfil" />
+        <button class="image-btn" (click)="changeProfileImage()">
+          <ion-icon name="camera-outline"></ion-icon>
+        </button>
+      </div>
       <div>
-        <h2 class="student-name">Hola: {{firstName}} {{lastname}}!</h2>
+        <h2 class="student-name">Hola: {{firstName}} {{lastname}}</h2>
         <p class="student-major">{{school}}</p>
       </div>
     </ion-card-header>
@@ -38,8 +43,8 @@
   </ion-card>
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar class="footer-box">
     <ion-title class="footer-title">{{footerTitle}}</ion-title>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

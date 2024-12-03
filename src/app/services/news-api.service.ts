@@ -8,11 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class NewsApiService {
 
-  private apiUrl = 'http://localhost:3000/news'; // Aquí pones la URL de tu API
+  private apiUrl = 'https://news-api-production-12c7.up.railway.app/news'; 
 
   constructor(private http: HttpClient) { }
 
-  // Método para obtener las noticias
   getNews(): Observable<any> {
     return this.http.get(this.apiUrl);
   }

@@ -19,8 +19,8 @@ export class SubjectDetailPage implements OnInit {
   result: string = '';
   subjectAsist: number = 0;
   subjectPorcentage: number = 0;
-  footerTitle: string = '{ Code By CodeCrafters }';
-  apiUrl: string = 'http://localhost:3000/courses';
+  apiUrl: string = 'https://signature-api-production.up.railway.app/courses';
+  public footerTitle: string = '{ Code By CodeCrafters }';
 
   constructor(
     private activatedrouter: ActivatedRoute,
@@ -63,7 +63,7 @@ export class SubjectDetailPage implements OnInit {
     if (this.result) {
       this.incrementAttendance();
       this.calculatePercentage();
-      this.toastMessage('Se ha escaneado con exito el código QR!', 'success');
+      this.toastMessage('Se ha escaneado con éxito el código QR!', 'success');
     } else {
       this.toastMessage('Escaneo fallido. Intente nuevamente.', 'danger');
     }
@@ -73,19 +73,21 @@ export class SubjectDetailPage implements OnInit {
     this.subjectAsist += 1;
     this.subjectDetail.asistencias = this.subjectAsist;
 
-    // Actualiza la asistencia en la API
-    this.http
-      .put(`${this.apiUrl}/${this.subjectDetail.id}/asistencias`, {
-        asistencias: this.subjectAsist,
-      })
-      .subscribe(
-        (response) => {
-          console.log('Asistencias actualizadas:', response);
-        },
-        (error) => {
-          console.error('Error al actualizar asistencias:', error);
-        }
-      );
+
+    this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/asistencias`, { asistencias: this.subjectAsist })
+      .subscribe(response => {
+        console.log('Asistencias actualizadas:', response);
+
+        this.subjetApi.getSubjects().subscribe((data) => {
+          this.subjects = data;
+          this.subjectDetail = this.subjects.find(signature => signature.id === this.subjectDetail.id);
+          this.subjectAsist = this.subjectDetail.asistencias;
+          this.subjectPorcentage = this.subjectDetail.attendanceRate;
+        });
+      }, error => {
+        console.error('Error al actualizar asistencias:', error);
+        this.toastMessage('Error al actualizar asistencias. Verifica la conexión y URL.', 'danger');
+      });
   }
 
   calculatePercentage() {
@@ -95,44 +97,34 @@ export class SubjectDetailPage implements OnInit {
       );
       this.subjectDetail.attendanceRate = this.subjectPorcentage;
 
-      // Actualiza el porcentaje de asistencia en la API
-      this.http
-        .put(`${this.apiUrl}/${this.subjectDetail.id}/attendanceRate`, {
-          attendanceRate: this.subjectPorcentage,
-        })
-        .subscribe(
-          (response) => {
-            console.log('Porcentaje de asistencia actualizado:', response);
-          },
-          (error) => {
-            console.error(
-              'Error al actualizar el porcentaje de asistencia:',
-              error
-            );
-          }
-        );
+
+      this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/attendanceRate`, { attendanceRate: this.subjectPorcentage })
+        .subscribe(response => {
+          console.log('Porcentaje de asistencia actualizado:', response);
+        }, error => {
+          console.error('Error al actualizar el porcentaje de asistencia:', error);
+        });
     } else {
       this.subjectPorcentage = 0;
     }
   }
 
-  updateBoth() {
-    this.subjetApi
-      .updateBoth(
-        this.subjectDetail.id,
-        this.subjectAsist,
-        this.subjectPorcentage
-      )
-      .subscribe(
-        (response) => {
-          console.log(
-            'Asistencia y porcentaje de asistencia actualizados:',
-            response
-          );
-        },
-        (error) => {
-          console.error('Error al actualizar asistencia y porcentaje:', error);
-        }
-      );
+  resetCourses() {
+    this.http.post('https://signature-api-production.up.railway.app/reset-courses', {})
+      .subscribe(response => {
+        console.log('Cursos restablecidos:', response);
+        this.toastMessage('Cursos restablecidos a sus valores por defecto', 'success');
+
+
+        this.subjetApi.getSubjects().subscribe((data) => {
+          this.subjects = data;
+          this.subjectDetail = this.subjects.find(signature => signature.id === this.subjectDetail.id);
+          this.subjectAsist = this.subjectDetail.asistencias;
+          this.subjectPorcentage = this.subjectDetail.attendanceRate;
+        });
+      }, error => {
+        console.error('Error al restablecer los cursos:', error);
+        this.toastMessage('Error al restablecer los cursos. Verifica la conexión y URL.', 'danger');
+      });
   }
 }

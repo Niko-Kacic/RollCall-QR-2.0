@@ -2,7 +2,7 @@
   <ion-menu side="end" contentId="main-content" class="main-menu">
     <ion-header class="menu-content">
       <ion-toolbar class="menu-content" style="--background: #7d21b6;">
-        <ion-title>Menu</ion-title>
+        <ion-title class="menu-title">Menu</ion-title>
         <ion-buttons slot="end">
           <ion-menu-toggle auto-hide="false">
             <ion-button>
@@ -16,49 +16,49 @@
       <ion-list class="main-list">
         <ion-item button>
           <ion-avatar class="profile-avatar">
-            <ion-icon size="large" name="id-card-outline"></ion-icon>
+            <ion-icon class="menu-icon" size="large" name="id-card-outline"></ion-icon>
           </ion-avatar>
           <ion-label class="menu-label" (click)="redirect_profile()">Perfil</ion-label>
         </ion-item>
         <ion-item button>
           <ion-avatar class="signature-avatar">
-            <ion-icon size="large" name="book-outline"></ion-icon>
+            <ion-icon class="menu-icon" size="large" name="book-outline"></ion-icon>
           </ion-avatar>
           <ion-label class="menu-label" (click)="redirect_subjects()">Asignaturas</ion-label>
         </ion-item>
         <ion-item button>
           <ion-avatar class="calendar-avatar">
-            <ion-icon size="large" name="calendar-outline"></ion-icon>
+            <ion-icon class="menu-icon" size="large" name="calendar-outline"></ion-icon>
           </ion-avatar>
           <ion-label class="menu-label" (click)="redirect_schedule()">Calendario</ion-label>
         </ion-item>
         <ion-item button (click)="redirect_404()">
           <ion-avatar class="group-avatar">
-            <ion-icon size="large" name="people-outline"></ion-icon>
+            <ion-icon class="menu-icon" size="large" name="people-outline"></ion-icon>
           </ion-avatar>
           <ion-label class="menu-label">Grupos de estudio</ion-label>
         </ion-item>
-        <ion-item button (click)="redirect_404()">
+        <ion-item button (click)="redirect_news()">
           <ion-avatar class="news-avatar">
-            <ion-icon size="large" name="newspaper-outline"></ion-icon>
+            <ion-icon class="menu-icon" size="large" name="newspaper-outline"></ion-icon>
           </ion-avatar>
           <ion-label class="menu-label">Noticias</ion-label>
         </ion-item>
         <ion-item button (click)="redirect_404()">
           <ion-avatar class="events-avatar">
-            <ion-icon size="large" name="ticket-outline"></ion-icon>
+            <ion-icon class="menu-icon" size="large" name="ticket-outline"></ion-icon>
           </ion-avatar>
           <ion-label class="menu-label">Eventos</ion-label>
         </ion-item>
         <ion-item button (click)="toggleDarkMode()">
           <ion-avatar class="dark-mode-avatar">
-            <ion-icon size="large" [name]="darkModeEnabled ? 'sunny-outline' : 'moon-outline'"></ion-icon>
+            <ion-icon class="menu-icon" size="large" [name]="darkModeEnabled ? 'sunny-outline' : 'moon-outline'"></ion-icon>
           </ion-avatar>
           <ion-label class="menu-label">Cambiar a {{ darkModeEnabled ? 'Modo Claro' : 'Modo Oscuro' }}</ion-label>
         </ion-item>      
         <ion-item button (click)="logout()">
           <ion-avatar class="logout-avatar">
-            <ion-icon size="large" name="log-out-outline"></ion-icon>
+            <ion-icon class="menu-icon" size="large" name="log-out-outline"></ion-icon>
           </ion-avatar>
           <ion-label class="menu-label">Salir</ion-label>
         </ion-item>
@@ -70,7 +70,7 @@
   <div class="ion-page" id="main-content">
     <ion-header>
       <ion-toolbar class="header-toolbar">
-        <ion-title>Rollcall-QR <ion-icon class="menu-icon" name="qr-code-outline"></ion-icon></ion-title>
+        <ion-title>RollCall-QR</ion-title>
         <ion-buttons slot="end">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -79,13 +79,13 @@
 
     <ion-content class="main-content">
       <div class="profile-container">
-        <img class="main-picture" src="https://freesvg.org/img/abstract-user-flat-4.png" alt="profile-img">
+        <img class="main-picture" [src]="profileImage" alt="profile-img" />
       </div>
       <div class="title-user-box">
         <h3>Bienvenido: <strong>{{userName}}</strong></h3>
         <q><i>{{phrase}}</i></q>  
         <p><i>- {{author}}</i></p>        
-    </div>
+      </div>
       <ion-card class="main-card">
         <ion-card-content class="card-content">
           <p>¡Bienvenido a nuestra aplicación! Aquí podrás acceder a tu perfil, consultar tus ramos, noticias y eventos. ¡Explora y disfruta!</p>
@@ -97,9 +97,3 @@
     </ion-content>
   </div>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar class="footer-box">
-    <ion-title class="footer-title">{{footerTitle}}</ion-title>
-  </ion-toolbar>
-</ion-footer>

@@ -22,10 +22,6 @@ export class SubjectsPage implements OnInit {
 
 
   ngOnInit() {
-    // Consumo de service
-    this.courses = this.subjectservice.getCourses();
-
-    // Consumo de API
     this.subjetApi.getSubjects().subscribe((data) => {
       this.subjects = data;
     });

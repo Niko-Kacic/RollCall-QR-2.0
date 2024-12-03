@@ -7,5 +7,5 @@ export const environment = {
     storageBucket: "rollcall-qr-4a045.firebasestorage.app",
     messagingSenderId: "307572783998",
     appId: "1:307572783998:web:dcaad4be65ef9906ecd12f"
-  };
+  }
 };

@@ -1,13 +1,38 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>news</ion-title>
+  <ion-toolbar class="header-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button icon="caret-back-outline" defaultHref="/main-menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">Noticias</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">news</ion-title>
+      <ion-title size="large">Noticias</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="dots"></ion-spinner>
+  </div>
+
+  <div *ngIf="!loading && news.length > 0" class="news-list">
+    <ion-card *ngFor="let item of news">
+      <img [src]="item.coverimg" alt="Imagen de portada">
+      <ion-card-header>
+        <ion-card-title>{{ item.title }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ item.paragraph_1 }}</p>
+        <p>{{ item.paragraph_2 }}</p>
+        <p><strong>{{ item.date }}</strong></p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="!loading && news.length === 0" class="no-news">
+    <p>No se encontraron noticias</p>
+  </div>
 </ion-content>

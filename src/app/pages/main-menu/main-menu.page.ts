@@ -7,7 +7,8 @@ import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
 import { LoadingController } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 import { PhraseService } from 'src/app/services/phrase.service'; 
-import { Phrase } from 'src/app/services/phrase.service';  
+import { Phrase } from 'src/app/services/phrase.service'; 
+import { Filesystem, Directory } from '@capacitor/filesystem';  
 
 @Component({
   selector: 'app-main-menu',
@@ -21,6 +22,7 @@ export class MainMenuPage implements OnInit {
   darkModeEnabled: boolean = false;
   phrase: string = '';
   author: string = '';  
+  profileImage: string | null = null;
 
   constructor(
     private menu: MenuController,
@@ -32,10 +34,13 @@ export class MainMenuPage implements OnInit {
     private phraseService: PhraseService
   ) { 
     this.loadDarkModePreference();
+    this.loadProfileImage();
     }
 
   // Obtener el nombre del usuario autenticado
   async ngOnInit() {
+    this.showLoading(); 
+  
     const user = await this.authService.getCurrentUser();
     if (user && user.email) {
       const email = user.email;
@@ -51,22 +56,25 @@ export class MainMenuPage implements OnInit {
     } else {
       console.log('No se pudo obtener el correo del usuario autenticado');
     }
-
-    // Llamada al servicio para obtener la frase del día
+  
+    // Llamada al servicio para obtener frase motivacional
     this.phraseService.getPhrase().subscribe((phrases: Phrase[]) => {
       if (phrases && phrases.length > 0) {
-        
         const randomIndex = Math.floor(Math.random() * phrases.length);
         const randomPhrase = phrases[randomIndex];
         
         this.phrase = randomPhrase.phrase;
         this.author = randomPhrase.author;
       }
+  
+      this.loadingCtrl.dismiss(); 
+    }, (error) => {
+      console.log('Error al obtener la frase:', error);
+      this.loadingCtrl.dismiss(); 
     });
-
-    this.loadingCtrl.dismiss();
   }
 
+  // Mostrar loader
   async showLoading() {
     const loading = await this.loadingCtrl.create({
       spinner: 'lines',
@@ -94,8 +102,23 @@ export class MainMenuPage implements OnInit {
     document.body.classList.toggle('dark', this.darkModeEnabled);
   }
 
+  // Cargar imagen de perfil
+  async loadProfileImage() {
+    try {
+      const fileName = `profile_image.jpeg`;
+      const file = await Filesystem.readFile({
+        path: fileName,
+        directory: Directory.Data,
+      });
+      this.profileImage = `data:image/jpeg;base64,${file.data}`;
+    } catch (error) {
+      console.log('No se encontró una imagen guardada.');
+      this.profileImage = 'https://freesvg.org/img/abstract-user-flat-4.png'; 
+    }
+  }
+
+  // Redirecciones
   redirect_profile() {
-    this.showLoading();
     this.menu.close();
     this.router.navigate(['/profile']);
   }
@@ -115,12 +138,17 @@ export class MainMenuPage implements OnInit {
     this.router.navigate(['/error-404']);
   }
 
+  redirect_news() {
+    this.menu.close();
+    this.router.navigate(['/news']);
+  }
+
   // Cerrar sesión
   async logout() {
+    this.menu.close();
     const modal = await this.modalController.create({
       component: ConfirmLogoutComponent
     });
     return await modal.present();
   }
-
 }

@@ -1,5 +1,8 @@
 :root {
+
   /* Variables para el modo claro */
+
+  // Main colors
   --primary-color: rgba(151, 101, 222, 1);
   --secondary-color: rgba(100, 68, 179, 0.9);
   --text-color: #FFFDFF;
@@ -8,10 +11,28 @@
   --shadow-color: #150016;
   --footer-color: rgba(151, 101, 222, 0.9);
   --background-color: #FDFDFD;
+
+  // Profile page colors
+  --profile-background: #FDFDFD;
+  --profile-row-border: #ddd; 
+  --profile-row-text-color: #333; 
+
+  // list item colors
+  --list-item-background-color: #F3F3F3;
+
+  // News card colors
+  --news-card-background: #ffffff;
+  --news-card-text-color: #333333;
+  --news-card-border: #ddd;
+  --news-card-header-background: #f3f3f3; 
+  --news-card-title-color: #333333; 
 }
 
 body.dark {
+
   /* Variables para el modo oscuro */
+
+  // Main dark colors
   --primary-color: #2D2A45;
   --secondary-color: #1A1830;
   --text-color: #150016;
@@ -19,5 +40,19 @@ body.dark {
   --text-shadow: 1px 2px rgba(255, 255, 255, 0.3);
   --footer-color: #3C3B5A;
   --background-color: linear-gradient(to bottom, #2D2A45, #1A1830);
-}
 
+  // Profile page dark colors
+  --profile-background: #2F3347;
+  --profile-row-border: #444; 
+  --profile-row-text-color: #f0f0f0; 
+
+  // list item dark colors
+  --list-item-background-color: #1E1E1E;
+
+  // News card dark colors
+  --news-card-background: #333333;
+  --news-card-text-color: #f0f0f0;
+  --news-card-border: #555555;
+  --news-card-header-background: #444444; 
+  --news-card-title-color: #f0f0f0; 
+}

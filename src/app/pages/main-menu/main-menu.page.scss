@@ -6,14 +6,16 @@ ion-content {
 
 .header-toolbar{
   --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
-  --color:var(--text-color);
-  text-shadow: var(--text-shadow);
+  color: #FFFDFF;
+  font-weight: bold;
+  text-shadow: 1px 2px #150016;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 .profile-container {
   text-align: center;
-  margin-top: 1.5rem;
-  margin-bottom: 0rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .profile-picture-box{
@@ -31,32 +33,55 @@ ion-content {
   background-color: #fff;
 }
 
-.title-user-box{
+.title-user-box {
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 0rem;
-  color: var(--sub-text-color);
+  margin: 1.5rem auto; 
+  margin-bottom: 1rem;
+  padding: 1rem 1rem 0.5rem;
+  width: 90%; 
+  background: linear-gradient(45deg, #a657fa, #7d21b6, #6A1B9A);
+  border-radius: 20px;
+  box-shadow: 1px 1px 8px 2px var(--shadow-color); 
 }
 
-#card-content-welcome {
-  color: #fff;
+.title-user-box h3 {
+  font-size: 20px;
+  color: #FFFDFF;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
   text-shadow: 1px 2px #150016;
 }
 
-h3 {
-  font-size: 18px;
+.title-user-box q {
+  display: block;
+  font-style: italic;
+  color: #FFFDFF;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  margin: 0.2rem 0;
+  text-shadow: 1px 2px #150016;
+}
+
+.title-user-box p {
+  color: #FFFDFF;
+  font-size: 14px;
+  margin-top: 0.5rem;
+  text-align: right;
+  font-weight: 300;
+  margin: 0.2rem 0; 
+  text-shadow: 1px 2px #150016;
 }
 
 .main-card {
-  --background: linear-gradient(90deg, rgb(173, 115, 255),rgba(151, 101, 222, 1), rgba(100, 68, 179, 0.9));
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
-  box-shadow: none;
+  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
+  color: #FFFDFF;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
   width: 100%;
   margin: 0 auto;
-  position: absolute;
-  bottom: 0%;
-  border-radius: 0%;
+  position: fixed;
+  bottom: 0; 
+  left: 0; 
   border-top-right-radius:20px;
   border-top-left-radius:20px;
   border: 1px solid var(--shadow-color);
@@ -65,8 +90,10 @@ h3 {
 
 .card-content p {
   text-align: center;
+  font-size: 14px;
   letter-spacing: 1px;
   margin-top:0px;
+  text-shadow: 1px 2px #150016;
 }
 
 .logo-container {
@@ -78,28 +105,27 @@ h3 {
 .logo-box {
   width: 300px;
   height: 80px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   object-fit: cover;
 }
 
-ion-icon, ion-title, ion-label, ion-menu-button{
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
+.menu-title, .menu-icon, ion-label, ion-menu-button{
+  color: #FFFDFF;
+  text-shadow: 1px 2px #150016;
   letter-spacing: 2px ;
 }
 
-
 ion-item {
-  --background: #7d21b6;
+  --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
 }
 
 .menu-label{
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
+  color: #FFFDFF;
+  text-shadow: 1px 2px #150016;
 }
 
 .main-list{
-  background-color:rgba(151, 101, 222, 1);
+  background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
   height: 100%;
 }
 

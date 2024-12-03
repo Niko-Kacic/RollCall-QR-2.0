@@ -4,15 +4,17 @@ ion-content {
   --background: var(--background-color);
 }
 
-.header-toolbar{
+.header-toolbar {
   --background: linear-gradient(45deg, #a657fa,#7d21b6 ,#6A1B9A);
-  --color:var(--text-color);
-  text-shadow: var(--text-shadow);
+  color: #FFFDFF;
+  font-weight: bold;
+  text-shadow: 1px 2px #150016;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 .modern-profile-card {
   margin-top: 2rem;
-  background-color: #ffffff;
+  background-color: var(--profile-background);
   border-radius: 15px;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -35,33 +37,61 @@ ion-content {
   height: 150px;
   border-radius: 50%;
   border: 3px solid #ffffff;
-  border-radius: 50%;
-  object-fit: fill;
+  object-fit: cover;
   margin-bottom: 1rem;
   background-color: #fff;
+}
+
+.image-btn {
+  position: absolute;
+  top: 10px; 
+  right: 10px; 
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(18, 30, 75); 
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+  padding: 0;
+  z-index: 10; 
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.image-btn:hover { 
+  transform: scale(1.1); 
+}
+
+ion-icon {
+  font-size: 18px;
 }
 
 .student-name {
   font-size: 1.4rem;
   font-weight: bold;
   margin: 0;
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
+  color: #FFFDFF;
+  text-shadow: 1px 2px #150016;
 }
 
 .student-major {
   font-size: 1rem;
-  font-weight: bold;
   margin: 5px 0;
   opacity: 0.8;
-  color: var(--text-color);
-  text-shadow: var(--text-shadow);
+  color: #FFFDFF;
+  text-shadow: 1px 2px #150016;
 }
 
 .profile-info-row {
   padding: 10px 0;
   font-size: 0.95rem;
   border-top: 1px solid #eeeeee;
+  border-top: 1px solid var(--profile-row-border);
+  color: var(--profile-row-text-color);
 }
 
 .footer-box{

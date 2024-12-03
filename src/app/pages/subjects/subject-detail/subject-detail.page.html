@@ -4,6 +4,8 @@
       <ion-back-button icon="caret-back-outline" defaultHref="/subjects"></ion-back-button>
     </ion-buttons>
     <ion-title class="title">{{subjectDetail?.title}}</ion-title>
+    <ion-buttons slot="end">
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -13,6 +15,9 @@
       <div class="prof-container">
         <ion-avatar class="prof-avatar">
           <img class="prof-img" alt="Profile image" [src]="subjectDetail.profileImg" />
+          <button class="reset-button" (click)="resetCourses()">
+            <ion-icon name="refresh"></ion-icon>
+          </button>
         </ion-avatar>
         <div class="prof-text">
           <ion-card-title class="prof-title">| Profesor del Curso</ion-card-title>
@@ -47,13 +52,13 @@
 
   <div class="qr-box">
     <button (click)="openCamera()">
-      <ion-icon  name="qr-code-sharp"></ion-icon>
+      <ion-icon name="qr-code-sharp"></ion-icon>
     </button>
   </div>
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar>
     <ion-title class="footer-title">{{footerTitle}}</ion-title>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoadingController } from '@ionic/angular';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Filesystem, Directory } from '@capacitor/filesystem';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +21,7 @@ export class ProfilePage implements OnInit {
   school: string = "";
   career: string = "";
   yearAtending: string = "";
+  profileImage: string | null = null;
 
   constructor(
     private fireDataBaseService: FireDataBaseService,
@@ -28,18 +31,16 @@ export class ProfilePage implements OnInit {
 
   async ngOnInit() {
 
-    // Espera a que se resuelva el usuario autenticado
     const user = await this.authService.getCurrentUser();
+    this.loadProfileImage();
     if (user && user.email) {
       
       this.email = user.email;
-      console.log('Correo del usuario autenticado:', this.email); // Verifica el correo obtenido
+      console.log('Correo del usuario autenticado:', this.email); 
 
-      // Buscar los datos del usuario por el correo
       this.fireDataBaseService.getUserDataByEmail(this.email).subscribe(data => {
         if (data) {
-          this.loadingCtrl.dismiss();
-          console.log('Datos del usuario obtenidos desde Firestore:', data); // Verifica los datos obtenidos
+          console.log('Datos del usuario obtenidos desde Firestore:', data); 
           this.lastname = data['lastname'];
           this.firstName = data['name'];
           this.email = data['email'];
@@ -58,6 +59,46 @@ export class ProfilePage implements OnInit {
     }
   }
 
+  async changeProfileImage() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Photos,
+    });
+    if (image) {
+      const base64Data = await this.readAsBase64(image);
+      const fileName = `profile_image.jpeg`; 
+      await Filesystem.writeFile({
+        path: fileName,
+        data: base64Data,
+        directory: Directory.Data,
+      });
+      this.profileImage = image.webPath || null; 
+    }
+  }
+  private async readAsBase64(image: any): Promise<string> {
+    const response = await fetch(image.webPath!);
+    const blob = await response.blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
+  async loadProfileImage() {
+    try {
+      const fileName = `profile_image.jpeg`; 
+      const file = await Filesystem.readFile({
+        path: fileName,
+        directory: Directory.Data,
+      });
+      this.profileImage = `data:image/jpeg;base64,${file.data}`;
+    } catch (error) {
+      console.log('No se encontró una imagen guardada.');
+    }
+  }
 }
 
 
