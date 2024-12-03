@@ -9,6 +9,16 @@
 
 <ion-content [fullscreen]="true">
   <ion-datetime button (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp($event)"
-   presentation="date" [firstDayOfWeek]="1"></ion-datetime>
+   presentation="date" [firstDayOfWeek]="1" (ionChange)="updateSelectedDate($event)"></ion-datetime>
 
+  <div *ngIf="selectedDate && getNotesForSelectedDate().length > 0">
+    <ion-card *ngFor="let note of getNotesForSelectedDate()">
+      <ion-card-header>
+        <ion-card-title>{{ note.date }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ note.content }}
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
