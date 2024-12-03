@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AddNoteComponent } from '../../components/add-note/add-note.component';
 
+interface Note {
+  date: string;
+  content: string;
+}
+
+
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.page.html',
@@ -10,6 +16,8 @@ import { AddNoteComponent } from '../../components/add-note/add-note.component';
 export class SchedulePage implements OnInit {
   private touchTimeout: any;
   private pressDuration = 800;
+  note: Note[] = [];
+  selectDate: string;
 
   constructor(private modalController: ModalController) {}
 
@@ -31,5 +39,9 @@ export class SchedulePage implements OnInit {
       componentProps: { selectedDate: selectedDate },
     });
     return await modal.present();
+  }
+
+  getNotesForSelectedDate(): Note[]{
+    return this.note.filter(note => note.date === this.selectDate);
   }
 }
