@@ -8,7 +8,8 @@ import { LoadingController } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 import { PhraseService } from 'src/app/services/phrase.service'; 
 import { Phrase } from 'src/app/services/phrase.service'; 
-import { Filesystem, Directory } from '@capacitor/filesystem';  
+import { Filesystem, Directory } from '@capacitor/filesystem'; 
+import { ToastController } from '@ionic/angular'; 
 
 @Component({
   selector: 'app-main-menu',
@@ -31,11 +32,23 @@ export class MainMenuPage implements OnInit {
     private fireDataBaseService: FireDataBaseService,
     private modalController: ModalController,
     private loadingCtrl: LoadingController,
-    private phraseService: PhraseService
+    private phraseService: PhraseService,
+    private toastController: ToastController
   ) { 
     this.loadDarkModePreference();
     this.loadProfileImage();
     }
+
+  // Toast de función no disponible
+  async showComingSoonToast() {
+    const toast = await this.toastController.create({
+      message: 'Esta función no está lista aún. ¡Vuelve pronto!',
+      duration: 3000, 
+      position: 'bottom', 
+      color: 'tertiary' 
+    });
+    await toast.present();
+  }
 
   // Obtener el nombre del usuario autenticado
   async ngOnInit() {
@@ -133,14 +146,14 @@ export class MainMenuPage implements OnInit {
     this.router.navigate(['/schedule'])
   }
 
-  redirect_404() {
-    this.menu.close();
-    this.router.navigate(['/error-404']);
-  }
-
   redirect_news() {
     this.menu.close();
     this.router.navigate(['/news']);
+  }
+
+  // Llamado al toast de función no disponible
+  comingSoon() {
+    this.showComingSoonToast();
   }
 
   // Cerrar sesión
