@@ -4,7 +4,6 @@ import { MenuController, ModalController } from '@ionic/angular';
 import { ConfirmLogoutComponent } from 'src/app/components/confirm-logout/confirm-logout.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { FireDataBaseService } from 'src/app/services/fire-data-base.service';
-import { LoadingController } from '@ionic/angular';
 import { Preferences } from '@capacitor/preferences';
 import { PhraseService } from 'src/app/services/phrase.service'; 
 import { Phrase } from 'src/app/services/phrase.service'; 
@@ -24,6 +23,7 @@ export class MainMenuPage implements OnInit {
   phrase: string = '';
   author: string = '';  
   profileImage: string | null = null;
+  loadingPhrase: boolean = true;
 
   constructor(
     private menu: MenuController,
@@ -31,7 +31,6 @@ export class MainMenuPage implements OnInit {
     private authService: AuthService,
     private fireDataBaseService: FireDataBaseService,
     private modalController: ModalController,
-    private loadingCtrl: LoadingController,
     private phraseService: PhraseService,
     private toastController: ToastController
   ) { 
@@ -52,7 +51,6 @@ export class MainMenuPage implements OnInit {
 
   // Obtener el nombre del usuario autenticado
   async ngOnInit() {
-    this.showLoading(); 
   
     const user = await this.authService.getCurrentUser();
     if (user && user.email) {
@@ -79,23 +77,12 @@ export class MainMenuPage implements OnInit {
         this.phrase = randomPhrase.phrase;
         this.author = randomPhrase.author;
       }
-  
-      this.loadingCtrl.dismiss(); 
+      
+      this.loadingPhrase = false; 
     }, (error) => {
       console.log('Error al obtener la frase:', error);
-      this.loadingCtrl.dismiss(); 
+      this.loadingPhrase = false;
     });
-  }
-
-  // Mostrar loader
-  async showLoading() {
-    const loading = await this.loadingCtrl.create({
-      spinner: 'lines',
-      message: 'Cargando...',
-      cssClass: 'custom-loader'
-    });
-
-    loading.present();
   }
 
   // Modo oscuro
