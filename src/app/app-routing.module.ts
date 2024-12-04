@@ -19,17 +19,16 @@ const routes: Routes = [
   {
     path: 'main-menu',
     loadChildren: () => import('./pages/main-menu/main-menu.module').then(m => m.MainMenuPageModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'main-page',
     loadChildren: () => import('./pages/main-page/main-page.module').then(m => m.MainPagePageModule),
-
   },
   {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'subjects',
@@ -37,31 +36,35 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./pages/subjects/subjects.module').then( m => m.SubjectsPageModule),
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: ':placeId',
         loadChildren: () => import('./pages/subjects/subject-detail/subject-detail-routing.module').then( m => m.SubjectDetailPageRoutingModule),
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
       }
     ],
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'schedule',
-    loadChildren: () => import('./pages/schedule/schedule.module').then( m => m.SchedulePageModule)
+    loadChildren: () => import('./pages/schedule/schedule.module').then( m => m.SchedulePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'study-groups',
-    loadChildren: () => import('./pages/study-groups/study-groups.module').then( m => m.StudyGroupsPageModule)
+    loadChildren: () => import('./pages/study-groups/study-groups.module').then( m => m.StudyGroupsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'news',
-    loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule)
+    loadChildren: () => import('./pages/news/news.module').then( m => m.NewsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'events',
-    loadChildren: () => import('./pages/events/events.module').then( m => m.EventsPageModule)
+    loadChildren: () => import('./pages/events/events.module').then( m => m.EventsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'error-404',
@@ -69,7 +72,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'main-page',
+    redirectTo: 'error-404',
     pathMatch: 'full'
   },
 

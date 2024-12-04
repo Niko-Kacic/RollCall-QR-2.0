@@ -146,9 +146,24 @@ export class MainMenuPage implements OnInit {
   // Cerrar sesión
   async logout() {
     this.menu.close();
+  
     const modal = await this.modalController.create({
-      component: ConfirmLogoutComponent
+      component: ConfirmLogoutComponent,
     });
-    return await modal.present();
+    
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+
+    if (data && data.confirmed) {
+      try {
+        await this.authService.logout();
+        console.log('Sesión cerrada exitosamente.');
+      
+        this.router.navigate(['/login']);
+      } catch (error) {
+        console.error('Error al cerrar sesión:', error);
+      }
+    }
   }
 }
