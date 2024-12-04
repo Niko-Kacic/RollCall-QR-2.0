@@ -13,6 +13,7 @@ export class SubjectsPage implements OnInit {
   public footerTitle: string = '{ Code By CodeCrafters }';
   courses : any[]=[];
   subjects : any[]=[];
+  isLoading: boolean = true;
 
   constructor(
     private router: Router,
@@ -22,10 +23,17 @@ export class SubjectsPage implements OnInit {
 
 
   ngOnInit() {
-    this.subjetApi.getSubjects().subscribe((data) => {
-      this.subjects = data;
-    });
-    
+    this.isLoading = true;
+    this.subjetApi.getSubjects().subscribe(
+      (data) => {
+        this.subjects = data;
+        this.isLoading = false; 
+      },
+      (error) => {
+        console.error('Error al cargar las asignaturas:', error);
+        this.isLoading = false; 
+      }
+    );
   }
 
 }

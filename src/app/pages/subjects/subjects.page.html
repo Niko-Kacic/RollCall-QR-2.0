@@ -15,7 +15,9 @@
 
   <hr>
 
-  <ion-list class="subjects-list">
+  <ion-spinner *ngIf="isLoading" class="loading-spinner"></ion-spinner>
+
+  <ion-list class="subjects-list" *ngIf="!isLoading">
     <ion-item class="list-item" *ngFor="let subject of subjects" [routerLink]="['/subjects', subject.id]" button>
       <ion-avatar slot="start">
         <ion-img [src]="subject.imageURL"></ion-img>

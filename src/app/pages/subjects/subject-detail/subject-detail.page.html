@@ -10,6 +10,8 @@
 </ion-header>
 
 <ion-content>
+  <ion-spinner *ngIf="isLoading" class="loading-spinner" name="crescent"></ion-spinner>
+
   <ion-card class="main-card" *ngIf="subjectDetail">
     <ion-card-header class="header-card">
       <div class="prof-container">

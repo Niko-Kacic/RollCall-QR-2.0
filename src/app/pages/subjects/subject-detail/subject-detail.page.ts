@@ -14,6 +14,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./subject-detail.page.scss'],
 })
 export class SubjectDetailPage implements OnInit {
+  isLoading: boolean = true;
   subjectDetail: any;
   subjects: any[] = [];
   result: string = '';
@@ -21,10 +22,10 @@ export class SubjectDetailPage implements OnInit {
   subjectPorcentage: number = 0;
   apiUrl: string = 'https://signature-api-production.up.railway.app/courses';
   public footerTitle: string = '{ Code By CodeCrafters }';
-  isModalOpen: boolean = false; // Estado del modal
-  currentDate: string = '';     // Fecha actual
-  currentTime: string = '';     // Hora actual
-  interval: any;                // Intervalo de tiempo
+  isModalOpen: boolean = false; 
+  currentDate: string = '';     
+  currentTime: string = '';     
+  interval: any;               
 
   constructor(
     private activatedrouter: ActivatedRoute,
@@ -34,29 +35,37 @@ export class SubjectDetailPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true; 
     this.activatedrouter.paramMap.subscribe((paramMap) => {
       const subjectId = paramMap.get('placeId');
-      this.subjetApi.getSubjects().subscribe((data) => {
-        this.subjects = data;
-        this.subjectDetail = this.subjects.find(
-          (signature) => signature.id === subjectId
-        );
-        this.subjectAsist = this.subjectDetail.asistencias;
-        this.subjectPorcentage = this.subjectDetail.attendanceRate;
-        console.log(this.subjectDetail);
-      });
+      this.subjetApi.getSubjects().subscribe(
+        (data) => {
+          this.subjects = data;
+          this.subjectDetail = this.subjects.find(
+            (signature) => signature.id === subjectId
+          );
+          this.subjectAsist = this.subjectDetail.asistencias;
+          this.subjectPorcentage = this.subjectDetail.attendanceRate;
+          console.log(this.subjectDetail);
+          this.isLoading = false; 
+        },
+        (error) => {
+          console.error('Error al cargar asignaturas:', error);
+          this.isLoading = false; 
+        }
+      );
     });
   }
 
   openModal() {
     const now = new Date();
-    this.currentDate = now.toLocaleDateString(); // Obtiene la fecha
-    this.currentTime = now.toLocaleTimeString(); // Obtiene la hora
-    this.isModalOpen = true; // Abre el modal
+    this.currentDate = now.toLocaleDateString(); 
+    this.currentTime = now.toLocaleTimeString(); 
+    this.isModalOpen = true; 
   }
 
   closeModal() {
-    this.isModalOpen = false; // Cierra el modal
+    this.isModalOpen = false; 
   }
 
 
