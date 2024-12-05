@@ -7,6 +7,7 @@ import {
   CapacitorBarcodeScannerTypeHint,
 } from '@capacitor/barcode-scanner';
 import { ToastController } from '@ionic/angular';
+import { QrScannerService } from 'src/app/services/qr-scanner.service';
 
 @Component({
   selector: 'app-subject-detail',
@@ -31,7 +32,8 @@ export class SubjectDetailPage implements OnInit {
     private activatedrouter: ActivatedRoute,
     private http: HttpClient,
     private subjetApi: SubjectsApiService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private readonly qrScannerService: QrScannerService
   ) {}
 
   ngOnInit() {
@@ -79,14 +81,11 @@ export class SubjectDetailPage implements OnInit {
     toast.present();
   }
 
-  async openCamera(): Promise<void> {
-    const result = await CapacitorBarcodeScanner.scanBarcode({
-      hint: CapacitorBarcodeScannerTypeHint.ALL,
-    });
-    this.result = result.ScanResult;
-
-    if (this.result) {
-      if (this.result.includes(this.subjectDetail.section)) {
+  async scan(): Promise<void> {
+    const barcodes = await this.qrScannerService.scan(); 
+    if (barcodes.length > 0) { 
+      const scannedCode = barcodes[0]; 
+      if (scannedCode.includes(this.subjectDetail.section)) {
         this.incrementAttendance();
         this.calculatePercentage();
         this.toastMessage('Asistencia registrada con éxito.', 'success');
@@ -94,8 +93,6 @@ export class SubjectDetailPage implements OnInit {
       } else {
         this.toastMessage('El QR no corresponde a la sección esperada.', 'danger');
       }
-    } else {
-      this.toastMessage('Escaneo fallido. Intente nuevamente.', 'danger');
     }
   }
 
