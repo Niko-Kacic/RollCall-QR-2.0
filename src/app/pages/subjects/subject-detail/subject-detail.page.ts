@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SubjectsApiService } from 'src/app/services/subjects-api.service';
-import {
-  CapacitorBarcodeScanner,
-  CapacitorBarcodeScannerTypeHint,
-} from '@capacitor/barcode-scanner';
 import { ToastController } from '@ionic/angular';
 import { QrScannerService } from 'src/app/services/qr-scanner.service';
 
@@ -23,10 +19,10 @@ export class SubjectDetailPage implements OnInit {
   subjectPorcentage: number = 0;
   apiUrl: string = 'https://signature-api-production.up.railway.app/courses';
   public footerTitle: string = '{ Code By CodeCrafters }';
-  isModalOpen: boolean = false; 
-  currentDate: string = '';     
-  currentTime: string = '';     
-  interval: any;               
+  isModalOpen: boolean = false;
+  currentDate: string = '';
+  currentTime: string = '';
+  interval: any;
 
   constructor(
     private activatedrouter: ActivatedRoute,
@@ -37,7 +33,7 @@ export class SubjectDetailPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.isLoading = true; 
+    this.isLoading = true;
     this.activatedrouter.paramMap.subscribe((paramMap) => {
       const subjectId = paramMap.get('placeId');
       this.subjetApi.getSubjects().subscribe(
@@ -49,11 +45,11 @@ export class SubjectDetailPage implements OnInit {
           this.subjectAsist = this.subjectDetail.asistencias;
           this.subjectPorcentage = this.subjectDetail.attendanceRate;
           console.log(this.subjectDetail);
-          this.isLoading = false; 
+          this.isLoading = false;
         },
         (error) => {
           console.error('Error al cargar asignaturas:', error);
-          this.isLoading = false; 
+          this.isLoading = false;
         }
       );
     });
@@ -61,15 +57,14 @@ export class SubjectDetailPage implements OnInit {
 
   openModal() {
     const now = new Date();
-    this.currentDate = now.toLocaleDateString(); 
-    this.currentTime = now.toLocaleTimeString(); 
-    this.isModalOpen = true; 
+    this.currentDate = now.toLocaleDateString();
+    this.currentTime = now.toLocaleTimeString();
+    this.isModalOpen = true;
   }
 
   closeModal() {
-    this.isModalOpen = false; 
+    this.isModalOpen = false;
   }
-
 
   async toastMessage(message: string, color: string) {
     const toast = await this.toastController.create({
@@ -82,9 +77,11 @@ export class SubjectDetailPage implements OnInit {
   }
 
   async scan(): Promise<void> {
-    const barcodes = await this.qrScannerService.scan(); 
-    if (barcodes.length > 0) { 
-      const scannedCode = barcodes[0]; 
+    await this.qrScannerService.init();  // Inicializa el escáner y verifica compatibilidad
+
+    const barcodes = await this.qrScannerService.scan();
+    if (barcodes.length > 0) {
+      const scannedCode = barcodes[0];
       if (scannedCode.includes(this.subjectDetail.section)) {
         this.incrementAttendance();
         this.calculatePercentage();
@@ -99,7 +96,6 @@ export class SubjectDetailPage implements OnInit {
   incrementAttendance() {
     this.subjectAsist += 1;
     this.subjectDetail.asistencias = this.subjectAsist;
-
 
     this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/asistencias`, { asistencias: this.subjectAsist })
       .subscribe(response => {
@@ -124,7 +120,6 @@ export class SubjectDetailPage implements OnInit {
       );
       this.subjectDetail.attendanceRate = this.subjectPorcentage;
 
-
       this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/attendanceRate`, { attendanceRate: this.subjectPorcentage })
         .subscribe(response => {
           console.log('Porcentaje de asistencia actualizado:', response);
@@ -141,7 +136,6 @@ export class SubjectDetailPage implements OnInit {
       .subscribe(response => {
         console.log('Cursos restablecidos:', response);
         this.toastMessage('Cursos restablecidos a sus valores por defecto', 'success');
-
 
         this.subjetApi.getSubjects().subscribe((data) => {
           this.subjects = data;
