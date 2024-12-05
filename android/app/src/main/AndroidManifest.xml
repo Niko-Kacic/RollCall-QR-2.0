@@ -36,6 +36,8 @@
     </application>
 
     <!-- Permissions -->
-
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <meta-data android:name="com.google.mlkit.vision.DEPENDENCIES" android:value="barcode_ui" />
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

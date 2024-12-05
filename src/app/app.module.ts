@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -17,11 +17,27 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ConfirmLogoutComponent } from './components/confirm-logout/confirm-logout.component';
 import { SharedModule } from './shared/shared.module';
 
+// QR Service
+import { QrScannerService } from './services/qr-scanner.service';
+
+export function initQrScannerService(qrScannerService: QrScannerService) {
+  return () => qrScannerService.init();
+}
+
+export function qrScannerService() {
+  return {
+      provide: APP_INITIALIZER,
+      useFactory: initQrScannerService,
+      deps: [QrScannerService],
+      multi: true,
+  };
+}
+
 @NgModule({
   declarations: [AppComponent,],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(), //Permite establecer configuración predeterminada para la APP pasando un json como parametro con atributos de distintas configuraciones para la app
+    IonicModule.forRoot(), 
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
@@ -34,7 +50,8 @@ import { SharedModule } from './shared/shared.module';
     { provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy },
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    qrScannerService()
   ],
   bootstrap: [AppComponent],
 })
