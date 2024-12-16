@@ -11,48 +11,57 @@ import { QrScannerService } from 'src/app/services/qr-scanner.service';
   styleUrls: ['./subject-detail.page.scss'],
 })
 export class SubjectDetailPage implements OnInit {
-  isLoading: boolean = true;
+  isLoading = true;
   subjectDetail: any;
   subjects: any[] = [];
-  result: string = '';
-  subjectAsist: number = 0;
-  subjectPorcentage: number = 0;
-  apiUrl: string = 'https://signature-api-production.up.railway.app/courses';
-  public footerTitle: string = '{ Code By CodeCrafters }';
-  isModalOpen: boolean = false;
-  currentDate: string = '';
-  currentTime: string = '';
-  interval: any;
+  subjectAsist = 0;
+  subjectPercentage = 0;
+  isModalOpen = false;
+  currentDate = '';
+  currentTime = '';
+  readonly apiUrl = 'https://signature-api-production.up.railway.app/courses';
 
   constructor(
-    private activatedrouter: ActivatedRoute,
+    private activatedRouter: ActivatedRoute,
     private http: HttpClient,
-    private subjetApi: SubjectsApiService,
+    private subjectApi: SubjectsApiService,
     private toastController: ToastController,
-    private readonly qrScannerService: QrScannerService
+    private qrScannerService: QrScannerService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.loadSubjectDetail();
+  
+    const initialized = await this.qrScannerService.init();
+    if (!initialized) {
+      this.toastMessage('No se pudo inicializar el escáner.', 'danger');
+    }
+  }
+  
+  async loadSubjectDetail() {
     this.isLoading = true;
-    this.activatedrouter.paramMap.subscribe((paramMap) => {
-      const subjectId = paramMap.get('placeId');
-      this.subjetApi.getSubjects().subscribe(
-        (data) => {
-          this.subjects = data;
-          this.subjectDetail = this.subjects.find(
-            (signature) => signature.id === subjectId
-          );
-          this.subjectAsist = this.subjectDetail.asistencias;
-          this.subjectPorcentage = this.subjectDetail.attendanceRate;
-          console.log(this.subjectDetail);
-          this.isLoading = false;
-        },
-        (error) => {
-          console.error('Error al cargar asignaturas:', error);
-          this.isLoading = false;
+    const subjectId = this.activatedRouter.snapshot.paramMap.get('placeId');
+
+    this.subjectApi.getSubjects().subscribe(
+      (data) => {
+        this.subjects = data;
+        this.subjectDetail = this.subjects.find((signature) => signature.id === subjectId);
+
+        if (this.subjectDetail) {
+          this.subjectAsist = this.subjectDetail.asistencias || 0;
+          this.subjectPercentage = this.subjectDetail.attendanceRate || 0;
+        } else {
+          this.toastMessage('No se encontró la asignatura solicitada.', 'danger');
         }
-      );
-    });
+
+        this.isLoading = false;
+      },
+      (error) => {
+        console.error('Error al cargar detalles de la asignatura:', error);
+        this.toastMessage('Error al cargar datos. Verifica la conexión.', 'danger');
+        this.isLoading = false;
+      }
+    );
   }
 
   openModal() {
@@ -68,84 +77,70 @@ export class SubjectDetailPage implements OnInit {
 
   async toastMessage(message: string, color: string) {
     const toast = await this.toastController.create({
-      message: message,
+      message,
       duration: 3000,
       position: 'bottom',
-      color: color,
+      color,
     });
     toast.present();
   }
 
-  async scan(): Promise<void> {
-    await this.qrScannerService.init();  // Inicializa el escáner y verifica compatibilidad
-
-    const barcodes = await this.qrScannerService.scan();
-    if (barcodes.length > 0) {
-      const scannedCode = barcodes[0];
-      if (scannedCode.includes(this.subjectDetail.section)) {
-        this.incrementAttendance();
-        this.calculatePercentage();
-        this.toastMessage('Asistencia registrada con éxito.', 'success');
-        this.openModal();
-      } else {
-        this.toastMessage('El QR no corresponde a la sección esperada.', 'danger');
-      }
-    }
+  async scan() {
+  const barcodes = await this.qrScannerService.scan();
+  if (barcodes.length === 0) {
+    this.toastMessage('No se detectaron códigos QR.', 'danger');
+    return;
   }
+
+  const scannedCode = barcodes[0];
+  console.log('Código escaneado:', scannedCode); 
+  if (this.subjectDetail && scannedCode.includes(this.subjectDetail.section)) {
+    this.incrementAttendance();
+    this.toastMessage('Asistencia registrada con éxito.', 'success');
+    this.openModal();
+  } else {
+    this.toastMessage('El QR no corresponde a la sección esperada.', 'danger');
+  }
+}
+
 
   incrementAttendance() {
-    this.subjectAsist += 1;
-    this.subjectDetail.asistencias = this.subjectAsist;
+    this.subjectAsist++;
+    this.subjectPercentage = this.calculateAttendancePercentage();
 
-    this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/asistencias`, { asistencias: this.subjectAsist })
-      .subscribe(response => {
-        console.log('Asistencias actualizadas:', response);
-
-        this.subjetApi.getSubjects().subscribe((data) => {
-          this.subjects = data;
-          this.subjectDetail = this.subjects.find(signature => signature.id === this.subjectDetail.id);
-          this.subjectAsist = this.subjectDetail.asistencias;
-          this.subjectPorcentage = this.subjectDetail.attendanceRate;
-        });
-      }, error => {
-        console.error('Error al actualizar asistencias:', error);
-        this.toastMessage('Error al actualizar asistencias. Verifica la conexión y URL.', 'danger');
-      });
+    this.http
+      .put(`${this.apiUrl}/${this.subjectDetail.id}`, {
+        asistencias: this.subjectAsist,
+        attendanceRate: this.subjectPercentage,
+      })
+      .subscribe(
+        () => {
+          this.toastMessage('Asistencia actualizada con éxito.', 'success');
+          this.loadSubjectDetail();
+        },
+        (error) => {
+          console.error('Error al actualizar los datos:', error);
+          this.toastMessage('Error al actualizar los datos.', 'danger');
+        }
+      );
   }
 
-  calculatePercentage() {
-    if (this.subjectDetail.totalClasses > 0) {
-      this.subjectPorcentage = parseFloat(
-        ((this.subjectAsist / this.subjectDetail.totalClasses) * 100).toFixed(0)
-      );
-      this.subjectDetail.attendanceRate = this.subjectPorcentage;
-
-      this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/attendanceRate`, { attendanceRate: this.subjectPorcentage })
-        .subscribe(response => {
-          console.log('Porcentaje de asistencia actualizado:', response);
-        }, error => {
-          console.error('Error al actualizar el porcentaje de asistencia:', error);
-        });
-    } else {
-      this.subjectPorcentage = 0;
-    }
+  calculateAttendancePercentage(): number {
+    return this.subjectDetail.totalClasses > 0
+      ? parseFloat(((this.subjectAsist / this.subjectDetail.totalClasses) * 100).toFixed(2))
+      : 0;
   }
 
   resetCourses() {
-    this.http.post('https://signature-api-production.up.railway.app/reset-courses', {})
-      .subscribe(response => {
-        console.log('Cursos restablecidos:', response);
-        this.toastMessage('Cursos restablecidos a sus valores por defecto', 'success');
-
-        this.subjetApi.getSubjects().subscribe((data) => {
-          this.subjects = data;
-          this.subjectDetail = this.subjects.find(signature => signature.id === this.subjectDetail.id);
-          this.subjectAsist = this.subjectDetail.asistencias;
-          this.subjectPorcentage = this.subjectDetail.attendanceRate;
-        });
-      }, error => {
+    this.http.post(`${this.apiUrl}/reset-courses`, {}).subscribe(
+      () => {
+        this.toastMessage('Cursos restablecidos a sus valores por defecto.', 'success');
+        this.loadSubjectDetail();
+      },
+      (error) => {
         console.error('Error al restablecer los cursos:', error);
-        this.toastMessage('Error al restablecer los cursos. Verifica la conexión y URL.', 'danger');
-      });
+        this.toastMessage('Error al restablecer los cursos.', 'danger');
+      }
+    );
   }
 }

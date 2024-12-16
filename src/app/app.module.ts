@@ -11,10 +11,13 @@ import { FormsModule } from '@angular/forms';
 // Firebase
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { environment } from '../environments/environment';
-import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+
+import { environment } from '../environments/environment';
+
 import { ConfirmLogoutComponent } from './components/confirm-logout/confirm-logout.component';
+
 import { SharedModule } from './shared/shared.module';
 
 // QR Service
