@@ -11,14 +11,15 @@ import { QrScannerService } from 'src/app/services/qr-scanner.service';
   styleUrls: ['./subject-detail.page.scss'],
 })
 export class SubjectDetailPage implements OnInit {
+  items: string[] = [];
   isLoading = true;
   subjectDetail: any;
   subjects: any[] = [];
-  subjectAsist = 0;
-  subjectPercentage = 0;
-  isModalOpen = false;
-  currentDate = '';
-  currentTime = '';
+  subjectAsist: number = 0;
+  subjectPorcentage: number = 0;
+  isModalOpen: boolean = false;
+  currentDate: string = '';    
+  currentTime: string = '';
   readonly apiUrl = 'https://signature-api-production.up.railway.app/courses';
 
   constructor(
@@ -30,7 +31,7 @@ export class SubjectDetailPage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    await this.loadSubjectDetail();
+    this.loadSubjectDetails();
   
     const initialized = await this.qrScannerService.init();
     if (!initialized) {
@@ -38,32 +39,43 @@ export class SubjectDetailPage implements OnInit {
     }
   }
   
-  async loadSubjectDetail() {
-    this.isLoading = true;
-    const subjectId = this.activatedRouter.snapshot.paramMap.get('placeId');
-
-    this.subjectApi.getSubjects().subscribe(
-      (data) => {
+  // Método para cargar los detalles de la asignatura
+  loadSubjectDetails() {
+    this.activatedRouter.paramMap.subscribe(paramMap => {
+      const subjectId = paramMap.get('placeId');
+      this.subjectApi.getSubjects().subscribe((data) => {
+        console.log('Datos recibidos de la API:', data);
         this.subjects = data;
-        this.subjectDetail = this.subjects.find((signature) => signature.id === subjectId);
-
+        this.subjectDetail = this.subjects.find(signature => signature.id === subjectId);
+  
         if (this.subjectDetail) {
-          this.subjectAsist = this.subjectDetail.asistencias || 0;
-          this.subjectPercentage = this.subjectDetail.attendanceRate || 0;
+          this.subjectAsist = this.subjectDetail.asistencias;
+          this.subjectPorcentage = this.subjectDetail.attendanceRate;
         } else {
-          this.toastMessage('No se encontró la asignatura solicitada.', 'danger');
+          console.error('No se encontró el curso con ID:', subjectId);
         }
-
+        this.isLoading = false; 
+      }, error => {
+        console.error('Error al obtener los cursos:', error);
+        this.toastMessage('Error al cargar los cursos.', 'danger');
         this.isLoading = false;
-      },
-      (error) => {
-        console.error('Error al cargar detalles de la asignatura:', error);
-        this.toastMessage('Error al cargar datos. Verifica la conexión.', 'danger');
-        this.isLoading = false;
-      }
-    );
+      });
+    });
   }
 
+  // Método para recargar la página
+  handleRefresh(event: any) {
+    console.log('Página recargando...');
+
+    this.loadSubjectDetails();
+
+    setTimeout(() => {
+      event.target.complete();
+      console.log('Página recargada.');
+    }, 500); 
+  }
+
+  // Métodos para abrir y cerrar el modal
   openModal() {
     const now = new Date();
     this.currentDate = now.toLocaleDateString();
@@ -75,6 +87,7 @@ export class SubjectDetailPage implements OnInit {
     this.isModalOpen = false;
   }
 
+  // Método para mostrar mensajes emergentes
   async toastMessage(message: string, color: string) {
     const toast = await this.toastController.create({
       message,
@@ -85,11 +98,12 @@ export class SubjectDetailPage implements OnInit {
     toast.present();
   }
 
+  // Método para escanear el código qr
   async scan() {
-  const barcodes = await this.qrScannerService.scan();
-  if (barcodes.length === 0) {
-    this.toastMessage('No se detectaron códigos QR.', 'danger');
-    return;
+    const barcodes = await this.qrScannerService.scan();
+    if (barcodes.length === 0) {
+      this.toastMessage('No se detectaron códigos QR.', 'danger');
+      return;
   }
 
   const scannedCode = barcodes[0];
@@ -103,44 +117,64 @@ export class SubjectDetailPage implements OnInit {
   }
 }
 
-
+  // Método para incrementar la asistencia
   incrementAttendance() {
-    this.subjectAsist++;
-    this.subjectPercentage = this.calculateAttendancePercentage();
+    this.subjectAsist += 1;
+    this.subjectDetail.asistencias = this.subjectAsist;
 
-    this.http
-      .put(`${this.apiUrl}/${this.subjectDetail.id}`, {
-        asistencias: this.subjectAsist,
-        attendanceRate: this.subjectPercentage,
-      })
-      .subscribe(
-        () => {
-          this.toastMessage('Asistencia actualizada con éxito.', 'success');
-          this.loadSubjectDetail();
-        },
-        (error) => {
-          console.error('Error al actualizar los datos:', error);
-          this.toastMessage('Error al actualizar los datos.', 'danger');
-        }
-      );
+    this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/asistencias`, { asistencias: this.subjectAsist })
+      .subscribe(response => {
+        console.log('Asistencias actualizadas:', response);
+
+        this.calculatePercentage();
+
+        this.subjectApi.getSubjects().subscribe((data) => {
+          this.subjects = data;
+          this.subjectDetail = this.subjects.find(signature => signature.id === this.subjectDetail.id);
+          this.subjectAsist = this.subjectDetail.asistencias;
+          this.subjectPorcentage = this.subjectDetail.attendanceRate;
+        });
+      }, error => {
+        console.error('Error al actualizar asistencias:', error);
+        this.toastMessage('Error al actualizar asistencias. Verifica la conexión y URL.', 'danger');
+      });
   }
 
-  calculateAttendancePercentage(): number {
-    return this.subjectDetail.totalClasses > 0
-      ? parseFloat(((this.subjectAsist / this.subjectDetail.totalClasses) * 100).toFixed(2))
-      : 0;
+  // Método para calcular el porcentaje de asistencia
+  calculatePercentage() {
+    if (this.subjectDetail.totalClasses > 0) {
+      this.subjectPorcentage = Math.round((this.subjectAsist / this.subjectDetail.totalClasses) * 100);
+      this.subjectDetail.attendanceRate = this.subjectPorcentage;
+
+      this.http.put(`${this.apiUrl}/${this.subjectDetail.id}/attendanceRate`, { attendanceRate: this.subjectPorcentage })
+        .subscribe(response => {
+          console.log('Porcentaje de asistencia actualizado:', response);
+        }, error => {
+          console.error('Error al actualizar el porcentaje de asistencia:', error);
+        });
+    } else {
+      this.subjectPorcentage = 0;
+    }
   }
 
+  // Método para restablecer los cursos a sus valores por defecto
   resetCourses() {
-    this.http.post(`${this.apiUrl}/reset-courses`, {}).subscribe(
-      () => {
-        this.toastMessage('Cursos restablecidos a sus valores por defecto.', 'success');
-        this.loadSubjectDetail();
-      },
-      (error) => {
+    this.http.post('https://signature-api-production.up.railway.app/reset-courses', {})
+      .subscribe(response => {
+        console.log('Cursos restablecidos:', response);
+        this.toastMessage('Cursos restablecidos a sus valores por defecto', 'success');
+
+        
+        this.subjectApi.getSubjects().subscribe((data) => {
+          this.subjects = data;
+          this.subjectDetail = this.subjects.find(signature => signature.id === this.subjectDetail.id);
+          this.subjectAsist = this.subjectDetail.asistencias;
+          this.subjectPorcentage = this.subjectDetail.attendanceRate;
+        });
+      }, error => {
         console.error('Error al restablecer los cursos:', error);
-        this.toastMessage('Error al restablecer los cursos.', 'danger');
-      }
-    );
+        this.toastMessage('Error al restablecer los cursos. Verifica la conexión y URL.', 'danger');
+      });
   }
+
 }

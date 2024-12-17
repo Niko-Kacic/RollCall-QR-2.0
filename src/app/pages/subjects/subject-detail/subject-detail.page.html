@@ -10,6 +10,15 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-refresher (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingText="Desliza para recargar"
+      refreshingSpinner="circles"
+      refreshingText="Recargando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-spinner *ngIf="isLoading" class="loading-spinner" name="crescent"></ion-spinner>
 
   <ion-card class="main-card" *ngIf="subjectDetail">
